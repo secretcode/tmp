@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>TalentManPower</display-name>
+  <servlet>
+    <description>The is gateway to get data in Google Data Table format</description>
+    <display-name>WidgetController</display-name>
+    <servlet-name>WidgetController</servlet-name>
+    <servlet-class>com.tmp.gateway.WidgetController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WidgetController</servlet-name>
+    <url-pattern>/widget</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>This is gateway to entry into the application</description>
+    <display-name>ApplicationController</display-name>
+    <servlet-name>ApplicationController</servlet-name>
+    <servlet-class>com.tmp.gateway.ApplicationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApplicationController</servlet-name>
+    <url-pattern>/bridge</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description>This is gateway to entry into the upload resume</description>
+    <display-name>UploadResumeController</display-name>
+    <servlet-name>UploadResumeController</servlet-name>
+    <servlet-class>com.tmp.gateway.UploadResumeController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadResumeController</servlet-name>
+    <url-pattern>/views/upload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description>This is gateway to entry into the download resume</description>
+    <display-name>DownloadServlet</display-name>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>com.tmp.gateway.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/views/download</url-pattern>
+  </servlet-mapping>
+  
+  
+   
+  <servlet>
+    <description>This is gateway to entry into the captcha controller</description>
+    <display-name>CaptchaController</display-name>
+    <servlet-name>CaptchaController</servlet-name>
+    <servlet-class>com.tmp.gateway.CaptchaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CaptchaController</servlet-name>
+    <url-pattern>/captcha</url-pattern>
+  </servlet-mapping>
+  
+ 
+  
+  <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
+  <welcome-file-list>
+    <welcome-file>main.html</welcome-file>
+  </welcome-file-list>
+  
+  <resource-ref>
+      <description>Connection Pool</description>
+      <res-ref-name>jdbc/tmp</res-ref-name>
+      <res-type>javax.sql.Datasource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref> 
+  
+</web-app>

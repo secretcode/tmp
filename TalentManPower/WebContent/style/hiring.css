@@ -1,0 +1,122 @@
+a.button
+{
+	color:#fff;
+	font-size:20px;
+	text-decoration:none;
+}
+
+
+#addJobOverlay
+{
+	display:none;
+	z-index:5;
+	background-color: rgba(0, 0, 0, 0.59);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+#AddJobForm
+{
+	padding: 10px 20px 20px 20px;
+}
+
+#addJobFormDiv{
+	background-color: #E0E6D7;
+	width: 700px;
+	height: 650px;
+	margin: auto;
+	margin-top: 75px;
+	border: 30px solid;
+	border-radius: 50px;
+	font-size: 15px;
+	line-height:150%;
+}
+
+#addJobFormTitle
+{
+	text-align:center;
+	color:#678;
+	width:647px;
+	float:left;
+}
+
+.addJobFormButton1
+{
+	height:25px;
+	width:120px;
+	background-color:#456;
+	padding:5px;
+	float:right;
+	color:#fff;
+}
+
+#addJobFormCrossButton
+{
+	cursor:pointer;
+}
+
+.red
+{
+	color:#f00;
+	font-size:10px;
+}
+
+.columtext
+{
+	float:left;
+	width:350px;
+}
+
+.columtext_last
+{
+	float:right;
+	width:300px;
+}
+
+.nameInput
+{
+	width:100px;
+}
+.mainHiringBox{
+	background:rgb(89, 29, 218);
+    border: 3px rgb(89, 29, 218);
+    border-radius: 0px 0px 0px 0px;
+    height: 220px;
+    margin: 150px auto auto;
+    opacity: 5;
+    padding: 35px 20px;
+    position: relative;
+    width: 500px;
+    left: -386px;
+	top: -505px;
+}
+.SelectEmployeeButton{
+	background: rgb(89, 29, 218);
+	border: 3px rgb(89, 29, 218);
+	border-radius: 0px 0px 0px 0px;
+	margin: 150px auto auto;
+	opacity: 5;
+	padding: 35px 20px;
+	position: relative;
+	width: 76px;
+	height: -0px;
+	left: -466px;
+	top: -139px;
+	color:#4E2;
+}
+
+.SelectEmployerButton{
+	background: #ffff;
+	border: 3px rgb(89, 29, 218);
+	border-radius: 0px 0px 0px 0px;
+	margin: 150px auto auto;
+	opacity: 5;
+	padding: 35px 20px;
+	position: relative;
+	width: 76px;
+	height: -0px;
+	left: -598px;
+	top: -358px;
+	color:#4E2
+}

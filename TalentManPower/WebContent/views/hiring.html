@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	    
+   		<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+    	<script src="../scripts/hiring.js"></script>
+    	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    	<link href="../style/hiring.css" rel="stylesheet" type="text/css">
+	  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    	<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
+		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
+		<link href="../style/index.css" rel="stylesheet" type="text/css">
+	 	<link href="../style/style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
+	
+		<script src="http://maps.google.com/maps?file=api&v=2&api;key=ABCDEF"
+      		type="text/javascript">
+  		</script>
+    	<script type="text/javascript">
+		
+    	google.load('visualization', '1', {
+  		  'packages': ['corechart', 'controls']
+  		});
+			google.setOnLoadCallback(initiateAllCategoryDT);
+		</script>
+	</head>
+	<body>
+		
+		<div id="addJobOverlay">
+		<div id ="addJobFormDiv">
+			<h1 id ="addJobFormTitle"> Add Job </h1>
+			<img id="addJobFormCrossButton" src="../images/crossButton.jpg">
+			<form method=POST action="" name="AddJobForm" id="AddJobForm">
+			<input type=hidden name=action value="AddCompanyJobForm">
+				<table id ="addJobFormInput">
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Category:</label>
+								<select name="addJobCategoryValue" id="addJobCategoryListValue" class="textbox">
+									<option value="">--Select Category--</option>
+									<option value="account">Accounts</option>
+									<option value="engg">Engg</option>
+									<option value="management">Management</option>
+									<option value="sales">Sales</option>
+								</select>
+							</div>
+							<div class="clear"></div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label><span class="red">* </span>Stream:</label>
+								<select name="addJobStreamValue" id="addJobStreamListValue" class="textbox">
+									<option value="">--Select Stream--</option>
+									<option value="CSE">CSE</option>
+									<option value="IT">IT</option>
+									<option value="MECH">MECH</option>
+									<option value="CIVIL">CIVIL</option>
+								</select>
+							</div>
+							<div class="clear"></div>
+						</td>
+						
+					</tr>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Required designation   </label>
+								<select name="Post" id="JobDesignation" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="Chief Executive Officer">Chief Executive Officer</option>
+									<option value="Chief Operations Officer">Chief Operations Officer</option>
+									<option value="Chief Financial Officer">Chief Financial Officer</option>
+									<option value="Managing Director">Managing Director</option>
+									<option value="HR Manager">HR Manager</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label>Minimun Work Experience Required:</label>
+								<select name="WorkExperienceRequired" id="Work_Experience" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="0">freshers</option>
+									<option value="1">0-2 Years</option>
+									<option value="2">2-4 Years</option>
+									<option value="3">4-6 Years</option>
+									<option value="4">6-8 Years</option>
+									<option value="5">8-10 Years</option>
+									<option value="6">above 10 years</option>
+								</select>
+							</div>
+						</td>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label>Place:</label>
+								<select name="WorkPlace" id="Work_Place" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="Banglore">Banglore</option>
+									<option value="Delhi">Delhi</option>
+									<option value="Mumbai">Mumbai</option>
+									<option value="Chenai">Chenai</option>
+									<option value="Kolkata">Kolkata</option>
+									<option value="manglore">manglore</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label><span class="red">* </span>Salary:</label><br>
+								<input type="text" class="textbox" name="Salary" id="JobSalary" onfocus="if (this.value == 'Salary') this.value = '';" onblur="if (this.value == '') this.value = 'Salary';" value="Salary">
+							</div>
+							<div class="clear"></div>
+						</td>
+							
+					</tr>
+					<tr>
+						
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>No of vacancies:</label><br>
+								<input type="text" class="textbox" name="EMP_Required" id="EMP_Required" onfocus="if (this.value == 'EMP_Required') this.value = '';" onblur="if (this.value == '') this.value = 'EMP_Required';" value="EMP_Required">
+							</div>
+							<div class="clear"></div>
+						</td>
+							
+					</tr>
+					
+					
+				</table>
+				<br><br>
+				<div>
+					<span class="red">* </span> Describe Your Hiring Requirement<br>
+					<textarea name="JobDescription" id="Job_Description" cols="35" rows="7" placeholder="the person should be good in communicating with others,sholud be flexible with working tymings and shoulb be good in c/c++"></textarea>
+				</div>
+				</form>
+				<br><br>
+				<div id="addJobSubmitButton"> <a href="#" class="addJobFormButton1">ADD JOB</a></div>			
+			
+		</div>
+	</div>
+
+	
+
+		
+	
+	<div id="title">
+		<strong>
+			Talent Manpower 
+		</strong><br>
+		Training and Recruitment
+	</div>
+	<hr>
+	<img src="../images/download.jpg" class="stretch" />
+	<hr>
+	<table border="1">
+	<tr>
+		<td><div id ="sideMenu">
+		<div id="webwidget_vertical_menu" class="webwidget_vertical_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="virtualEmp.html">Virtual Employee</a></li>
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+	</div>	
+    <div style="clear: both"></div>
+</div></td>
+<td>
+<div id ="content">
+	<div class="SelectEmployeeButton" id="getEmployeeDetailsButton" >Employee</div>
+    <div class="SelectEmployerButton" id="getEmployerDetailsButton">Employer</div>
+    <div id="hringDataTable" class="columntext" > 	
+		<div id="allCompanyListContent" class="manageItemsContent">
+			<div id="allCompanyDataTableChart" class="companyDataTableChart"></div>
+			<div id="allCompanyNameFilter" class="companyNameFilter"></div>
+			<div class="columtext_last">
+				<div class="Submit_Button" id ="backToHiringPageButtonForCompany">Back</div>
+			</div>
+		</div>
+		<div id="allEmployeeListContent" class="manageItemsContent">
+			<div id="allEmployeeDataTableChart" class="companyDataTableChart"></div>
+			<div id="allEmployeeNameFilter" class="companyNameFilter"></div>
+			<div class="columtext_last">
+				<div class="Submit_Button" id ="backToHiringPageButtonForEmployee">Back</div>
+				<form   action="download" method="get">
+					<input type=hidden id="EmpUid" name="EmpUid">
+					<input type="submit" value="Download Resume">
+				</form>
+			</div>
+		</div>
+ 	</div>
+  	
+	<div id="mainCompanyHiringBox" class="mainHiringBox">
+		<div id="mainCompanyHiringContentDiv" >
+	 		<div id="companyDataTableChart" ></div>
+     		<div class="Submit_Button" id="getAccountEmployeeListButton" >Account</div>
+     		<div class="Submit_Button" id="getManagementEmployeeListButton">Management</div>
+     		<div class="Submit_Button" id="getEnggEmployeeListButton">Engg</div>
+     		<div class="Submit_Button" id="getSalesEmployeeListButton">Sales</div>
+     		<div class="Submit_Button" id ="addJobButton">Add Job</div>
+	 	</div>
+	</div>
+	<div id="mainEmployeeHiringBox" class="mainHiringBox">
+		<div id="mainEmployeeHiringContentDiv" >
+	 		<div id="EmployeeDataTableChart" class=""></div>
+	 			<div class="Submit_Button" id="getAccountCompanyListButton" >Account</div>
+     			<div class="Submit_Button" id="getManagementCompanyListButton">Management</div>
+     			<div class="Submit_Button" id="getEnggCompanyListButton">Engg</div>
+     			<div class="Submit_Button" id="getSalesCompanyListButton">Sales</div>
+     			<div class="Submit_Button" id ="updateResumeEmployeeButton">Update Resume</div>
+     			<div class="Submit_Button">
+    			<a href="hiring/ResumeTips.html">Resume Tips</a> 		
+     		</div>
+     		<div class="Submit_Button">
+    			<a href="hiring/InterviewTips.html">Interview Tips</a> 		
+     		</div>
+     		<div class="Submit_Button">
+    			<a href="hiring/CoveringLetterTip.html">Covering Letter Tips</a> 		
+     		</div>
+	 	</div>
+	</div>
+	
+	
+		
+ 	<div id="UploadResume" class ="signUpContainer" style="display:none;">
+ 		<form name="Resume" action="upload" method="post" enctype="multipart/form-data">
+			<input type="file" size="50" name="file">
+			<br/>
+			<input type="submit" value="Upload">
+		</form>
+	</div>
+	
+</div>
+</td>
+</tr>
+</table>
+<hr>
+<div id ="footer">
+1 2 3 4 get on the dance floor..:P
+<div id="footernavigation">
+bas ab bahut ho gya bhag jaaa yha se-<br>
+<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a></li>
+			<li>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="virtualEmp.html">Virtual Employee</a></li>
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+</div>
+</div>
+ <script language="javascript" type="text/javascript">
+     $(function() {
+         $("#webwidget_vertical_menu").webwidget_vertical_menu({
+             menu_width: '200',
+             menu_height: '30',
+             menu_margin: '3',
+             menu_text_size: '15',
+             menu_text_color: '#CCC',
+             menu_background_color: '#666',
+             menu_border_size: '2',
+             menu_border_color: '#000',
+             menu_border_style: 'solid',
+             menu_background_hover_color: '#999',
+             directory: 'images'
+         });
+		 $("#veSideMenu").webwidget_vertical_menu({
+             menu_width: '200',
+             menu_height: '30',
+             menu_margin: '3',
+             menu_text_size: '15',
+             menu_text_color: '#CCC',
+             menu_background_color: '#012',
+             menu_border_size: '2',
+             menu_border_color: '#000',
+             menu_border_style: 'solid',
+             menu_background_hover_color: '#345',
+             directory: 'images'
+         });
+     });
+ </script>
+ 
+</body>
+
+</html>

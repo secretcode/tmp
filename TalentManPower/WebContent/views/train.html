@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
+		<link href="../style/multi-select.css" rel="stylesheet" type="text/css">
+		<link href="../style/index.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../scripts/jquery.multi-select.js"></script>	    
+    	<script src="../scripts/training.js"></script>
+		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
+		<script src="http://maps.google.com/maps?file=api&v=2&api;key=ABCDEF"
+      		type="text/javascript">
+  		</script>
+    	<script type="text/javascript">
+		
+    	google.load('visualization', '1', {
+  		  'packages': ['corechart', 'controls']
+  		});
+			google.setOnLoadCallback(initiateTrainingDT);
+    		
+		</script>
+	</head>
+	<body>
+		
+				
+	<div id="registerBtnOverlay" class="overlayPage">
+		<div id ="registerBtnFormDiv" class="overlayFormDiv">
+			<h1 id ="registerBtnFormTitle" class="overLayFormTitle"> Register Now </h1>
+			<img id="registerBtnFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
+			<form method=POST action="" name="registerBtnForm" id="registerBtnForm" class="overLayForm">
+			<input type=hidden name=action value="trainCompanyForm">
+				<table id ="CompanyDetails">
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Comapny Name:</label><br>
+								<input type="text" class="textbox" name="CompanyName" id="CompanyName" placeholder="full name">
+							</div>
+							<div class="clear"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Contact Number:</label><br>
+								<input type="password" class="textbox" name="CompanyContactNo" id="CompanyContactNo" placeholder="MobileNo.">
+							</div>
+							<div class="clear"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>EmailId</label><br>
+								<input type="text" class="textbox" name="CompanyEmail" id="CompanyEmail" placeholder="xyz@abc.com">
+							</div>
+							<div class="clear"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Select Courses in which you want to provide training</label><br>
+									<div id="LoadCourses" ></div>
+							</div>
+							<div class="clear"></div>
+
+						</td>
+					</tr>
+											
+				</table>
+				</form>
+				<br><br>
+				<div id="registerSubmitButton"> <a href="#" class="overLayFormSubmitButton">Submit</a></div>			
+			</div>
+		</div>
+		
+	
+	
+	<div id="title">
+		<strong>
+			Talent Manpower 
+		</strong><br>
+		Training and Recruitment
+	</div>
+	<hr>
+	<img src="../images/download.jpg" class="stretch" />
+	<hr>
+	<table border="1">
+	<tr>
+		<td><div id ="sideMenu">
+		<div id="webwidget_vertical_menu" class="webwidget_vertical_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="virtualEmp.html">Virtual Employee</a></li>
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+	</div>	
+    <div style="clear: both"></div>
+</div></td>
+<td>
+<div id="content">
+		<div id="trainingListContent" class="manageItemsContent">
+			<div id="fieldsFilter" class="companyNameFilter"></div>
+		<div id="trainingTableChart" class="companyDataTableChart" >	</div>
+		</div>
+		
+		
+		<div id="registerNow" class="login-btn">Register Now</div>
+		
+	</div>
+</td>
+</tr>
+</table>
+<hr>
+<div id ="footer">
+1 2 3 4 get on the dance floor..:P
+<div id="footernavigation">
+bas ab bahut ho gya bhag jaaa yha se-<br>
+<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a></li>
+			<ul>
+				<li><a href="train.html">Training</a></li>
+				<li><a href="hiring.html">Hiring</a></li>
+				<li><a href="virtualEmp.html">Virtual Employee</a></li>
+			</ul>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+</div>
+</div>
+ <script language="javascript" type="text/javascript">
+     $(function() {
+
+    	  $('#loadCourses').multiSelect();
+         
+         $("#webwidget_vertical_menu").webwidget_vertical_menu({
+             menu_width: '200',
+             menu_height: '30',
+             menu_margin: '3',
+             menu_text_size: '15',
+             menu_text_color: '#CCC',
+             menu_background_color: '#666',
+             menu_border_size: '2',
+             menu_border_color: '#000',
+             menu_border_style: 'solid',
+             menu_background_hover_color: '#999',
+             directory: 'images'
+         });
+		 $("#veSideMenu").webwidget_vertical_menu({
+             menu_width: '200',
+             menu_height: '30',
+             menu_margin: '3',
+             menu_text_size: '15',
+             menu_text_color: '#CCC',
+             menu_background_color: '#012',
+             menu_border_size: '2',
+             menu_border_color: '#000',
+             menu_border_style: 'solid',
+             menu_background_hover_color: '#345',
+             directory: 'images'
+         });
+     });
+ </script>
+ 
+</body>
+
+</html>

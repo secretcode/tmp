@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>helloooooooo world</title>
+		<link href="style/style.css?version=1.1" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>	    
+   		<script type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+    	<script src="scripts/addJob.js"></script>
+    	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	  	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    	<!-- Note that you need to replace the key ABCDEF with your Maps API key. -->
+    	<!-- Sign up for a Maps API key here: http://code.google.com/apis/maps/signup.html -->
+    	<script src="http://maps.google.com/maps?file=api&v=2&api;key=ABCDEF"
+      		type="text/javascript">
+  		</script>
+    	<script type="text/javascript">
+    	google.load('visualization', '1', {
+    		  'packages': ['corechart', 'controls']
+    		});
+		google.setOnLoadCallback(initiateShowCompanyDT);
+    		
+	</script>
+    	
+    	
+	</head>
+	<body>
+	
+	<div id="companyListContent" class="" >
+	 	<div id="companyDataTableChart" class=""></div>
+	 		<div id="companyNameFilter" class=""></div>
+	</div>
+	
+	
+	<div id="addJobBOx" class="">
+		<div id="" class="">
+		<form method=POST action="" name="AddJobForm" id="AddJobForm">
+		<input type=hidden name=action value="AddCompanyJobForm">
+		<span id="addJobContentDivTitle" class="">Enter Category</span>
+			<select id="addJobCategoryListValue" name="addJobCategoryValue" class="">
+				<option value="0">--Select Category--</option>
+				<option value="account">Accounts</option>
+				<option value="engg">Engg</option>
+				<option value="management">Management</option>
+				<option value="sales">Sales</option>
+  			</select>
+  		<span id="addJobExamList_MSL" class=""> Insert Stream:</span>
+			<select id="addJobStreamListValue" name="addJobStreamValue" class="">
+				<option value="0">--Select Stream--</option>
+				<option value="CSE">CSE</option>
+				<option value="IT">IT</option>
+				<option value="MECH">MECH</option>
+				<option value="CIVIL">CIVIL</option>
+  			</select>
+  		Designation: <input type="text" name="Post" id="JobDesignation" placeholder="Post" tabindex="1"><br>
+		Minimun Work Experience Required: <input type="text" name="WorkExperienceRequired" id="Work_Experience" placeholder="NO Of Years" tabindex="2"><br>
+		Salary Rs.: <input type="text" name="Salary" id="JobSalary" placeholder="70,000" tabindex="3"><br>
+		Place: <input type="text" name="WorkPlace" id="Work_Place" placeholder="Chainai" tabindex="4"><br>
+		Description: <input type="text" name="JobDescription" id="Job_Description" placeholder="c/c++ java etc punjabi" tabindex="5"><br>
+		No of Employees Required: <input type="text" name="EMP_Required" id="EMP_Required" placeholder="7" tabindex="6"><br>
+	</form>
+	 <div class="Submit_Button" id="addJobSubmitButton" tabindex="7">Submit</div>
+	 		<div class="Submit_Button" id="getCompanyListButton" tabindex="7">Company</div>
+	 </div>
+	 
+	</div>
+	</body>
+</html>
