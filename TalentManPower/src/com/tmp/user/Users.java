@@ -1,4 +1,3 @@
-
 package com.tmp.user;
 
 
@@ -6,68 +5,51 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Users implements Serializable{
-	/** 
-	 * This attribute maps to the column uid in the users table.
-	 */
-	protected int uid;
+	protected int id;
 	
-	private int roleId;
-	
-	private String fullName = null;
-	
-	public String getFullName() {
-		return fullName;
-	}
-
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-
-	/** 
-	 * This attribute maps to the column login_name in the users table.
-	 */
 	protected String loginName;
+	
+	protected int roleId;
 
-	/** 
-	 * This attribute maps to the column password in the users table.
-	 */
-	protected String password;
+	protected String password=null;
 
-		public Users()
+	protected String Email=null;
+	public int getId()
 	{
-	}
-
-	public int getUid()
-	{
-		return uid;
-	}
-
-	public void setUid(int uid)
-   {
-		this.uid = uid;
+		return id;
 	}
 	public String getLoginName()
 	{
 		return loginName;
 	}
-
-	public void setLoginName(String loginName)
-	{
-		this.loginName = loginName;
-	}
 	public String getPassword()
 	{
 		return password;
 	}
-
+	public int getRoleId() {
+		return roleId;
+	}
+	public String getEmail(){
+		return Email;
+	}
+	
+	
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+	public void setLoginName(String loginName)
+	{
+		this.loginName = loginName;
+	}
+	public void setEmail(String Email)
+	{
+		this.Email = Email;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+	
 	public void setPassword(String password)
 	{
 		this.password = password;
@@ -88,7 +70,7 @@ public class Users implements Serializable{
 		}
 		
 		final Users _cast = (Users) _other;
-		if (uid != _cast.uid) {
+		if (id != _cast.id) {
 			return false;
 		}
 		
@@ -111,7 +93,7 @@ public class Users implements Serializable{
 	public int hashCode()
 	{
 		int _hashCode = 0;
-		_hashCode = 29 * _hashCode + uid;
+		_hashCode = 29 * _hashCode + id;
 		if (loginName != null) {
 			_hashCode = 29 * _hashCode + loginName.hashCode();
 		}
@@ -125,7 +107,7 @@ public class Users implements Serializable{
 	{
 		StringBuffer ret = new StringBuffer();
 		ret.append( "com.mycompany.users.dto.Users: " );
-		ret.append( "uid=" + uid );
+		ret.append( "id=" + id );
 		ret.append( ", loginName=" + loginName );
 		ret.append( ", password=" + password );
 		return ret.toString();

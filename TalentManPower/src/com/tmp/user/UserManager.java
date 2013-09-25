@@ -46,7 +46,6 @@ public class UserManager {
 		}catch(Exception e) {}
 	}
 	
-
 	
 	public static Users getUserInfo(int uid,int roleId,Connection con){
 		Users usr=null;

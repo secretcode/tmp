@@ -33,7 +33,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 
 	 public void init(ServletConfig config) throws ServletException{
 		 super.init(config);
-		 System.out.println("gdvcdgbc");
+		 System.out.println("Inside init method of application controller servlet");
 	 }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,75 +58,68 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			System.out.println(loginName);
 			System.out.println(passwd);
 			authResponse = "-1";
-			returnPath="views/authenticationResponse.jsp";
+			returnPath="/views/authenticationResponse.jsp";
 			if(loginName == null || passwd == null) {
 				action = "";
 				returnPath = "/";
 			}
-			try {
-				try{
-					
+			try{
+				try{	
 					try{
 						con = DBConnection.getConnection();
 					}catch(Exception exp){
+						System.out.println("Exception occured in loginuser action od application controller"+exp);
 						exp.printStackTrace();
 					}
 					usr  = UserManager.authenticateUser(loginName, passwd,con);
 					if(usr!=null) {
-						int uid=usr.getUid();
+						int uid=usr.getId();
 						System.out.println("uid of the user is::"+uid);
-						if(uid>=1) {
-						authResponse = "1";
+						if(uid>=1){
+							authResponse = "1";
 						}
 					}
-					
-					}catch(Exception exp){
+				}catch(Exception exp){
 						exp.printStackTrace();
-					}
-
-
-					session = request.getSession(true);
-					session.setAttribute("userInfo",usr);
 				}
-				
-				finally{
-					try {
+				System.out.println("b4 creating session");
+				session = request.getSession(true);
+				session.setAttribute("userInfo",usr);
+			}			
+			finally{
+				try{
 					DBConnection.freeResources(con);
-					}catch(Exception e) {};
-				}
-				request.setAttribute("authResponse", authResponse);
-				rd = request.getRequestDispatcher(returnPath);
-				
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-				break;
+				}catch(Exception e) {};
+			}
+			System.out.println(" value of returnpath is "+ returnPath);
+			System.out.println("authresponse ::"+ authResponse);
+			request.setAttribute("authResponse", authResponse);
+			rd = request.getRequestDispatcher(returnPath);
+			System.out.println("rd " + rd);
+			rd.forward(request, response);
+			break;
 			
 		case "userInfo" :
 			System.out.println("in login index page;");
 			returnPath = "/";
-			
 			session = request.getSession(true);
 			Users user = (Users)session.getAttribute("userInfo");
 			if(user!=null){
-				int uid=user.getUid();
+				int uid=user.getId();
 				int roleId=user.getRoleId();
 				try {
-				con=DBConnection.getConnection();
-				}catch(Exception e) {}
-				
+					con=DBConnection.getConnection();
+				}catch(Exception e) {
+					System.out.println("Exception occured in getting the connection in userInfo case");
+				}
 				usr  = UserManager.getUserInfo(uid,roleId,con);
-				
 				returnPath="views/dashBoard.jsp";
 				request.setAttribute("usrName", usr.getLoginName());
 			}
-				rd = request.getRequestDispatcher(returnPath);
-				
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-				break;
-		
+			rd = request.getRequestDispatcher(returnPath);
+			System.out.println("rd " + rd);
+			rd.forward(request, response);
+			break;
 		case "trainCompanyForm":
 			System.out.println("insidaa application controller");
 			String cname = request.getParameter("CompanyName");
@@ -173,55 +166,49 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			break;
 			
 		case "employeeSignUpJobForm" :
-			System.out.println("inside emp sign up");
-			        
-					String name = request.getParameter("EmpName");
-					String email = request.getParameter("EmpEmail");
-					String password = request.getParameter("EmpPassword");
-				//	String date = request.getParameter("D.O.B");
-					String mobile = request.getParameter("EmpMobile");
-					String address = request.getParameter("Empaddress");
-					String course = request.getParameter("EmpCourse");
-					String exp = request.getParameter("EmpExperience");
-					
-					try {
-						try{
-							
-							try{
-								con = DBConnection.getConnection();
-							}catch(Exception xp){
-								xp.printStackTrace();
-							}
-							 UserManager.empSignUp(name,email,password,mobile,address,course,exp,con);
-					
-						}catch(Exception p){
-									p.printStackTrace();
-						}
-
-
-								HttpSession session3 = request.getSession(true);
-								authResponse = "1";
-								returnPath="views/authenticationResponse.jsp";
-							}
+			System.out.println("inside emp sign up");		        
+			String name = request.getParameter("EmpName");
+			String email = request.getParameter("EmpEmail");
+			String passwrd = request.getParameter("EmpPassword");
+			String password=UserManager.encryptPasswordMDF(passwrd);
+			String mobile = request.getParameter("EmpMobile");
+			String address = request.getParameter("Empaddress");
+			String course = request.getParameter("EmpCourse");
+			String exp = request.getParameter("EmpExperience");
+			try {
+				try{
+					try{
+						con = DBConnection.getConnection();
+					}catch(Exception xp){
+							xp.printStackTrace();
+					}
+					UserManager.empSignUp(name,email,password,mobile,address,course,exp,con);
+				}catch(Exception p){
+					p.printStackTrace();
+				}
+				HttpSession session3 = request.getSession(true);
+				authResponse = "1";
+				returnPath="views/authenticationResponse.jsp";
+			}					
+			finally{
+				try {
+					DBConnection.freeResources(con);
+				}catch(Exception e) {};
+			}
 						
-						finally{
-							try {
-							DBConnection.freeResources(con);
-							}catch(Exception e) {};
-						}
+			request.setAttribute("authResponse", authResponse);
+			rd = request.getRequestDispatcher(returnPath);
 						
-						request.setAttribute("authResponse", authResponse);
-						rd = request.getRequestDispatcher(returnPath);
-						
-						System.out.println("rd " + rd);
+			System.out.println("rd " + rd);
 
-						rd.forward(request, response);
-						break;
+			rd.forward(request, response);
+			break;
 			
 		case "companySignUpJobForm":
 			System.out.println("Company Sign Up in application controller");
 			String comUserName = request.getParameter("ComUserName");
-			String comPassword = request.getParameter("ComPassword");
+			String Passwd = request.getParameter("ComPassword");
+			String comPassword=UserManager.encryptPasswordMDF(Passwd);
 			String comEmail = request.getParameter("ComEmail");
 			String secondaryComEmail = request.getParameter("SecondaryComEmail");
 			String comName = request.getParameter("ComName");
@@ -278,30 +265,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
-			
-		case "loadCourses" :
-			System.out.println("loading courses..");
-			ArrayList<TrainingCourses> courses=new ArrayList<TrainingCourses>();
-			try {
-				con=DBConnection.getConnection();
-				courses=TrainingDAO.getCoursesList(con);
-			}catch(Exception h) {}
-			finally{
-				try {
-				DBConnection.freeResources(con);
-				}catch(Exception j) {}
-			}
-			
-			returnPath="views/loadCourses.jsp";
-			request.setAttribute("coursesArray", courses);
-			rd = request.getRequestDispatcher(returnPath);
-		
-			System.out.println("rd " + rd);
-
-			rd.forward(request, response);
-
-			break;			
-		case "veForm":
+			case "veForm":
 			System.out.println("virtual employee ka form mil gaya");
 			session = request.getSession();
 			String captcha = (String) session.getAttribute("captcha");
@@ -364,6 +328,60 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
+			
+			case "AddCompanyJobForm":
+				System.out.println("AddCompanyJobForm in application controller");
+				String a1 = request.getParameter("addJobCategoryValue");
+				String a2 = request.getParameter("addJobStreamValue");
+				String a3 = request.getParameter("Post");
+				String a4 = request.getParameter("WorkExperienceRequired");
+				String a5 = request.getParameter("JobDescription");
+				String a6 = request.getParameter("WorkPlace");
+				System.out.println("dfghhdsjk");
+				int a7=0,a8=0;
+				returnPath="/views/authenticationResponse.jsp";
+				try{
+					a7= Integer.parseInt(request.getParameter("Salary"));
+					a8= Integer.parseInt(request.getParameter("EMP_Required"));
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				HttpSession session1=request.getSession();
+				Users ur=(Users)session1.getAttribute("userInfo");
+				int uid=ur.getId();
+				System.out.println(a1+" "+a2+" "+a3+" "+a4+" "+a5+" "+a6+" "+a7+" "+a8+ " "+uid);
+				
+				String authResponse11 = "-1";
+				Connection con11 = null;
+				String returnPath11=null;
+				try{
+					try{
+						con11 = DBConnection.getConnection();
+					}catch(Exception exp1){
+						exp1.printStackTrace();
+					}
+					companyDAO.insertJob(uid,a1,a2,a3,a4,a5,a6,a7,a8,con11);
+
+					
+					authResponse11 = "1";
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				finally{
+					try {
+					DBConnection.freeResources(con11);
+					}catch(Exception e) {};
+				}
+				
+				request.setAttribute("authResponse", authResponse11);
+				rd = request.getRequestDispatcher(returnPath);
+			
+				System.out.println("rd " + rd);
+
+				rd.forward(request, response);
+
+				break;
+			
 		default:
 				System.out.println("this is default case msg in application controller");
 			

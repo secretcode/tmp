@@ -419,10 +419,10 @@ function initiateLoginBox() {
 		
 
 		
-		var email=$("#loginUserName").val();  
-		if(email=="" || email==$("#loginUserName").attr('placeholder')||(email.search("@")==-1)||(email.search(".com")==-1)){
+		var name=$("#loginUserName").val();  
+		if(name=="" || name==$("#loginUserName").attr('placeholder')){
 		//  $("#email_error_AF").html("This field is required");
-		alert("enter email correctly");
+		alert("enter username correctly");
 			isError = 1;	
 			 $("#loginUserName").focus();
 		}		

@@ -435,13 +435,7 @@ function initiateAddJob() {
 						alert("Inside if");
 						//$("#authenticationFailureMessage").show();
 					} else {
-						alert("Inside else");
-						var authenticatedLoginForm = $("#authenticatedLoginForm");
-						alert("authenticatedLoginForm: "+authenticatedLoginForm);
-						authenticatedLoginForm.attr('action', APP_PATH+'bridge');
-						alert("Action for form: "+authenticatedLoginForm.attr('action'));
-						authenticatedLoginForm.submit();	
-						alert("After Submit");
+						$("#addJobFormCrossButton").click();
 					}											
 				}
 			  });
