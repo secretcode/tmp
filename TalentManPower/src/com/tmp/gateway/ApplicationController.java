@@ -58,7 +58,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			System.out.println(loginName);
 			System.out.println(passwd);
 			authResponse = "-1";
-			returnPath="/views/authenticationResponse.jsp";
+			returnPath="views/authenticationResponse.jsp";
 			if(loginName == null || passwd == null) {
 				action = "";
 				returnPath = "/";
@@ -100,6 +100,27 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 			break;
 			
+			session = request.getSession(true);
+			Users user = (Users)session.getAttribute("userInfo");
+			if(user!=null){
+				int uid=user.getUid();
+				int roleId=user.getRoleId();
+				try {
+				con=DBConnection.getConnection();
+				}catch(Exception e) {}
+				
+				usr  = UserManager.getUserInfo(uid,roleId,con);
+				
+				returnPath="views/dashBoard.jsp";
+				request.setAttribute("usrName", usr.getLoginName());
+			}
+				rd = request.getRequestDispatcher(returnPath);
+				
+				System.out.println("rd " + rd);
+
+				rd.forward(request, response);
+				break;
+		
 		case "trainCompanyForm":
 			System.out.println("insidaa application controller");
 			String cname = request.getParameter("CompanyName");
@@ -268,6 +289,29 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
+			
+		case "loadCourses" :
+			System.out.println("loading courses..");
+			ArrayList<TrainingCourses> courses=new ArrayList<TrainingCourses>();
+			try {
+				con=DBConnection.getConnection();
+				courses=TrainingDAO.getCoursesList(con);
+			}catch(Exception h) {}
+			finally{
+				try {
+				DBConnection.freeResources(con);
+				}catch(Exception j) {}
+			}
+			
+			returnPath="views/loadCourses.jsp";
+			request.setAttribute("coursesArray", courses);
+			rd = request.getRequestDispatcher(returnPath);
+		
+			System.out.println("rd " + rd);
+
+			rd.forward(request, response);
+
+			break;			
 		case "veForm":
 			System.out.println("virtual employee ka form mil gaya");
 			session = request.getSession();

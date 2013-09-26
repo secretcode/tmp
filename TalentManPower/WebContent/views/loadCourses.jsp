@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 		<link href="../style/multi-select.css" rel="stylesheet" type="text/css">
 		<link href="../style/index.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="../scripts/jquery.multi-select.js"></script>	    
     

@@ -8,57 +8,43 @@ import com.tmp.company.Company;
 
 public class UsersDAO {
 
-public static Users authenticateUser(String loginName,String password,Connection con) throws Exception{
-		
-		PreparedStatement ps=con.prepareStatement("SELECT id, email, password,roleId FROM users_login_info where login_Name='"+loginName+"' and password='"+password+"'");
+	public static Users authenticateUser(String loginName,String password,Connection con) throws Exception{
+		PreparedStatement ps=con.prepareStatement("SELECT uid, login_name, password,roleId FROM users_info where login_name='"+loginName+"' and password='"+password+"'");
 		ResultSet rs=ps.executeQuery();
 		Users dto=new Users();
 		while(rs.next()) {
-			dto.setId( rs.getInt(1) );
+			dto.setUid( rs.getInt(1) );
 			dto.setLoginName( rs.getString( 2 ) );
 			dto.setPassword( rs.getString( 3 ) );
 			dto.setRoleId(rs.getInt(4));
-			dto.setEmail(rs.getString("email"));
+			
 		}		
-		if(dto.getId()==0){
-			System.out.println("Authentication failed");
-		}
-		else{
+		if(dto!=null){
 			System.out.println("Authentication successful");
 			System.out.println(dto);
 		}
-		
+		else{
+			System.out.println("Authentication failed");
+		}
 		return dto;
 	}
 	
 	public static void empSignUp(String name,String email,String password,String mobile,String address,String course,String exp,Connection con) throws Exception{
-		try{
-			PreparedStatement ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId,email) values('"+name+"','"+password+"',1,'"+email+"')");
-			ps.executeUpdate();
-			PreparedStatement ps1=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+name+"' and password='"+password+"'");
-			ResultSet rs=ps1.executeQuery();
-			int uid=0;
-			while(rs.next()){
-				uid=rs.getInt("id");
-			}
-			System.out.println("id is "+uid);
-			PreparedStatement ps2=con.prepareStatement("insert into users_info(id,Name,Email,Password,Mobile,Address,Course,Experience) values("+uid+",'"+name+"','"+email+"','"+password+"','"+mobile+"','"+address+"','"+course+"','"+exp+"')");
-			ps2.executeUpdate();
-		}catch(Exception e){
-			System.out.println("Exception in emp sign up "+e);
-			e.printStackTrace();
-			
-		}
+		System.out.println("in dao");
+		PreparedStatement ps=con.prepareStatement("insert into users_info(Name,Email,Password,Mobile,Address,Course,Experience) values('"+name+"','"+email+"','"+password+"','"+mobile+"','"+address+"','"+course+"','"+exp+"')");
+		int rs=ps.executeUpdate();
+		System.out.println("inserting into users_info  "+rs);
+		
 	}
 
 
 	public static Users getUserInfo(int uid,int roleId,Connection con) throws Exception {
 		PreparedStatement ps=null;
 		if(roleId==1){
-			ps=con.prepareStatement("select Name from users_info where id='"+uid+"'");
+			ps=con.prepareStatement("select Name from users_info where uid='"+uid+"'");
 		}
 		else if(roleId==2){
-			ps=con.prepareStatement("select Name from user_company where id='"+uid+"'");
+			ps=con.prepareStatement("select Name from company_info where uid='"+uid+"'");
 		}
 		ResultSet rs=ps.executeQuery();
 		Users dto=new Users();

@@ -4,9 +4,7 @@
 	<head>
 		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
 		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
-		<link href="../style/ve.css" rel="stylesheet" type="text/css">
 		<link href="../style/index.css" rel="stylesheet" type="text/css">
-		<link href="../style/hirizontalMenu.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
 		<script type="text/javascript" src="../scripts/index.js"></script>
 			<script type="text/javascript" src="../scripts/temp.js"></script>
@@ -386,48 +384,24 @@
 			</div>
 		</div>
 		
-	<div id="nav">
-		<ul>
-			<li> <a href="../main.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a>
-				<ul>
-					<li><a href="train.html">Training</a></li>
-					<li><a href="hiring.html">Hiring</a></li>
-					<li><a href="#">Virtual Employee</a>
-						<ul>
-							<li><a href="#">How Does it work</a></li>
-							<li><a href="#">Working remotely</a></li>
-							<li><a href="#">Your office in India</a></li>
-							<li><a href="#">Data Security</a></li>
-							<li><a href="#">VE Facilities</a></li>
-							<li><a href="#">VE Advantages</a></li>
-							<li><a href="#">Get Started</a></li>
-						</ul>
-					</li>
-					
-				</ul>
-			</li>
-			<li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-		<div id ="loginSignUpBox" style="float:right;color:#fff" >
-			<div id="login"> Login
-				<div id="loginBox">
-					<form method="post" id ="loginForm">
-						<input type="hidden" name ="action" value="loginUser"></input>
-						User Name:
-						<input id="userName" class="loginInput" name="userName" placeholder="User Name"></input>
-						Password:
-						<input id="password" class="loginInput"type="password" name="password" placeholder="****"></input>
-						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
-						<div id ="loginSubmitButton" class="buttonStyle">Login</div>
-					</form>
-				</div>				
-			</div>
-			<div id ="signUp"> Signup</div>
-		</div>
-	</div>
 	
+	
+	
+	<div id ="topbar">
+		<ul id ="menubar">
+			<li class="menu"><a href="#home" class="menuLink">Home</a></li>
+			<li class="menu"><a href="test.html" class="menuLink">Test</a></li>
+			<li class="menu"><a href="#news" class="menuLink">News</a></li>
+			<li class="menu"><a href="#contact" class="menuLink">Contact</a></li>
+			<li class="menu"><a href="#about" class="menuLink">About</a></li>
+			<li class="menu"><a href="#about" id ="serviceMenu" class="menuLink">Services</a>
+			<ul id="serviceDropdown" class="menuDropDown">
+					<li class="dropDownMenu"><a href="train.html" class="menuLink">Training</a></li>
+					<li class="dropDownMenu"><a href="hiring.html" class="menuLink">Hiring</a></li>
+					<li class="dropDownMenu"><a href="virtualEmp.html" class="menuLink">Virtual Employee</a></li>
+			</ul></li>
+		</ul>
+	</div>
 	<div id="title">
 		<strong>
 			Talent Manpower 
