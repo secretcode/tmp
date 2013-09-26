@@ -76,12 +76,8 @@ public class ApplicationController extends HttpServlet implements Servlet {
 						int uid=usr.getId();
 						System.out.println("uid of the user is::"+uid);
 						if(uid>=1){
-							if(usr.getRoleId()==1) {
-								authResponse = "1";
-							}
-							else if(usr.getRoleId()==2) {
-								authResponse = "2";
-							}
+							System.out.println("setting authresponse value ");
+							authResponse="1";
 						}
 					}
 				}catch(Exception exp){
