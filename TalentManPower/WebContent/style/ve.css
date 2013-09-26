@@ -35,6 +35,7 @@ a.button
 	float:right;
 }
 
+
 #veGetStartedOverlay
 {
 	display:none;
@@ -71,6 +72,18 @@ a.button
 }
 
 #veGetStartedFormButton
+{
+	height:25px;
+	width:120px;
+	background-color:#456;
+	padding:5px;
+	float:right;
+	color:#fff;
+	margin-right: 30px;
+	margin-bottom: 10px;
+}
+
+#veContactUsFormButton
 {
 	height:25px;
 	width:120px;
@@ -122,6 +135,9 @@ a.button
 {
 
 	background-color: #E0E6D7;
+	background: -webkit-gradient( linear, left bottom, left top, color-stop(0.09, #E0E6D4), color-stop(0.55, #EDF3E1), color-stop(0.78,#F1F6E4) );
+	background: -moz-linear-gradient( center bottom, #E0E6D4 9%, #EDF3E1 55%, #F1F6E4 78% );
+	background: -o-linear-gradient( center bottom, #E0E6D4 9%, #EDF3E1 55%, #F1F6E4 78% );
 	border: 10px solid;
 	border-color: #3B3F41;
 	cursor: auto;
@@ -177,6 +193,11 @@ a.button
 {
 	color:#f00;
 	font-size:10px;
+}
+
+.blue
+{
+	color:#00f
 }
 
 .columtext

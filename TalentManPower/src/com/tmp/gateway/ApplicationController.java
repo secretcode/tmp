@@ -268,7 +268,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
-			case "veForm":
+		case "veForm":
 			System.out.println("virtual employee ka form mil gaya");
 			session = request.getSession();
 			String captcha = (String) session.getAttribute("captcha");
