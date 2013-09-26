@@ -13,6 +13,8 @@ $(document).ready(function() {
 	$("#allEmployeeListContent").hide();
 	$("#mainCompanyHiringBox").hide();
 	$("#mainEmployeeHiringBox").hide();
+	$("#updateResumeEmployeeButton").hide();
+	$("#addJobButton").hide();
 	initiateAllCategoryCompanyDT();
 	initiateAllCategoryEmployeeDT();
 	addJobButtonClick();

@@ -14,8 +14,8 @@ public class DBConnection {
 		System.out.println("getConnectionFromDS starts ... ");
 		  try {
 			  cxt = new InitialContext();
-		//	  ds = (DataSource)cxt.lookup( "java:/comp/env/jdbc/tmp" );
-			  ds = (DataSource)cxt.lookup( "java:jboss/datasources/tmp" );
+			  ds = (DataSource)cxt.lookup( "java:/comp/env/jdbc/tmp" );
+		//	  ds = (DataSource)cxt.lookup( "java:jboss/datasources/tmp" );
 			  System.out.println(" ds  " + ds);
 			  con=ds.getConnection(); 
 	 
