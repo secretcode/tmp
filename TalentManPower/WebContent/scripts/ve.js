@@ -3,6 +3,7 @@ $( document ).ajaxError(function() {
 });
 $(function(){
 	var APP_PATH = "/tmp/";
+	$('#loadingImage').hide();
 	$('#howDoWorkLink').click(function(){
 		$('#howDoWorkContent').show();
 		$('#veContent').hide();
@@ -102,8 +103,12 @@ $(function(){
 	{
 		console.log('mubarak '+ response);
 		$('#errorMessage').show();
+		$("#loadingImage").show();
 		if ($('#errorMessage').val()=='')
-			$('#veGetStartedFormContainer').load(APP_PATH+"/views/ve/contactUs.jsp");
+			{
+				$('#veGetStartedFormContainer').load(APP_PATH+"/views/ve/contactUs.jsp");
+				$("#veGetStartedFormTitle").html("Contact Us");
+			}
 	};
 	
 	$("#veGetStartedFormButton").click(function() {
@@ -151,7 +156,10 @@ $(function(){
 			$('#errorMessage').show();
 		}
 		else
-			$("#errorMessage").load(APP_PATH+"bridge?"+$('#veGetStartedForm').serialize(), initiateAttachDocuments);
+			{
+				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veGetStartedForm').serialize(), initiateAttachDocuments);
+				$('#loadingImage').show();
+			}
 	});
 	
 	$('#loginSubmitButton').click(function(){

@@ -297,6 +297,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			veEmployee.setCountry(request.getParameter("country"));
 			veEmployee.setWebsite(request.getParameter("website"));
 			veEmployee.setSkypeId(request.getParameter("skypeid"));
+			session.setAttribute("employee",veEmployee);
 			try{	
 				try{
 					con = DBConnection.getConnection();
