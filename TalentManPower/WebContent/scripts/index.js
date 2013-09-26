@@ -444,7 +444,7 @@ function initiateLoginBox() {
 				var responseMessage = $.trim(response);
 				alert("msg received is ::  "+responseMessage);
 				
-				if(responseMessage != "1") {
+				if(responseMessage != "1"&& responseMessage!="2") {
 			//		alert("Inside if");
 					$("#loginFailureMessage").show();
 				} else {
