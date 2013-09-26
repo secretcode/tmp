@@ -104,27 +104,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 			break;
 			
-		case "userInfo" :
-			System.out.println("in login index page;");
-			returnPath = "/";
-			session = request.getSession(true);
-			Users user = (Users)session.getAttribute("userInfo");
-			if(user!=null){
-				int uid=user.getId();
-				int roleId=user.getRoleId();
-				try {
-					con=DBConnection.getConnection();
-				}catch(Exception e) {
-					System.out.println("Exception occured in getting the connection in userInfo case");
-				}
-				usr  = UserManager.getUserInfo(uid,roleId,con);
-				returnPath="views/dashBoard.jsp";
-				request.setAttribute("usrName", usr.getLoginName());
-			}
-			rd = request.getRequestDispatcher(returnPath);
-			System.out.println("rd " + rd);
-			rd.forward(request, response);
-			break;
 		case "trainCompanyForm":
 			System.out.println("insidaa application controller");
 			String cname = request.getParameter("CompanyName");
@@ -172,95 +151,118 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			
 		case "employeeSignUpJobForm" :
 			System.out.println("inside emp sign up");		        
-			String name = request.getParameter("EmpName");
-			String email = request.getParameter("EmpEmail");
-			String passwrd = request.getParameter("EmpPassword");
-			String password=UserManager.encryptPasswordMDF(passwrd);
-			String mobile = request.getParameter("EmpMobile");
-			String address = request.getParameter("Empaddress");
-			String course = request.getParameter("EmpCourse");
-			String exp = request.getParameter("EmpExperience");
-			try {
-				try{
-					try{
-						con = DBConnection.getConnection();
-					}catch(Exception xp){
-							xp.printStackTrace();
-					}
-					UserManager.empSignUp(name,email,password,mobile,address,course,exp,con);
-				}catch(Exception p){
-					p.printStackTrace();
-				}
-				HttpSession session3 = request.getSession(true);
-				authResponse = "1";
-				returnPath="views/authenticationResponse.jsp";
-			}					
-			finally{
+			session = request.getSession();
+			String captcha3 = (String) session.getAttribute("captcha");
+			String code3 = (String) request.getParameter("captcha");
+			System.out.println("captcha code is "+captcha3);
+			System.out.println("captcha Entered by the user is "+code3);
+			if (!captcha3.equals(code3)) {
+				  request.setAttribute("message","Please enter the correct captcha code");
+				  System.out.println("enter the correct captcha");
+			} 
+			else
+			{
+				String name = request.getParameter("EmpName");
+				String email = request.getParameter("EmpEmail");
+				String passwrd = request.getParameter("EmpPassword");
+				String password=UserManager.encryptPasswordMDF(passwrd);
+				String mobile = request.getParameter("EmpMobile");
+				String address = request.getParameter("Empaddress");
+				String course = request.getParameter("EmpCourse");
+				String exp = request.getParameter("EmpExperience");
 				try {
-					DBConnection.freeResources(con);
-				}catch(Exception e) {};
+					try{
+						try{
+							con = DBConnection.getConnection();
+						}
+						catch(Exception xp){
+							xp.printStackTrace();
+						}
+						UserManager.empSignUp(name,email,password,mobile,address,course,exp,con);
+					}catch(Exception p){
+						p.printStackTrace();
+					}
+				}
+				finally{
+					try {
+						DBConnection.freeResources(con);
+					}catch(Exception e) {};
+				}
 			}
-						
+			HttpSession session3 = request.getSession(true);
+			authResponse = "1";
+			returnPath="views/authenticationResponse.jsp";		
 			request.setAttribute("authResponse", authResponse);
 			rd = request.getRequestDispatcher(returnPath);
-						
 			System.out.println("rd " + rd);
-
 			rd.forward(request, response);
 			break;
 			
 		case "companySignUpJobForm":
-			System.out.println("Company Sign Up in application controller");
-			String comUserName = request.getParameter("ComUserName");
-			String Passwd = request.getParameter("ComPassword");
-			String comPassword=UserManager.encryptPasswordMDF(Passwd);
-			String comEmail = request.getParameter("ComEmail");
-			String secondaryComEmail = request.getParameter("SecondaryComEmail");
-			String comName = request.getParameter("ComName");
-			String contactPerson = request.getParameter("ContactPerson");
-			String contactPersonDesignation = request.getParameter("ContactPersonDesignation");
-			String comStrength = request.getParameter("ComStrength");
-			String comType = request.getParameter("ComType");
-			String comProfile = request.getParameter("ComProfile");
-			String comAddress = request.getParameter("ComAddress");
-			String comCity = request.getParameter("ComCity");
-			String comState = request.getParameter("ComState");
-			String comCountry = request.getParameter("ComCountry");
-			String cZip = request.getParameter("ComZip");
-			String cPhone = request.getParameter("ComPhone");
-			String cMobile = request.getParameter("ComMobile");
-			int comZip=0,comPhone=0,comMobile=0;
-			try{
-				comZip=Integer.parseInt(cZip);
-				comMobile=Integer.parseInt(cMobile);
-				comPhone=Integer.parseInt(cPhone);
-			}
-			catch(Exception e){
-				System.out.println("Conversion error in application controller of company sign up");
-				e.printStackTrace();
-			}
-			String comFax = request.getParameter("ComFax");
-			String comURL = request.getParameter("ComURL");			
-			System.out.println(comUserName+" "+comPassword+" "+comEmail+" "+secondaryComEmail+" "+comName+" "+contactPerson+" "+contactPersonDesignation+" "+comStrength+" "+comType+" "+comProfile+" "+comAddress+" "+comCity+" "+comState+" "+comCountry+" "+comZip+" "+comPhone+" "+comMobile+" "+comFax+" "+comURL);
+			session = request.getSession();
+			String captcha2 = (String) session.getAttribute("captcha");
+			String code2 = (String) request.getParameter("captcha");
+			System.out.println("captcha code is "+captcha2);
+			System.out.println("captcha Entered by the user is "+code2);
 			String authResponse111 = "-1";
-			try{
+			if (!captcha2.equals(code2)) {
+				  request.setAttribute("message","Please enter the correct captcha code");
+				  System.out.println("enter the correct captcha");
+			} 
+			else
+			{	
+				System.out.println("Company Sign Up in application controller");
+				String comUserName = request.getParameter("ComUserName");
+				String Passwd = request.getParameter("ComPassword");
+				String comPassword=UserManager.encryptPasswordMDF(Passwd);
+				String comEmail = request.getParameter("ComEmail");
+				String secondaryComEmail = request.getParameter("SecondaryComEmail");
+				String comName = request.getParameter("ComName");
+				String contactPerson = request.getParameter("ContactPerson");
+				String contactPersonDesignation = request.getParameter("ContactPersonDesignation");
+				String comStrength = request.getParameter("ComStrength");
+				String comType = request.getParameter("ComType");
+				String comProfile = request.getParameter("ComProfile");
+				String comAddress = request.getParameter("ComAddress");
+				String comCity = request.getParameter("ComCity");
+				String comState = request.getParameter("ComState");
+				String comCountry = request.getParameter("ComCountry");
+				String cZip = request.getParameter("ComZip");
+				String cPhone = request.getParameter("ComPhone");
+				String cMobile = request.getParameter("ComMobile");
+				int comZip=0,comPhone=0,comMobile=0;
 				try{
-					con = DBConnection.getConnection();
-				}catch(Exception t){
-					t.printStackTrace();
+					comZip=Integer.parseInt(cZip);
+					comMobile=Integer.parseInt(cMobile);
+					comPhone=Integer.parseInt(cPhone);
 				}
-				companyDAO.insertCompany(comUserName,comPassword,comEmail,secondaryComEmail,comName,contactPerson,contactPersonDesignation,comStrength,comType,comProfile,comAddress,comCity,comState,comCountry,comZip,comPhone,comMobile,comFax,comURL,con);
-				HttpSession session1 = request.getSession(true);
-				authResponse111 = "1";
-			}catch(Exception e){
-				e.printStackTrace();
+				catch(Exception e){
+					System.out.println("Conversion error in application controller of company sign up");
+					e.printStackTrace();
+				}
+				String comFax = request.getParameter("ComFax");
+				String comURL = request.getParameter("ComURL");			
+				System.out.println(comUserName+" "+comPassword+" "+comEmail+" "+secondaryComEmail+" "+comName+" "+contactPerson+" "+contactPersonDesignation+" "+comStrength+" "+comType+" "+comProfile+" "+comAddress+" "+comCity+" "+comState+" "+comCountry+" "+comZip+" "+comPhone+" "+comMobile+" "+comFax+" "+comURL);
+				
+				try{
+					try{
+						con = DBConnection.getConnection();
+					}catch(Exception t){
+						t.printStackTrace();
+					}
+					companyDAO.insertCompany(comUserName,comPassword,comEmail,secondaryComEmail,comName,contactPerson,contactPersonDesignation,comStrength,comType,comProfile,comAddress,comCity,comState,comCountry,comZip,comPhone,comMobile,comFax,comURL,con);
+					HttpSession session1 = request.getSession(true);
+					
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				finally{
+					try {
+						DBConnection.freeResources(con);
+					}catch(Exception e) {};
+				}
 			}
-			finally{
-				try {
-				DBConnection.freeResources(con);
-				}catch(Exception e) {};
-			}
-
+			authResponse111 = "1";
 			returnPath="views/authenticationResponse.jsp";
 			request.setAttribute("authResponse", authResponse111);
 			rd = request.getRequestDispatcher(returnPath);

@@ -18,10 +18,19 @@ $(document).ready(function() {
 	addJobButtonClick();
 	uploadResumeClick();
 	addEmployeeEmployerClick();
+	initiateUserInfoBox();
 	console.log("in function");
 	
 });
 
+
+function initiateUserInfoBox() {
+	console.log("in user info box");
+	$("#UserInformation").load(APP_PATH+"/views/dashBoard.jsp", function(response,status,xhr){console.log("information extracted");});
+	$("UserInformation").show();
+	console.log("info retrieved");
+
+}
 function initiateButtonCheck() {
 	$.ajax({
 		type:"POST",

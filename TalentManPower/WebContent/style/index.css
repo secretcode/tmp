@@ -18,7 +18,16 @@ table
 	border:none;
 	width:100%;
 }
-
+.red
+{
+	color:#f00;
+	font-size:10px;
+}
+#errorMessage
+{
+	display:none;
+	font-size:20px;
+}
 .formBox {
     border: 1px solid #8B8B8B;
     border-radius: 5px 5px 5px 5px;

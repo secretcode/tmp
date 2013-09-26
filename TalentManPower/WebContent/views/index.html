@@ -17,6 +17,7 @@
 			<img id="companySignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
 			<form method=POST action="" name="companySignUpForm" id="companySignUpForm" class="overLayForm">
 			<input type=hidden name=action value="companySignUpJobForm">
+		<span id ="errorMessageC" class ="red"> </span>
 				<h2 id="companyAccountInfo" class="" >Account Information</h2>
 				<table id ="companyAccountInformation">
 					<tr>
@@ -259,6 +260,14 @@
 							</div>
 							<div class="clear"></div>
 						</td>
+						<td>
+							<div class="columtext_last">
+							  <label>Enter the code:<br></label>
+							  <img style="float:left;" alt="captcha image" src="http://localhost:8080/tmp/captcha" width="100" height="28">
+							  <input type="text"  style="width:60px;float:left; margin-left:10px;" size="6" class="input_text" name="captcha" id="captcha">
+							  <br><br>(Please enter value from image)
+							</div>
+						</td>
 						
 					</tr>
 				</table>				
@@ -276,6 +285,7 @@
 			<img id="employeeSignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
 			<form method=POST action="" name="employeeSignUpForm" id="employeeSignUpForm" class="overLayForm">
 			<input type=hidden name=action value="employeeSignUpJobForm">
+				<span id ="errorMessage" class ="red"> </span>
 				<h2 id="employeePersonalDetails" class="" >Personal Details</h2>
 				<table id ="employeePersonalDetails">
 					<tr>
@@ -355,6 +365,16 @@
 						</td>
 											
 						
+				</tr>
+				<tr>
+						<td>
+							<div class="columtext_last">
+							  <label>Enter the code:<br></label>
+							  <img style="float:left;" alt="captcha image" src="http://localhost:8080/tmp/captcha" width="100" height="28">
+							  <input type="text"  style="width:60px;float:left; margin-left:10px;" size="6" class="input_text" name="captcha" id="captcha">
+							  <br><br>(Please enter value from image)
+							</div>
+						</td>
 				</tr>
 						
 				</table>

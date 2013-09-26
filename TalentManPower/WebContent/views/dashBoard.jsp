@@ -1,10 +1,28 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body> Hello 
-<%=request.getAttribute("usrName")%>
-</body>
-</html>
+<%@ page import="com.tmp.user.*" %>
+<%@ page import="com.tmp.utils.DBConnection" %>
+<%@ page import="java.sql.Connection" %>
+
+<%
+			System.out.println("in login index page;");
+			Connection con=null;
+			Users usr;
+			String usrName=null;
+			session = request.getSession(true);
+			Users user = (Users)session.getAttribute("userInfo");
+			if(user!=null){
+				int uid=user.getId();
+				int roleId=user.getRoleId();
+				try {
+					con=DBConnection.getConnection();
+				}catch(Exception e) {
+					System.out.println("Exception occured in getting the connection in userInfo case");
+				}
+				usr  = UserManager.getUserInfo(uid,roleId,con);
+				usrName = usr.getLoginName();
+			}
+%>
+<% if(usrName!=null) { %>
+Hello <%=usrName %>
+<%} %>
+			
+			
