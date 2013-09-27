@@ -18,9 +18,48 @@ $(document).ready(function() {
 	addJobButtonClick();
 	uploadResumeClick();
 	addEmployeeEmployerClick();
+	initiateUserInfoBox();
 	console.log("in function");
 	
 });
+
+
+function initiateUserInfoBox() {
+	console.log("in user info box");
+	$("#UserInformation").load(APP_PATH+"/views/dashBoard.jsp", function(response,status,xhr){console.log("information extracted");});
+	$("UserInformation").show();
+	console.log("info retrieved");
+
+}
+function initiateButtonCheck() {
+	$.ajax({
+		type:"POST",
+		url: APP_PATH + "/views/buttonCheck.jsp",
+		success: function(response){
+			alert("Response is: "+response);
+			var responseMessage = $.trim(response);
+			alert(responseMessage);
+			if(responseMessage==0){
+				console.log("resp0");
+				$("#updateResumeEmployeeButton").hide();
+				$("#addJobButton").hide();
+			}
+			else if(responseMessage==1) {
+				console.log("resp1");
+				$("#updateResumeEmployeeButton").show();
+				$("#addJobButton").hide();
+			
+			}
+			else if(responseMessage==2) {
+				console.log("resp2");
+				$("#updateResumeEmployeeButton").hide();
+				$("#addJobButton").show();
+			
+			}
+		}
+	});
+			
+}
 
 function uploadResumeClick() {
 	$("#updateResumeEmployeeButton").click(function() {
@@ -35,6 +74,7 @@ function initiateAllCategoryDT(){
 
 function addEmployeeEmployerClick(){
 	console.log("inside abc function");	
+	initiateButtonCheck();
 	$('#getEmployeeDetailsButton').click(function(){
 		var e = document.getElementById("getEmployeeDetailsButton");
 		e.style.background = "rgb(89, 29, 218)";
@@ -42,6 +82,7 @@ function addEmployeeEmployerClick(){
 		e1.style.background ="rgb(255, 255, 255)";
 		$('#mainEmployeeHiringBox').show();
 		$('#mainCompanyHiringBox').hide();
+		
 	});
 	$('#getEmployerDetailsButton').click(function(){
 		var e2 = document.getElementById("getEmployeeDetailsButton");
@@ -51,8 +92,11 @@ function addEmployeeEmployerClick(){
 	
 		$('#mainCompanyHiringBox').show();
 		$('#mainEmployeeHiringBox').hide();
+		
 	});
-}function addJobButtonClick(){
+	
+}
+function addJobButtonClick(){
 	console.log("inside abc function");	
 	$('#addJobButton').click(function(){
 		initiateAddJob();
@@ -435,13 +479,7 @@ function initiateAddJob() {
 						alert("Inside if");
 						//$("#authenticationFailureMessage").show();
 					} else {
-						alert("Inside else");
-						var authenticatedLoginForm = $("#authenticatedLoginForm");
-						alert("authenticatedLoginForm: "+authenticatedLoginForm);
-						authenticatedLoginForm.attr('action', APP_PATH+'bridge');
-						alert("Action for form: "+authenticatedLoginForm.attr('action'));
-						authenticatedLoginForm.submit();	
-						alert("After Submit");
+						$("#addJobFormCrossButton").click();
 					}											
 				}
 			  });
