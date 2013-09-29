@@ -162,15 +162,8 @@ $(function(){
 			}
 	});
 	
-	$('#loginSubmitButton').click(function(){
-		console.log('login hone ki prakriya shuru ho rahi h');
-		if ($('#userName').val()==''||$('#password').val()==''||$('#userName').val()==$('#userName').attr('placeholder')||$('#password').val()==$('#password').attr('placeholder'))
-		$('#loginErrorMessage').show();
-		else
-		$.post(APP_PATH+'bridge', $('#loginForm').serialize(), function(res) {
-		      console.log('mubarak ho apka form submit ho gaya and your response is '+res);
-		    });
-		});
 	
 
 });
+
+

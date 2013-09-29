@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.tmp.company.Comp;
 import com.tmp.company.companyDAO;
 import com.tmp.user.*;
 import com.tmp.utils.DBConnection;
@@ -53,7 +54,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		    System.out.println("inside login");
 	        
 			String loginName = request.getParameter("Username");
-			String passwd = request.getParameter("Password");
+			String passwd = request.getParameter("password");
 			String action = request.getParameter("action");
 			System.out.println(loginName);
 			System.out.println(passwd);
@@ -158,14 +159,19 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			} 
 			else
 			{
-				String name = request.getParameter("EmpName");
-				String email = request.getParameter("EmpEmail");
+				request.setAttribute("message","");
+		    	String to=request.getParameter("EmpEmail");
+		    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
+		    	Employee emp=new Employee();
+				emp.setName(request.getParameter("EmpName"));
+				emp.setEmail(request.getParameter("EmpEmail"));
 				String passwrd = request.getParameter("EmpPassword");
 				String password=UserManager.encryptPasswordMDF(passwrd);
-				String mobile = request.getParameter("EmpMobile");
-				String address = request.getParameter("Empaddress");
-				String course = request.getParameter("EmpCourse");
-				String exp = request.getParameter("EmpExperience");
+				emp.setMobile(request.getParameter("EmpMobile"));
+				emp.setAddress(request.getParameter("Empaddress"));
+				emp.setCourse(request.getParameter("EmpCourse"));
+				emp.setExperience(request.getParameter("EmpExperience"));
+				session.setAttribute("employeeSignUp",emp);
 				try {
 					try{
 						try{
@@ -174,7 +180,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 						catch(Exception xp){
 							xp.printStackTrace();
 						}
-						UserManager.empSignUp(name,email,password,mobile,address,course,exp,con);
+						UserManager.empSignUp(emp,password,con);
 					}catch(Exception p){
 						p.printStackTrace();
 					}
@@ -184,6 +190,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 						DBConnection.freeResources(con);
 					}catch(Exception e) {};
 				}
+				String subject="Employee Signup Confirmation Message";
+				request.getRequestDispatcher("views/signUp/empSignUp.jsp").forward(request,customResponse);
+				String msg=String.format(customResponse.getOutput());
+				System.out.println(msg);
+				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+
 			}
 			HttpSession session3 = request.getSession(true);
 			authResponse = "1";
@@ -193,7 +205,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			System.out.println("rd " + rd);
 			rd.forward(request, response);
 			break;
-			
 		case "companySignUpJobForm":
 			session = request.getSession();
 			String captcha2 = (String) session.getAttribute("captcha");
@@ -207,46 +218,49 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			} 
 			else
 			{	
+				request.setAttribute("message","");
+		    	
+		    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
+		    	Comp com=new Comp();
 				System.out.println("Company Sign Up in application controller");
-				String comUserName = request.getParameter("ComUserName");
+				com.setComUserName(request.getParameter("ComUserName"));
 				String Passwd = request.getParameter("ComPassword");
 				String comPassword=UserManager.encryptPasswordMDF(Passwd);
-				String comEmail = request.getParameter("ComEmail");
-				String secondaryComEmail = request.getParameter("SecondaryComEmail");
-				String comName = request.getParameter("ComName");
-				String contactPerson = request.getParameter("ContactPerson");
-				String contactPersonDesignation = request.getParameter("ContactPersonDesignation");
-				String comStrength = request.getParameter("ComStrength");
-				String comType = request.getParameter("ComType");
-				String comProfile = request.getParameter("ComProfile");
-				String comAddress = request.getParameter("ComAddress");
-				String comCity = request.getParameter("ComCity");
-				String comState = request.getParameter("ComState");
-				String comCountry = request.getParameter("ComCountry");
-				String cZip = request.getParameter("ComZip");
-				String cPhone = request.getParameter("ComPhone");
-				String cMobile = request.getParameter("ComMobile");
+				com.setComEmail(request.getParameter("ComEmail"));
+				com.setSecondaryComEmail(request.getParameter("SecondaryComEmail"));
+				com.setComName(request.getParameter("ComName"));
+				com.setContactPerson(request.getParameter("ContactPerson"));
+				com.setContactPersonDesignation(request.getParameter("ContactPersonDesignation"));
+				com.setComStrength(request.getParameter("ComStrength"));
+				com.setComType(request.getParameter("ComType"));
+				com.setComProfile(request.getParameter("ComProfile"));
+				com.setComAddress(request.getParameter("ComAddress"));
+				com.setComCity(request.getParameter("ComCity"));
+				com.setComState(request.getParameter("ComState"));
+				com.setComCountry(request.getParameter("ComCountry"));
+				String cZip=request.getParameter("ComZip");
+				String cPhone=request.getParameter("ComPhone");
+				String cMobile=request.getParameter("ComMobile");
 				int comZip=0,comPhone=0,comMobile=0;
 				try{
-					comZip=Integer.parseInt(cZip);
-					comMobile=Integer.parseInt(cMobile);
-					comPhone=Integer.parseInt(cPhone);
+					com.setComZip(Integer.parseInt(cZip));
+					com.setComMobile(Integer.parseInt(cMobile));
+					com.setComPhone(Integer.parseInt(cPhone));
 				}
 				catch(Exception e){
 					System.out.println("Conversion error in application controller of company sign up");
 					e.printStackTrace();
 				}
-				String comFax = request.getParameter("ComFax");
-				String comURL = request.getParameter("ComURL");			
-				System.out.println(comUserName+" "+comPassword+" "+comEmail+" "+secondaryComEmail+" "+comName+" "+contactPerson+" "+contactPersonDesignation+" "+comStrength+" "+comType+" "+comProfile+" "+comAddress+" "+comCity+" "+comState+" "+comCountry+" "+comZip+" "+comPhone+" "+comMobile+" "+comFax+" "+comURL);
-				
+				com.setComFax(request.getParameter("ComFax"));
+				com.setComURL(request.getParameter("ComURL"));			
+				session.setAttribute("companySignUp",com);
 				try{
 					try{
 						con = DBConnection.getConnection();
 					}catch(Exception t){
 						t.printStackTrace();
 					}
-					companyDAO.insertCompany(comUserName,comPassword,comEmail,secondaryComEmail,comName,contactPerson,contactPersonDesignation,comStrength,comType,comProfile,comAddress,comCity,comState,comCountry,comZip,comPhone,comMobile,comFax,comURL,con);
+					companyDAO.insertCompany(com,comPassword,con);
 					HttpSession session1 = request.getSession(true);
 					
 				}catch(Exception e){
@@ -257,6 +271,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 						DBConnection.freeResources(con);
 					}catch(Exception e) {};
 				}
+				String to=com.getComEmail();
+				String subject="Company Signup Confirmation Message";
+				request.getRequestDispatcher("views/signUp/comSignUp.jsp").forward(request,customResponse);
+				String msg=String.format(customResponse.getOutput());
+				System.out.println(msg);
+				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
 			}
 			authResponse111 = "1";
 			returnPath="views/authenticationResponse.jsp";
@@ -268,6 +288,8 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
+
+			
 		case "veForm":
 			System.out.println("virtual employee ka form mil gaya");
 			session = request.getSession();

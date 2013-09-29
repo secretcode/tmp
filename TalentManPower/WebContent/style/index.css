@@ -141,7 +141,23 @@ td
 
 #frontImage
 {
+	float:center;
 	width:100%;
+}
+
+#logoImg
+{
+	float:left;
+	width:20%;
+	height:90%;
+}
+
+#base 
+{
+	height: 70%;
+	margin: auto;
+	width:80%;
+	line-height:150%;
 }
 
 .menu
@@ -149,6 +165,30 @@ td
 	float:left;
 }
 
+#contactDetails 
+{
+	
+	width:40%;
+	height:70%;
+	color:#002000;
+	float:right;
+	text-align:right;
+	font-size: 20px;
+	
+	
+}
+
+#MainTitle 
+{
+	width:50%;
+	height:60%;
+	color:#002000;
+	margin:0 auto;
+	align:center;
+	text-align:center;
+	font-size: 30px;
+	
+}
 a.menuLink:link,a.menuLink:visited
 {
 display:block;

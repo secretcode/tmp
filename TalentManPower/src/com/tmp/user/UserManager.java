@@ -38,10 +38,10 @@ public class UserManager {
 
 	
 
-	public static void empSignUp(String name,String email,String password,String mobile,String address,String course,String exp,Connection con) {
+	public static void empSignUp(Employee emp,String password,Connection con) {
 		try {
 			System.out.println("in manager ");
-			UsersDAO.empSignUp(name,email,password,mobile,address,course,exp,con);
+			UsersDAO.empSignUp(emp.getName(),emp.getEmail(),password,emp.getMobile(),emp.getAddress(),emp.getCourse(),emp.getExperience(),con);
 			System.out.println("back to manager");
 		}catch(Exception e) {}
 	}

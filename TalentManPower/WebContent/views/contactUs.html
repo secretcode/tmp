@@ -5,10 +5,68 @@
 		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
 		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
 		<link href="../style/index.css" rel="stylesheet" type="text/css">
-		<script src="../scripts/contactUs.js"></script>
+			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
 		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
+			<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+	
+		
+	
+	<div id="nav">
+		<ul>
+			<li> <a href="../main.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="#">Virtual Employee</a>
+						<ul>
+							<li><a href="#">How Does it work</a></li>
+							<li><a href="#">Working remotely</a></li>
+							<li><a href="#">Your office in India</a></li>
+							<li><a href="#">Data Security</a></li>
+							<li><a href="#">VE Facilities</a></li>
+							<li><a href="#">VE Advantages</a></li>
+							<li><a href="#">Get Started</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+		<div id="loggedInBox" >
+			<div id="UserInformation" class="UserInformation"  ></div>
+			<div id="logOut"> Logout </div>
+		</div>
+		
+		<div id ="loginSignUpBox" style="float:right;color:#fff" >
+			<div id="login"> Login
+				<div id="loginBox">
+					<form method="post" id ="loginForm">
+						<input type="hidden" name ="action" value="loginUser"></input>
+						User Name:
+						<input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input>
+						Password:
+						<input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input>
+						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+						<div id ="userLoginButton" class="buttonStyle">Login</div>
+					</form>
+					
+					<div id="loginFailureMessage" style="display:none;">Invalid Username or password</div>
+				</div>				
+			</div>
+			<div id ="signUp"> Signup
+				<div id="signUpBox">
+					<div id="signUpEmployee" class="buttonStyle" >Employee</div> 
+					<div id="signUpCompany" class="buttonStyle" >Company</div>  
+				</div>
+			</div>
+		</div>
+	</div>	
+
 	<div id="title">
 		<strong>
 			Talent Manpower 
@@ -18,7 +76,7 @@
 		<div id="UserInformation" class="UserInformation" ></div>
 	</div>
 	<hr>
-	<img src="../images/download.jpg" class="stretch" />
+	<img id="frontImage" src="../images/download.PNG" class="stretch" />
 	<hr>
 	<table border="1">
 	<tr>

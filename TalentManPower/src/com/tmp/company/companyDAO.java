@@ -53,16 +53,16 @@ public class companyDAO {
 				e.printStackTrace();
 		}
 	}
-	public static void insertCompany(String comUserName,String comPassword,String comEmail,String secondaryComEmail,String comName,String contactPerson,String contactPersonDesignation,String comStrength,String comType,String comProfile,String comAddress,String comCity,String comState,String comCountry,int comZip,int comPhone,int comMobile,String comFax,String comURL,Connection con) throws Exception{
+	public static void insertCompany(Comp com,String comPassword,Connection con) throws Exception{
 		PreparedStatement ps;
 		try{
-			ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId) values('"+comUserName+"','"+comPassword+"',2)");
+			ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId) values('"+com.getComUserName()+"','"+comPassword+"',2)");
 			ps.executeUpdate();
-			ps=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+comUserName+"' and password='"+comPassword+"'");
+			ps=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+com.getComUserName()+"' and password='"+comPassword+"'");
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()) {
 				int id=rs.getInt(1);
-				ps=con.prepareStatement("insert into user_company(id,Name,Password,Email,secondaryEmail,compName,contactPerson,contactPersonDesignation,Strength,Type,Profile,Address,City,State,Country,Zip,Phone,Mobile,Fax,URL) values("+id+",'"+comUserName+"','"+comPassword+"','"+comEmail+"','"+secondaryComEmail+"','"+comName+"','"+contactPerson+"','"+contactPersonDesignation+"','"+comStrength+"','"+comType+"','"+comProfile+"','"+comAddress+"','"+comCity+"','"+comState+"','"+comCountry+"',"+comZip+","+comPhone+","+comMobile+",'"+comFax+"','"+comURL+"')");
+				ps=con.prepareStatement("insert into user_company(id,Name,Password,Email,secondaryEmail,compName,contactPerson,contactPersonDesignation,Strength,Type,Profile,Address,City,State,Country,Zip,Phone,Mobile,Fax,URL) values("+id+",'"+com.getComUserName()+"','"+comPassword+"','"+com.getComEmail()+"','"+com.getSecondaryComEmail()+"','"+com.getComName()+"','"+com.getContactPerson()+"','"+com.getContactPersonDesignation()+"','"+com.getComStrength()+"','"+com.getComType()+"','"+com.getComProfile()+"','"+com.getComAddress()+"','"+com.getComCity()+"','"+com.getComState()+"','"+com.getComCountry()+"',"+com.getComZip()+","+com.getComPhone()+","+com.getComMobile()+",'"+com.getComFax()+"','"+com.getComURL()+"')");
 				ps.executeUpdate();
 			}
 			System.out.println("1 row added in User_company");	

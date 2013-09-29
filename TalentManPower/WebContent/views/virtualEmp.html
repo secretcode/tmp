@@ -5,6 +5,7 @@
 		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
 		<script type="text/javascript" src="../scripts/ve.js"></script>
+			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
 		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
 		<link href="../style/ve.css" rel="stylesheet" type="text/css">
 		<link href="../style/index.css" rel="stylesheet" type="text/css">
@@ -182,6 +183,9 @@
 		</div>
 	</div>
 	</div>
+	
+		
+	
 	<div id="nav">
 		<ul>
 			<li> <a href="../main.html">Home</a></li>
@@ -206,23 +210,38 @@
 			</li>
 			<li><a href="contactUs.html">Contact Us</a></li>
 		</ul>
+		<div id="loggedInBox" >
+			<div id="UserInformation" class="UserInformation"  ></div>
+			<div id="logOut"> Logout </div>
+		</div>
+		
 		<div id ="loginSignUpBox" style="float:right;color:#fff" >
 			<div id="login"> Login
 				<div id="loginBox">
 					<form method="post" id ="loginForm">
 						<input type="hidden" name ="action" value="loginUser"></input>
 						User Name:
-						<input id="userName" class="loginInput" name="userName" placeholder="User Name"></input>
+						<input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input>
 						Password:
-						<input id="password" class="loginInput"type="password" name="password" placeholder="****"></input>
+						<input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input>
 						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
-						<div id ="loginSubmitButton" class="buttonStyle">Login</div>
+						<div id ="userLoginButton" class="buttonStyle">Login</div>
 					</form>
+					
+					<div id="loginFailureMessage" style="display:none;">Invalid Username or password</div>
 				</div>				
 			</div>
-			<div id ="signUp"> Signup</div>
+			<div id ="signUp"> Signup
+				<div id="signUpBox">
+					<div id="signUpEmployee" class="buttonStyle" >Employee</div> 
+					<div id="signUpCompany" class="buttonStyle" >Company</div>  
+				</div>
+			</div>
 		</div>
-	</div>
+	</div>	
+	
+	
+	
 	<div id="title">
 		<strong>
 			Talent Manpower 
@@ -230,7 +249,7 @@
 		Training and Recruitment
 	</div>
 	<hr>
-	<img id="frontImage" src="../images/download.jpg" class="stretch" />
+	<img id="frontImage" src="../images/download.PNG" class="stretch" />
 	<hr>
 	<table >
 	<tr>

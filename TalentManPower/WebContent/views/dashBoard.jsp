@@ -19,10 +19,9 @@
 				}
 				usr  = UserManager.getUserInfo(uid,roleId,con);
 				usrName = usr.getLoginName();
+				System.out.println("usrName ::"+usrName);
 			}
 %>
 <% if(usrName!=null) { %>
 Hello <%=usrName %>
-<%} %>
-			
-			
+<%}%>
