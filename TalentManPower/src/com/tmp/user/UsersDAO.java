@@ -116,4 +116,13 @@ public static Users authenticateUser(String loginName,String password,Connection
 	
 	
 		}
+	
+	
+	public static void contactForm(String name,String email,String ph,String sub,String des,Connection con) throws Exception{
+		PreparedStatement ps=con.prepareStatement("insert into contactDetails(Name,EmailId,Phone,Subject,Comment) values('"+name+"','"+email+"','"+ph+"','"+sub+"','"+des+"')");
+		int r=ps.executeUpdate();
+
+	
 	}
+	
+}

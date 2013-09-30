@@ -407,7 +407,40 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				rd.forward(request, response);
 
 				break;
-			
+				
+				
+			case "contactUsForm" :
+				System.out.println("contact us form");
+				String name=request.getParameter("contactName");
+				String email=request.getParameter("contactEmail");
+				String ph=request.getParameter("contactPhone");
+				String sub=request.getParameter("contactSubject");
+				String des=request.getParameter("contactDescription");
+				try {
+					con=DBConnection.getConnection();
+					UsersDAO.contactForm(name,email,ph,sub,des,con);
+				}catch(Exception er) {
+					er.printStackTrace();
+				}
+				finally{
+					try {
+					DBConnection.freeResources(con);
+					}catch(Exception r) {}
+				}
+				authResponse="1";
+				request.setAttribute("authResponse", authResponse);
+				returnPath="/views/authenticationResponse.jsp";
+				rd = request.getRequestDispatcher(returnPath);
+				
+				System.out.println("rd " + rd);
+
+				rd.forward(request, response);
+
+				break;
+
+				
+				
+				
 		default:
 				System.out.println("this is default case msg in application controller");
 			

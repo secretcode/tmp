@@ -6,6 +6,7 @@
 		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
 		<link href="../style/index.css" rel="stylesheet" type="text/css">
 			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
+				<script type="text/javascript" src="../scripts/contactUs.js"></script>
 		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
 			<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
 	</head>
@@ -98,15 +99,18 @@
     <div style="clear: both"></div>
 </div></td>
 <td><div id ="content">
-kya rakha h contact karne mein. <br>
-fir bhi jabardasti h to bolo<br>
-<form action="">
-naam :<input type="text" name="firstName" placeholder="poora naam"></input><br>
-email id :<input type="text" name="emailId" placeholder="Email Id"></input><br>
-phone number : <input type="text" name="contactNumber" placeholder="Contact Number"></input><br>
-likho :<textarea name="message" rows="8" cols="500" >bol kya chahiye </textarea>
-<input type="submit" value="bas !!! ab bhej doon?? ya baki parivar ki information bhi dega"> </input>
+Please fill the form below :
+<form action="" method="post" name="contactForm" id="contactForm">
+<input type=hidden name=action value="contactUsForm">
+Name :<input type="text" name="contactName" id="contactName" placeholder="Name"/><br>
+Email id :<input type="text" name="contactEmail" id="contactEmail" placeholder="Email Id"/><br>
+Phone number : <input type="text" name="contactPhone" id="contactPhone" placeholder="Contact Number"/><br>
+Subject:  <input type="text" name="contactSubject" id="contactSubject" placeholder="Subject"/><br>
+Comment (Optional) :<textarea name="contactDescription" rows="8" id="contactDescription"  cols="500" placeholder="..."></textarea>
 </form>
+<div id="errorMessage" style="display:none;"></div>
+<input id="contactSubmitBtn" type="submit" value="Submit"/> 
+
 </div>
 </td>
 </tr>
