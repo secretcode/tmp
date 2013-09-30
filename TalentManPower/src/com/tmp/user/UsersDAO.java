@@ -118,8 +118,8 @@ public static Users authenticateUser(String loginName,String password,Connection
 		}
 	
 	
-	public static void contactForm(String name,String email,String ph,String sub,String des,Connection con) throws Exception{
-		PreparedStatement ps=con.prepareStatement("insert into contactDetails(Name,EmailId,Phone,Subject,Comment) values('"+name+"','"+email+"','"+ph+"','"+sub+"','"+des+"')");
+	public static void contactForm(ContactFrm ct,Connection con) throws Exception{
+		PreparedStatement ps=con.prepareStatement("insert into contactDetails(Name,EmailId,Phone,Subject,Comment) values('"+ct.getName()+"','"+ct.getEmailId()+"','"+ct.getPhone()+"','"+ct.getSubject()+"','"+ct.getComment()+"')");
 		int r=ps.executeUpdate();
 
 	

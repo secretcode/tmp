@@ -47,7 +47,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		Connection con = null;
 		String returnPath=null;
 		String authResponse = "-1";
-		HttpSession session;
+		HttpSession session=null;
 		switch(userAction) {
 		
 		case  "loginUser" :
@@ -410,15 +410,17 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				
 				
 			case "contactUsForm" :
+				ContactFrm ct=new ContactFrm();
 				System.out.println("contact us form");
-				String name=request.getParameter("contactName");
-				String email=request.getParameter("contactEmail");
-				String ph=request.getParameter("contactPhone");
-				String sub=request.getParameter("contactSubject");
-				String des=request.getParameter("contactDescription");
+				ct.setName(request.getParameter("contactName"));
+				ct.setEmailId(request.getParameter("contactEmail"));
+				ct.setPhone(request.getParameter("contactPhone"));
+				ct.setSubject(request.getParameter("contactSubject"));
+				ct.setComment(request.getParameter("contactDescription"));
+				CharArrayWriterResponse contactResponse  = new CharArrayWriterResponse(response);
 				try {
 					con=DBConnection.getConnection();
-					UsersDAO.contactForm(name,email,ph,sub,des,con);
+					UsersDAO.contactForm(ct,con);
 				}catch(Exception er) {
 					er.printStackTrace();
 				}
@@ -428,6 +430,15 @@ public class ApplicationController extends HttpServlet implements Servlet {
 					}catch(Exception r) {}
 				}
 				authResponse="1";
+				session=request.getSession();
+				session.setAttribute("contactDetails", ct);
+				String to=ct.getEmailId();
+				String subject="Thanx for contacting TalentManPower";
+				request.getRequestDispatcher("views/signUp/contactDetails.jsp").forward(request,contactResponse);
+				String msg=String.format(contactResponse.getOutput());
+				System.out.println(msg);
+				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			
 				request.setAttribute("authResponse", authResponse);
 				returnPath="/views/authenticationResponse.jsp";
 				rd = request.getRequestDispatcher(returnPath);
