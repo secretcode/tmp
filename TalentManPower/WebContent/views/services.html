@@ -1,151 +1,103 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-	<head>
-		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
-		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
-		<link href="../style/index.css" rel="stylesheet" type="text/css">
-		<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
-		<script src="../scripts/services.js"></script>
-			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
-		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
-			<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-	
-	
-	
-	<div id="nav">
-		<ul>
-			<li> <a href="../main.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a>
-				<ul>
-					<li><a href="train.html">Training</a></li>
-					<li><a href="hiring.html">Hiring</a></li>
-					<li><a href="#">Virtual Employee</a>
-						<ul>
-							<li><a href="#">How Does it work</a></li>
-							<li><a href="#">Working remotely</a></li>
-							<li><a href="#">Your office in India</a></li>
-							<li><a href="#">Data Security</a></li>
-							<li><a href="#">VE Facilities</a></li>
-							<li><a href="#">VE Advantages</a></li>
-							<li><a href="#">Get Started</a></li>
-						</ul>
-					</li>
-					
-				</ul>
-			</li>
-			<li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-		<div id="loggedInBox" >
-			<div id="UserInformation" class="UserInformation"  ></div>
-			<div id="logOut"> Logout </div>
-		</div>
-		
-		<div id ="loginSignUpBox" style="float:right;color:#fff" >
-			<div id="login"> Login
-				<div id="loginBox">
-					<form method="post" id ="loginForm">
-						<input type="hidden" name ="action" value="loginUser"></input>
-						User Name:
-						<input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input>
-						Password:
-						<input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input>
-						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
-						<div id ="userLoginButton" class="buttonStyle">Login</div>
-					</form>
-					
-					<div id="loginFailureMessage" style="display:none;">Invalid Username or password</div>
-				</div>				
-			</div>
-			<div id ="signUp"> Signup
-				<div id="signUpBox">
-					<div id="signUpEmployee" class="buttonStyle" >Employee</div> 
-					<div id="signUpCompany" class="buttonStyle" >Company</div>  
-				</div>
-			</div>
-		</div>
-	</div>	
-	
-	<div id="title">
-		<strong>
-			Talent Manpower 
-		</strong><br>
-		Training and Recruitment
-		
-		<div id="UserInformation" class="UserInformation" ></div>
-	</div>
-	<hr>
-	<img id="frontImage" src="../images/download.PNG" class="stretch" />
-	<hr>
-	<table border="1">
-	<tr>
-		<td><div id ="sideMenu">
-		<div id="webwidget_vertical_menu" class="webwidget_vertical_menu">
-		<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a>
-				<ul>
-					<li><a href="train.html">Training</a></li>
-					<li><a href="hiring.html">Hiring</a></li>
-					<li><a href="virtualEmp.html">Virtual Employee</a></li>
-				</ul>
-			</li>
-			<li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-	</div>	
-    <div style="clear: both"></div>
-</div></td>
-<td><div id ="content">
-badiiiiiiiiiiiiii sari services h jaise:-
-<ul>
-<li>training </li>
-<li>hiring</li>
-<li>virtual employees</li>
-<li>bas or kya loge.</li>
-</ul>
+   <head>
+   <meta charset="UTF-8">
+   <title>TALENT MAN POWER</title>
+   <link rel="icon" href="images/favicon.gif" type="image/x-icon"/>
+   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/> 
+   <link rel="stylesheet" type="text/css" href="../style/temp.css"/>
+   </head>
+   <body>
+   <div id="container">
+   <header>
+   <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>    
+   <nav2>
+   <ul>
+   <li><a href="#" class="currrent">Login</a></li>
+	<li><a href="#">Sign Up</a></li>
+   </ul>
+   </nav2>
 
-
-</div>
-</td>
-</tr>
-</table>
-<hr>
-<div id ="footer">
-yaha par bhi kuch dal deta hoon
-<div id="footernavigation">
-bhai kaha jaoge:-<br>
-<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a></li>
+   <nav>
+   <ul>
+   <li><a href="index.html" >Home</a></li>
+   <li><a href="aboutUs.html">About us</a></li>
+   <li><a href="services.html" class="current">Services</a>
+	<ul>
+		<li><a href="train.html">Training</a></li>
+		<li><a href="hiring.html">Hiring</a></li>
+		<li><a href="virtualEmp.html">Virtual Employee</a>
 			<ul>
-				<li><a href="train.html">Training</a></li>
-				<li><a href="hiring.html">Hiring</a></li>
-				<li><a href="virtualEmp.html">Virtual Employee</a></li>
-			</ul><li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-</div>
-</div><script language="javascript" type="text/javascript">
-     $(function() {
-         $("#webwidget_vertical_menu").webwidget_vertical_menu({
-             menu_width: '200',
-             menu_height: '30',
-             menu_margin: '3',
-             menu_text_size: '15',
-             menu_text_color: '#CCC',
-             menu_background_color: '#666',
-             menu_border_size: '2',
-             menu_border_color: '#000',
-             menu_border_style: 'solid',
-             menu_background_hover_color: '#999',
-             directory: 'images'
-         });
-     });
- </script>
-</body>
+				<li><a href="#">How Does it work</a></li>
+				<li><a href="#">Working remotely</a></li>
+				<li><a href="#">Your office in India</a></li>
+				<li><a href="#">Data Security</a></li>
+				<li><a href="#">VE Facilities</a></li>
+				<li><a href="#">VE Advantages</a></li>
+				<li><a href="#">Get Started</a></li>
+			</ul>
+		</li>			
+	</ul>
+   </li>
+   <li><a href="contactUs.html">Contact</a></li>
+   </ul>
+   </nav>
+   </header>
+   <div id="intro">
+   <img id="frontImage" src="../images/download.PNG"  />
+   </div>
+   <div class="holder_content">
+   <section class="group1">
+   <h3>Services</h3>
+   <p>
+	badiiiiiiiiiiiiii sari services h jaise:-
+	</p><p>
+	need some contents for this div
+	</p><p>
+	bahut saara content chahaiye yha k liye
+	</p><p>
+	baki We take pride to have this following services: 
+	</p><p>
+	<ul>
+	<li>Exceptionally professional approach to give result oriented services.</li>
+		<br>
+		<li>Training.</li>
+		<li><p>Hiring.</p></li>
+		<li>Virtual emp.</li>
+	</ui>
+	</p>
+   </section>
+   <aside class="group2">
+   <h3>Services</h3>
 
+   <article class="holder_news">
+   <h4>Training</h4>
+   <p>need to write somethng here<span class="readmore">
+   <a href="train.html">Read more..</a></span></p>
+   </article>
+
+   <article class="holder_news">
+   <h4>Hiring</h4>
+   <p>need to write somethng 
+   <span class="readmore"><a href="hiring.html">Read more..</a></span></p>
+   </article>
+
+   <article class="holder_news">
+   <h4>Virtual Employee</h4>
+  <p>
+			Hire a Full time Virtual Employee in any profession from India for only $1095-$2995/month 
+	e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CICS, Storage), DBAs (DB2, IMS, Adabas, Oracle, SQL Server), Schedulers, Operators, Software Developers, Accountants, Engineers, Lawyers, Web & Graphic Designers, Data Entry Executives, Transcriptionists, Internet Marketers, Content Writers, Finance Experts etc.
+   <span class="readmore"><a href="virtualEmp.html">Read more..</a></span></p>
+   </article>
+   </aside>
+
+
+   </div>
+   </div>
+   <footer>
+   <div class="container">  
+   <div id="FooterTwo"> © Talent Man Power </div>
+   </div>
+   </footer>
+   </body>
 </html>

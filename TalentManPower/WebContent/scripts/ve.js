@@ -4,7 +4,16 @@ $( document ).ajaxError(function() {
 $(function(){
 	var APP_PATH = "/tmp/";
 	$('#loadingImage').hide();
+	
 	$('#howDoWorkLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'current';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'none';
+		
 		$('#howDoWorkContent').show();
 		$('#veContent').hide();
 		$('#workRemotelyContent').hide();
@@ -16,6 +25,14 @@ $(function(){
 	});
 	$('#workRemotelyLink').unbind('click');
 	$('#workRemotelyLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'current';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'none';
+		
 		console.log('inside work remotely link click function');
 		$('#workRemotelyContent').show();
 		$('#veContent').hide();
@@ -28,6 +45,13 @@ $(function(){
 		console.log('going outside work remotely link click function');
 	});
 	$('#officeInIndiaLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'current';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'none';
 		$('#workRemotelyContent').hide();
 		$('#veContent').hide();
 		$('#howDoWorkContent').hide();
@@ -38,6 +62,13 @@ $(function(){
 		$('#getStartedContent').hide();
 	});
 	$('#dataSecurityLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'current';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'none';
 		$('#workRemotelyContent').hide();
 		$('#veContent').hide();
 		$('#howDoWorkContent').hide();
@@ -48,6 +79,13 @@ $(function(){
 		$('#getStartedContent').hide();
 	});
 	$('#facilityLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'current';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'none';
 		$('#workRemotelyContent').hide();
 		$('#veContent').hide();
 		$('#howDoWorkContent').hide();
@@ -58,6 +96,13 @@ $(function(){
 		$('#getStartedContent').hide();
 	});
 	$('#advantagesLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'current';
+		document.getElementById('getStartedLink').className = 'none';
 		$('#workRemotelyContent').hide();
 		$('#veContent').hide();
 		$('#howDoWorkContent').hide();
@@ -68,6 +113,13 @@ $(function(){
 		$('#getStartedContent').hide();
 	});
 	$('#getStartedLink').click(function(){
+		document.getElementById('howDoWorkLink').className = 'none';
+		document.getElementById('workRemotelyLink').className = 'none';
+		document.getElementById('officeInIndiaLink').className = 'none';
+		document.getElementById('dataSecurityLink').className = 'none';
+		document.getElementById('facilityLink').className = 'none';
+		document.getElementById('advantagesLink').className = 'none';
+		document.getElementById('getStartedLink').className = 'current';
 		$('#workRemotelyContent').hide();
 		$('#veContent').hide();
 		$('#howDoWorkContent').hide();
