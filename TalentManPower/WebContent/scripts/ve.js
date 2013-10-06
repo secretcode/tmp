@@ -99,28 +99,31 @@ $(function(){
 		var urlregex = new RegExp("^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)");
 		return !urlregex.test(website);
 	};
+	
 	var initiateAttachDocuments=function(response,status,xhr)
 	{
-		console.log('mubarak '+ response);
+		//console.log('mubarak '+ response);
 		$('#errorMessage').show();
-		$("#loadingImage").show();
-		if ($('#errorMessage').val()=='')
-			{
-				$('#veGetStartedFormContainer').load(APP_PATH+"/views/ve/contactUs.jsp");
+		console.log($('#errorMessage').val());
+		if ($('#errorMessage').val()=='')			{
+				$("#veLoadingImage").show();
+				$('#veGetStartedFormContainer').load(APP_PATH+"views/ve/contactUs.jsp");
 				$("#veGetStartedFormTitle").html("Contact Us");
+				$("#veFormContainer").css("height","1100px");
 			}
+		$("#veLoadingImage").hide();
 	};
 	
 	$("#veGetStartedFormButton").click(function() {
-		console.log('virtual employee ka form submit ho raha h');
-		console.log($('#file').val());
+//		console.log('virtual employee ka form submit ho raha h');
+//		console.log($('#file').val());
 		if ($('#skillsets').val()=='')
 		{
 			console.log('skillsets to batao');
 			$('#errorMessage').html('Enter something in skill sets required');
 			$('#errorMessage').show();
 		}
-		else if ($('#salutation').val()==''||$('#name1').val()==''||$('#name1').val()=='First Name'||$('#lname1').val()=='Last Name'||$('#lname1').val()=='')
+		else if ($('#salutation').val()==''||$('#name1').val()==''||$('#name1').val()=='First Name')
 		{
 			$('#errorMessage').html('Enter Your Name Properly');
 			$('#errorMessage').show();
@@ -157,11 +160,40 @@ $(function(){
 		}
 		else
 			{
+				$('#veLoadingImage').show();
 				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veGetStartedForm').serialize(), initiateAttachDocuments);
-				$('#loadingImage').show();
 			}
 	});
 	
+	$("#veContactUsFormButton").click(function() {
+		console.log('contact us virtual employee  ka form submit ho raha h');
+		if ($('#tenure_of_employment').val()=='')
+		{
+			$('#errorMessage').html('Enter something in tenure of employment');
+			$('#errorMessage').show();
+		}
+		else if ($('#shift_timings').val()=='')
+		{
+			$('#errorMessage').html('Enter something in shift timings');
+			$('#errorMessage').show();
+		}
+		else if ($('#full_time_part_time').val()=='')
+		{
+			$('#errorMessage').html('Enter whether the employment is full time or part time');
+			$('#errorMessage').show();
+		}
+		else if ($('#time_to_start').val()=='')
+		{
+			$('#errorMessage').html('Enter something about time of starting of the employment');
+			$('#errorMessage').show();
+		}
+		else
+			{
+				$('#loadingImage').show();
+				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veContactUsForm').serialize(), afterVeContactus);
+			}
+	});
+
 	
 
 });

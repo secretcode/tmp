@@ -82,6 +82,23 @@ a.button
 	margin-bottom: 10px;
 }
 
+#veContactUsFormButton
+{
+	height:25px;
+	width:120px;
+	background-color:#456;
+	padding:5px;
+	float:right;
+	color:#fff;
+	margin-right: 30px;
+	margin-bottom: 10px;
+}
+
+#veContactUsForm
+{
+	padding-left:20px;
+}
+
 #veGetStartedFormCrossButton
 {
 	cursor:pointer;
@@ -92,11 +109,16 @@ a.button
 	float:left;
 }
 
-#loadingIMage
+#veLoadingImage
 {
-	display:none;
 	position:absolute;
-	z-index:999;
+	z-index:10;
+	top:0px;
+	left:0px;
+	background:url("/tmp/images/load.gif") no-repeat center;
+	background-color:rgba(0,0,0,0.7);
+	width:100%;
+	height:100%;
 }
 
 .red
@@ -117,3 +139,7 @@ a.button
 	width:300px;
 }
 
+.small
+{
+	font-size:12px;
+}

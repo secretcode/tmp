@@ -295,7 +295,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			session = request.getSession();
 			String captcha = (String) session.getAttribute("captcha");
 			  String code = (String) request.getParameter("captcha");
-			  
+			  System.out.println("captcha="+captcha+"code="+code);
 			    if (!captcha.equals(code)) {
 				  request.setAttribute("message","Please enter the correct captcha code");
 				  System.out.println("enter the correct captcha");
@@ -354,6 +354,9 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			rd.forward(request, response);
 
 			break;
+			
+			
+		
 			
 			case "AddCompanyJobForm":
 				System.out.println("AddCompanyJobForm in application controller");

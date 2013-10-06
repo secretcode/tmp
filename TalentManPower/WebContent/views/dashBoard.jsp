@@ -17,7 +17,8 @@
 				}catch(Exception e) {
 					System.out.println("Exception occured in getting the connection in userInfo case");
 				}
-				usrName = user.getLoginName();
+				usr  = UserManager.getUserInfo(uid,roleId,con);
+				usrName = usr.getLoginName();
 				System.out.println("usrName ::"+usrName);
 			}
 %>
