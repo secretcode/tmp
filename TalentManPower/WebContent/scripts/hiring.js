@@ -67,20 +67,15 @@ function addEmployeeEmployerClick(){
 	console.log("inside abc function");	
 	initiateButtonCheck();
 	$('#getEmployeeDetailsButton').click(function(){
-		var e = document.getElementById("getEmployeeDetailsButton");
-		e.style.background = "rgb(89, 29, 218)";
-		var e1 = document.getElementById("getEmployerDetailsButton");
-		e1.style.background ="rgb(255, 255, 255)";
+		document.getElementById('getEmployeeDetailsButton').className = 'current';
+		document.getElementById('getEmployerDetailsButton').className = 'none';
 		$('#mainEmployeeHiringBox').show();
 		$('#mainCompanyHiringBox').hide();
 		
 	});
 	$('#getEmployerDetailsButton').click(function(){
-		var e2 = document.getElementById("getEmployeeDetailsButton");
-		e2.style.background = "rgb(255, 255, 255";
-		var e3 = document.getElementById("getEmployerDetailsButton");
-		e3.style.background = "rgb(89, 29, 218)";
-	
+		document.getElementById('getEmployeeDetailsButton').className = 'none';
+		document.getElementById('getEmployerDetailsButton').className = 'current';
 		$('#mainCompanyHiringBox').show();
 		$('#mainEmployeeHiringBox').hide();
 		

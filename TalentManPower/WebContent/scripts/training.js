@@ -134,9 +134,6 @@ function handleTrainingResponse(response) {
 			   			
 }
 
-
-
-
 function initiateSelection() {
 	var selectedRow=trainingTableChart.getChart().getSelection();
 	alert(selectedRow);
