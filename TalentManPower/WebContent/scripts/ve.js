@@ -156,12 +156,15 @@ $(function(){
 	{
 		//console.log('mubarak '+ response);
 		$('#errorMessage').show();
-		console.log($('#errorMessage').val());
-		if ($('#errorMessage').val()=='')			{
-				$("#veLoadingImage").show();
-				$('#veGetStartedFormContainer').load(APP_PATH+"views/ve/contactUs.jsp");
+		console.log($('#errorMessage').html());
+		if ($.trim($('#errorMessage').html())==''){
+				$('#veGetStartedFormContainer').load(APP_PATH+"views/ve/contactUs.jsp",bindContactUs);
 				$("#veGetStartedFormTitle").html("Contact Us");
-				$("#veFormContainer").css("height","1100px");
+				$("#veFormContainer").css("height","1200px");
+			}
+		else
+			{
+				$('#captcha').attr('src',APP_PATH+'captcha');
 			}
 		$("#veLoadingImage").hide();
 	};
@@ -216,8 +219,10 @@ $(function(){
 				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veGetStartedForm').serialize(), initiateAttachDocuments);
 			}
 	});
-	
-	$("#veContactUsFormButton").click(function() {
+	function bindContactUs(){
+		console.log("binding contact us");
+		$("#veContactUsFormButton").unbind('click');
+		$("#veContactUsFormButton").bind('click',function() {
 		console.log('contact us virtual employee  ka form submit ho raha h');
 		if ($('#tenure_of_employment').val()=='')
 		{
@@ -242,10 +247,10 @@ $(function(){
 		else
 			{
 				$('#loadingImage').show();
-				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veContactUsForm').serialize(), afterVeContactus);
+				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veContactUsForm').serialize());
 			}
 	});
-
+	}
 	
 
 });

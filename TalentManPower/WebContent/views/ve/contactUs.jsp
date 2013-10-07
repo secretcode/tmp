@@ -2,7 +2,7 @@
 
 				<form  id="veContactUsForm" name="veContactUsForm" method="post" action="/tmp/bridge">
 				<input type=hidden name="action" value="veContactUsForm">
-					<span id ="errorMessage" class ="red"> </span>
+					<span id ="errorMessage" class ="red"> </span><br>
 	  
       <label >      
       We have received your enquiry. Thanks for your interest in our services.
@@ -97,7 +97,8 @@
 
         <label>Have You Outsourced Before?</label><br>
       
-<input type="radio" name="outsourced_before" onclick="checkOutsource('y');" value="Yes" id="outsourced_before"> Yes <input type="radio" name="outsourced_before" value="No" checked="checked" onclick="checkOutsource('n');" id="outsourced_before">No
+<input type="radio" name="outsourced_before" onclick="$('#outsourcedDetails').show();" value="Yes" id="outsourced_before"> Yes 
+<input type="radio" name="outsourced_before" value="No" checked="checked" onclick="$('#outsourcedDetails').hide();" id="outsourced_before">No
       
 <label id ="outsourcedDetails" style ="display:none"> <textarea name="outsourced_details" cols="75" rows="3" class="textarea"></textarea></label>
 <br>
@@ -142,4 +143,4 @@
 </select>
       </div>   
      </form><br><br><br><br>
-	 		<div id="veContactUsFormButton" class="buttonStyle"> <a href="#" class="button">Send Enquiry</a></div>
+	 		<div id="veContactUsFormButton" class="buttonStyle"> <a href="#" class="button">Contact Us</a></div>

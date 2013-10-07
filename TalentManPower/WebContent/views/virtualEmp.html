@@ -18,7 +18,7 @@
 			<h1 id ="veGetStartedFormTitle"> Get Started </h1>
 			<img id="veGetStartedFormCrossButton" src="../images/crossButton.jpg"><br>
 			<div id ="veGetStartedFormContainer">
-				<form  id="veGetStartedForm"  class ="veGetStartedForm"name="veForm" method="post" action="/tmp/bridge">
+				<form  id="veGetStartedForm"  class ="veGetStartedForm"name="veForm" method="POST" action="/tmp/bridge">
 					<input type=hidden name="action" value="veForm">
 					<span id ="errorMessage" class ="red"> </span>
 					<div>
@@ -169,7 +169,7 @@
 							<td>
 								<div class="columtext_last">
 								  <label>Enter the code:<br></label>
-								  <img style="float:left;" alt="captcha image" src="http://localhost:8080/tmp/captcha" width="100" height="28">
+								  <img id ="captcha" style="float:left;" alt="captcha image" src="/tmp/captcha" width="100" height="28">
 								  <input type="text"  style="width:60px;float:left; margin-left:10px;" size="6" class="input_text" name="captcha" id="captcha">
 								  <br><br>(Please enter value from image)
 								</div>

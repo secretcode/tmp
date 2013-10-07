@@ -3,7 +3,6 @@ package com.tmp.gateway;
 
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
@@ -19,14 +18,9 @@ import com.tmp.company.Comp;
 import com.tmp.company.companyDAO;
 import com.tmp.user.*;
 import com.tmp.utils.DBConnection;
-import com.tmp.training.TrainingCourses;
-import com.tmp.training.TrainingDAO;
-
-import java.util.ArrayList;
 import java.sql.Connection;
 
-import com.tmp.ve.VeEmployee;
-import com.tmp.ve.VeEmployeeDao;
+import com.tmp.ve.*;
 import com.tmp.email.*;
 
 public class ApplicationController extends HttpServlet implements Servlet {
@@ -48,6 +42,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		String returnPath=null;
 		String authResponse = "-1";
 		HttpSession session=null;
+		String captcha,code;
 		switch(userAction) {
 		
 		case  "loginUser" :
@@ -293,17 +288,17 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		case "veForm":
 			System.out.println("virtual employee ka form mil gaya");
 			session = request.getSession();
-			String captcha = (String) session.getAttribute("captcha");
-			  String code = (String) request.getParameter("captcha");
-			  System.out.println("captcha="+captcha+"code="+code);
-			    if (!captcha.equals(code)) {
-				  request.setAttribute("message","Please enter the correct captcha code");
-				  System.out.println("enter the correct captcha");
-			    } else {
-			    	request.setAttribute("message","");
-			    	String to=request.getParameter("email");
-			    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
-			VeEmployee veEmployee=new VeEmployee();
+			captcha = (String) session.getAttribute("captcha");
+			code = (String) request.getParameter("captcha");
+			System.out.println("captcha="+captcha+"code="+code);
+		    if (!captcha.equals(code)) {
+			  request.setAttribute("message","Please enter the correct captcha code");
+		    }
+		    else {
+	    	request.setAttribute("message","");
+	    	String to=request.getParameter("email");
+	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
+	    	VeEmployee veEmployee=new VeEmployee();
 			veEmployee.setSkillset(request.getParameter("skillsets"));
 			veEmployee.setTitle(request.getParameter("salutation"));
 			veEmployee.setFirstName(request.getParameter("name1"));
@@ -329,7 +324,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				VeEmployeeDao.addEnquiry(veEmployee,con);
 				authResponse = "1";
 
-				}catch(Exception e){
+			}catch(Exception e){
 				e.printStackTrace();
 			}
 			finally{
@@ -342,9 +337,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			request.getRequestDispatcher("views/ve/getStartedEmail.jsp").forward(request,customResponse);
 			String msg=String.format(customResponse.getOutput());
 			System.out.println(msg);
-			
+			try{
 			Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			}catch(Exception e){
+					System.out.println("mail exceotion");
+			};
 		}	
+			  System.out.println(request.getAttribute("message"));
 			returnPath="views/confirmation.jsp";
 			request.setAttribute("authResponse", authResponse);
 			rd = request.getRequestDispatcher(returnPath);
@@ -355,7 +354,60 @@ public class ApplicationController extends HttpServlet implements Servlet {
 
 			break;
 			
+		case "veContactUsForm":
+			System.out.println("virtual employee  contact us ka form mil gaya");
+			session = request.getSession();
+			String to=request.getParameter("email");
+	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
+	    	VeContact veContact=new VeContact();
+			veContact.setRoles(request.getParameter("roles_responsibilities"));
+			veContact.setWorkDomain(request.getParameter("project_work_domain"));
+			veContact.setExperience(request.getParameter("years_of_experience_required"));
+			veContact.setTenure(request.getParameter("tenure_of_employment"));
+			veContact.setShiftTime(request.getParameter("shift_timings"));
+			veContact.setFullPartTime(request.getParameter("full_time_part_time"));
+			veContact.setStartTime(request.getParameter("employee_to_start"));
+			veContact.setTechnicalProficiency(request.getParameter("technically_proficient"));
+			veContact.setOutsourcing(request.getParameter("outsourced_before"));
+			veContact.setOutsourcingDetails(request.getParameter("outsourced_details"));
+			veContact.setBusinessEntity(request.getParameter("business_entity_information"));
+			veContact.setBusinessDomain(request.getParameter("business_domain_area_of_operation"));
+			veContact.setTimeofOperation(request.getParameter("in_operations_since"));
+			veContact.setAnnualTurnover(request.getParameter("company_annual_turnover"));
+			session.setAttribute("veContact",veContact);
+			try{	
+				try{
+					con = DBConnection.getConnection();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				VeContactDao.insertDetails(veContact,con);
+				authResponse = "1";
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			finally{
+				try {
+				DBConnection.freeResources(con);
+				}catch(Exception e) {};
+			}  
 			
+			String subject="Confirmation Message";
+			request.getRequestDispatcher("views/ve/contactUsEmail.jsp").forward(request,customResponse);
+			String msg=String.format(customResponse.getOutput());
+			System.out.println(msg);
+			try{
+			Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			}catch(Exception e){
+					System.out.println("mail exceotion");
+			};	
+			request.setAttribute("authResponse", authResponse);
+			rd = request.getRequestDispatcher(returnPath);
+		
+			System.out.println("rd " + rd+"request is "+request+"  response is "+response);
+
+			break;
 		
 			
 			case "AddCompanyJobForm":
@@ -382,7 +434,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				
 				String authResponse11 = "-1";
 				Connection con11 = null;
-				String returnPath11=null;
 				try{
 					try{
 						con11 = DBConnection.getConnection();
@@ -435,10 +486,10 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				authResponse="1";
 				session=request.getSession();
 				session.setAttribute("contactDetails", ct);
-				String to=ct.getEmailId();
-				String subject="Thanx for contacting TalentManPower";
+				 to=ct.getEmailId();
+				subject="Thanx for contacting TalentManPower";
 				request.getRequestDispatcher("views/signUp/contactDetails.jsp").forward(request,contactResponse);
-				String msg=String.format(contactResponse.getOutput());
+				msg=String.format(contactResponse.getOutput());
 				System.out.println(msg);
 				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
 			
