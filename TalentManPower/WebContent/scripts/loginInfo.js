@@ -37,43 +37,36 @@ function initiateLoginBox() {
 	$(".error").hide();
 	
 	$("#userLoginButton").click(function() {
-		alert("Inside click");
-		var isError = 0;
+		//alert("Inside click");
 		var password=$("#loginUserPassword").val();  
 		if(password=="" || password==$("#loginUserPassword").attr('placeholder')){
 		//  $("#email_error_AF").html("This field is required");
-		 alert("enter password correctly");
-		 isError = 1;	
+		 $("#loginErrorMessage").html("enter password correctly");
 		 $("#loginUserPassword").focus();
+		 $("#loginErrorMessage").html("enter password correctly");
+		 $("#loginErrorMessage").show();
 		}
-		
-		if(password.length<6){
+		else if(password.length<6){
 			//  $("#email_error_AF").html("This field is required");
-			 alert("password must be of length more than 6 letters");
-			 isError = 1;	
-			 $('#errorMessage').html('Enter Valid UserName');
+			$("#loginErrorMessage").html("password must be of length more than 6 letters");
 			 $("#loginUserPassword").focus();
+			 $("#loginErrorMessage").show();
 		}
-		
-
-		
-		var name=$("#loginUserName").val();  
-		if(name=="" || name==$("#loginUserName").attr('placeholder')){
-		//  $("#email_error_AF").html("This field is required");
-		alert("enter username correctly");
-			isError = 1;	
-			$('#errorMessage').html('Enter Valid UserName');
-			 $("#loginUserName").focus();
-		}		
-		
-		if(isError == 0) {
-
-			//	var dataString='&firstName=' +firstName + '&lastName=' +lastName + '&phone=' +phone + 'email=' +email;
-			//    alert(dataString);
+		else{
+			var name=$("#loginUserName").val();  
+			if(name=="" || name==$("#loginUserName").attr('placeholder')){
+				$("#loginErrorMessage").html("enter username correctly");	
+				$('#errorMessage').html('Enter Valid UserName');
+				 $("#loginUserName").focus();
+				 $("#loginErrorMessage").show();
+			}
+			else{
+				//var dataString='&firstName=' +firstName + '&lastName=' +lastName + '&phone=' +phone + 'email=' +email;
+			    //console.log(dataString);
 				
 			var loginForm = $("#loginForm");
-			
-		alert("Apply Form var: "+ loginForm);
+			$("#loginErrorMessage").hide();
+		//alert("Apply Form var: "+ loginForm);
 			
 		$.ajax({
 			type:"POST",
@@ -82,19 +75,20 @@ function initiateLoginBox() {
 			success: function(response){
 				//alert("Response is: "+response);
 				var responseMessage = $.trim(response);
-				alert("msg received is ::  "+responseMessage);
+				//alert("msg received is ::  "+responseMessage);
 				
 				if(responseMessage != "1" ) {
 			//		alert("Inside if");
 					$("#loginFailureMessage").show();
 				} else {
-				alert("After Submit");
+			//	alert("After Submit");
 				initiateUserInfoBox();
 				}											
 			}
 		  });
-				
 			}
+		}
+				
 		
 	});
 	

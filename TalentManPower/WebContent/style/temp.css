@@ -362,7 +362,7 @@ nav2{
 	width:200px;
 	top:2px;
 	height:30%;
-	right:0;
+	right:22%;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em; 
 	-moz-border-radius: .5em;
@@ -668,3 +668,43 @@ nav ul li div.current{
 	width:300px;
 }
 
+/********login**********/
+
+
+#loginBox
+{
+
+	background-color: #F5F5F5;
+	border: 10px solid;
+	border-color: #3B3F41;
+	cursor: auto;
+	border-radius: 15px;
+	left: auto;
+	display:none;
+	position:absolute;
+	z-index:3;
+	top: auto;
+	WIDTH: 150%;
+	color:#000;
+	font-size:15px;
+}
+
+#login:hover #loginBox
+{
+	display:block;
+}
+
+#userLoginButton
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
+}
+
+#loginErrorMessage
+{
+	float: left;
+	font-size: 15px;
+	margin: 20px;
+	display: none;
+}

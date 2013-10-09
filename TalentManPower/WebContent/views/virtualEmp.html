@@ -1,24 +1,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html>
-	<head>
-		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
-		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
-		<script type="text/javascript" src="../scripts/ve.js"></script>
-			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
-		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
-		<link href="../style/ve.css" rel="stylesheet" type="text/css">
-		<link href="../style/index.css" rel="stylesheet" type="text/css">
-		<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-	<div id ="veLoadingImage" style ="display:none;"></div>
-	<div id="veGetStartedOverlay">
+   <head>
+   <meta charset="UTF-8">
+   <title>TALENT MAN POWER</title>
+   <link rel="icon" href="images/favicon.gif" type="image/x-icon"/>
+   <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/> 
+   <link rel="stylesheet" type="text/css" href="../style/temp.css"/>
+   <link rel="stylesheet" type="text/css" href="../style/virtual.css"/>
+   <script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
+   <script type="text/javascript" src="../scripts/ve.js"></script>
+   <script type="text/javascript" src="../scripts/loginInfo.js"></script>
+   </head>
+   <body>
+   	<div id="veGetStartedOverlay" class="none">
 		<div id ="veFormContainer">
 			<h1 id ="veGetStartedFormTitle"> Get Started </h1>
 			<img id="veGetStartedFormCrossButton" src="../images/crossButton.jpg"><br>
 			<div id ="veGetStartedFormContainer">
-				<form  id="veGetStartedForm"  class ="veGetStartedForm"name="veForm" method="POST" action="/tmp/bridge">
+				<form  id="veGetStartedForm"  class ="veGetStartedForm"name="veForm" method="post" action="/tmp/bridge">
 					<input type=hidden name="action" value="veForm">
 					<span id ="errorMessage" class ="red"> </span>
 					<div>
@@ -169,7 +168,7 @@
 							<td>
 								<div class="columtext_last">
 								  <label>Enter the code:<br></label>
-								  <img id ="captcha" style="float:left;" alt="captcha image" src="/tmp/captcha" width="100" height="28">
+								  <img style="float:left;" alt="captcha image" src="http://localhost:8080/tmp/captcha" width="100" height="28">
 								  <input type="text"  style="width:60px;float:left; margin-left:10px;" size="6" class="input_text" name="captcha" id="captcha">
 								  <br><br>(Please enter value from image)
 								</div>
@@ -179,107 +178,89 @@
 					<div id="veGetStartedFormButton" class="buttonStyle"> <a href="#" class="button">Send Enquiry </a></div>
 					
 				</form>
+			</div>
+			</div>
 			</div>	
-		</div>
-	</div>
-	</div>
-	
-		
-	
-	<div id="nav">
-		<ul>
-			<li> <a href="../main.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a>
-				<ul>
-					<li><a href="train.html">Training</a></li>
-					<li><a href="hiring.html">Hiring</a></li>
-					<li><a href="#">Virtual Employee</a>
-						<ul>
-							<li><a href="#">How Does it work</a></li>
-							<li><a href="#">Working remotely</a></li>
-							<li><a href="#">Your office in India</a></li>
-							<li><a href="#">Data Security</a></li>
-							<li><a href="#">VE Facilities</a></li>
-							<li><a href="#">VE Advantages</a></li>
-							<li><a href="#">Get Started</a></li>
-						</ul>
-					</li>
-					
-				</ul>
-			</li>
-			<li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-		<div id="loggedInBox" >
-			<div id="UserInformation" class="UserInformation"  ></div>
-			<div id="logOut"> Logout </div>
-		</div>
-		
-		<div id ="loginSignUpBox" style="float:right;color:#fff" >
-			<div id="login"> Login
-				<div id="loginBox">
-					<form method="post" id ="loginForm">
+   
+   <div id="container">
+   <header>
+   <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>    
+   <nav2>
+   <ul>
+   <li id="login"><a href="#" class="currrent">Login</a>
+   		<div id="loginBox">
+			<form method="post" id ="loginForm">
 						<input type="hidden" name ="action" value="loginUser"></input>
-						User Name:
-						<input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input>
-						Password:
-						<input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input>
-						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
-						<div id ="userLoginButton" class="buttonStyle">Login</div>
+						<table>
+							<tr>
+							
+								<td>User Name:</td>
+								<td><input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input></td>
+							</tr>
+							<tr>
+								<td>Password:</td>
+								<td><input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input></td>
+							</tr>
+						</table>
 					</form>
-					
-					<div id="loginFailureMessage" style="display:none;">Invalid Username or password</div>
-				</div>				
-			</div>
-			<div id ="signUp"> Signup
-				<div id="signUpBox">
-					<div id="signUpEmployee" class="buttonStyle" >Employee</div> 
-					<div id="signUpCompany" class="buttonStyle" >Company</div>  
+					<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+							<div id ="userLoginButton" class="button">Login</div>
 				</div>
-			</div>
-		</div>
-	</div>	
-	
-	
-	
-	<div id="title">
-		<strong>
-			Talent Manpower 
-		</strong><br>
-		Training and Recruitment
-	</div>
-	<hr>
-	<img id="frontImage" src="../images/download.PNG" class="stretch" />
-	<hr>
-	<table >
-	<tr>
-		<td>
-			<div id ="veSideMenuContainer">
-				<div id="veSideMenu" class="webwidget_vertical_menu">
-				<ul>
-					<li><a href="#" id ="howDoWorkLink">How Does it work</a></li>
+						
+   </li>
+	<li><a href="#">Sign Up</a></li>
+   </ul>
+   </nav2>
+
+   <nav>
+   <ul>
+   <li><a href="index.html">Home</a></li>
+   <li><a href="aboutUs.html" class="current">About us</a></li>
+   <li><a href="services.html">Services</a>
+	<ul>
+		<li><a href="train.html">Training</a></li>
+		<li><a href="hiring.html">Hiring</a></li>
+		<li><a href="virtualEmp.html">Virtual Employee</a>
+			<ul>
+				<li><a href="#">How Does it work</a></li>
+				<li><a href="#">Working remotely</a></li>
+				<li><a href="#">Your office in India</a></li>
+				<li><a href="#">Data Security</a></li>
+				<li><a href="#">VE Facilities</a></li>
+				<li><a href="#">VE Advantages</a></li>
+				<li><a href="#">Get Started</a></li>
+			</ul>
+		</li>			
+	</ul>
+   </li>
+   <li><a href="contactUs.html">Contact</a></li>
+   </ul>
+   </nav>
+   </header>
+   <div id="intro">
+   <img id="frontImage" src="../images/download.PNG"  />
+   </div>
+   <div class="holder_content">
+   <section class="group1">
+   
+   <nav style="width:90%;top:40px;float:left;position:static">
+  		<ul>
+					<li><a href="#" id ="howDoWorkLink"">How Does it work</a></li>
 					<li><a href="#" id="workRemotelyLink">Working Remotely</a></li>
 					<li><a href="#" id="officeInIndiaLink">Your office in India</a></li>
+		</ul>
+	</nav>
+
+	<nav style="width:90%;top:80px;float:left;position:static">
+		<ul>
 					<li><a href="#" id ="dataSecurityLink">Data Security</a></li>
 					<li><a href="#" id ="facilityLink">VE Facilities</a></li>
 					<li><a href="#" id ="advantagesLink">VE Advantage</a></li>
 					<li><a href="#" id ="getStartedLink">Get Started</a></li>
-				</ul>
-				</div>	
-				<div style="clear: both"></div>
-				<!--
-				<div><a href="#" id ="howDoWorkLink">How Does it work</a></div>
-				<div><a href="#" id="workRemotelyLink">Working Remotely</a></div>
-				<div><a href="#" id="officeInIndiaLink">Your office in India</a></div>
-				<div><a href="#" id ="dataSecurityLink">Data Security</a></div>
-				<div><a href="#" id ="facilityLink">VE Facilities</a></div>
-				<div><a href="#" id ="advantagesLink">VE Advantage</a></div>
-				<div><a href="#" id ="getStartedLink">Get Started</a></div>
-				-->
-			</div>
-			    
-		</td>
-<td><div id ="content">
+		</ul>
+	</nav>
+	<br><br><br><br><br><br><br><br>
+	<div id ="content">
 		<div id ="veContent">
 			<h3><b>Talent ManPower</b> --	An alternative to hiring employees locally.</h3><br>
 			<ul>
@@ -292,18 +273,18 @@
 e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CICS, Storage), DBAs (DB2, IMS, Adabas, Oracle, SQL Server), Schedulers, Operators, Software Developers, Accountants, Engineers, Lawyers, Web & Graphic Designers, Data Entry Executives, Transcriptionists, Internet Marketers, Content Writers, Finance Experts etc.
 			</p>
 		</div>
-		<div id="howDoWorkContent">
+		<div id="howDoWorkContent" class="none">
 			<h3>HOW DOES VIRTUAL EMPLOYEE WORK</h3><br>
 			<ul>
 				<li> Virtual Employee works directly for you just like a locally hired employee.</li>
 				<li> Virtual Employee works with you remotely from our office in India. </li>
 				<li> And so you work with your Virtual Employee via the internet, instead of face to face.</li>
 				<li> You will be given complete control, you tell your Virtual Employee what to do and you work with them.</li>
-				<li> You review your Virtual Employee�s work and they will follow your instructions only.</li>
+				<li> You review your Virtual Employee’s work and they will follow your instructions only.</li>
 				<li> A Virtual Employee is not a freelancer, however simply a remote employee, dedicated, supervised & professional.</li>
 			</ul>
 		</div>
-		<div id="workRemotelyContent"> 
+		<div id="workRemotelyContent" class="none"> 
 			<h3>WORKING REMOTELY!</h3><br>
 			<ul>
 				<li>Your VE is equipped with the latest computer hardware.</li>
@@ -312,7 +293,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>We are present 24*7 should you require any real-time assistance</li>
 			</ul>
 		</div>
-		<div id="officeInIndiaContent"> 
+		<div id="officeInIndiaContent" class="none"> 
 			<h3>WE ARE A REMOTE EXTENSION OF YOUR LOCAL OFFICE</h3><br>
 			<ul>
 				<li>Think of your office as opening your very offshore office in India</li>
@@ -322,7 +303,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>That's not all we take care of all the non-work related issues and office logistics on your behalf.</li>
 			</ul>
 		</div>
-		<div id="dataSecurityContent">
+		<div id="dataSecurityContent" class="none">
 			<h3>RESPONSIBLE DATA SECURITY</h3><br>
 			<ul>
 				<li>Employee can work real-time on your computer.</li>
@@ -332,7 +313,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>Websites and personal email accounts can be blocked.</li>
 			</ul>
 		</div>
-		<div id="facilityContent"> 
+		<div id="facilityContent" class="none"> 
 			<h3>FACILITIES WE OFFER</h3><br>
 			<ul>
 				<li>Office located in the heart of National Capital Region of India.</li>
@@ -341,7 +322,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>State-of-the art office facility, high quality infrastructure and spacious work stations.</li>
 			</ul>
 		</div>
-		<div id="advantagesContent"> 
+		<div id="advantagesContent" class="none"> 
 			<h3>VIRTUAL EMPLOYEE ADVANTAGE</h3><br>
 			<ul>
 				<li>Set up your own office in India at zero cost.</li>
@@ -352,7 +333,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 			</ul>
 		
 		</div>
-		<div id="getStartedContent"> 
+		<div id="getStartedContent" class="none"> 
 			<h3>GET STARTED!</h3><br>
 			<ul>
 				<li>Easy to start, just fill up our form.</li>
@@ -363,51 +344,41 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>If you are not impressed with any of the candidates, there is no obligation to use our service.</li>
 			</ul>
 		</div>
-		
-		
 		<br><br>
-		<div id ="veLearnMoreButton" class="buttonStyle"> <a href="#" class="button">Learn More </a></div><br><br><br>
-		<div id ="veGetStartedButton" class="buttonStyle"> <a href="#" class="button">Get Started </a></div><br>
-</div>
-</td>
-</tr>
-</table>
-<hr>
-<div id ="footer">
-virtual emp
-<div id="footernavigation">
-abc kithe gya siiiiii:-<br>
-jindagi k maze leene pub gya si<br>
-<ul>
-			<li><a href="index.html">Home</a></li>
-			<li><a href="aboutUs.html">About</a></li>
-			<li><a href="services.html">Services</a></li>
-			<ul>
-				<li><a href="train.html">Training</a></li>
-				<li><a href="hiring.html">Hiring</a></li>
-				<li><a href="#">Virtual Employee</a></li>
-			</ul>
-			<li><a href="contactUs.html">Contact Us</a></li>
-		</ul>
-</div>
-</div>
-<script language="javascript" type="text/javascript">
-     $(function() {
-		 $("#veSideMenu").webwidget_vertical_menu({
-             menu_width: '200',
-             menu_height: '30',
-             menu_margin: '3',
-             menu_text_size: '15',
-             menu_text_color: '#CCC',
-             menu_background_color: '#3C4447',
-             menu_border_size: '2',
-             menu_border_color: '#000',
-             menu_border_style: 'solid',
-             menu_background_hover_color: '#306FB1',
-             directory: 'images'
-         });
-     });
- </script>
-</body>
+		<div id ="veGetStartedButton" class="buttonStyle"> <a href="#" class="button">Get Started </a></div><br>	
+	   </section>
+	   
+   <aside class="group2">
+   <h3>Services</h3>
 
+   <article class="holder_news">
+   <h4>Training</h4>
+   <p>need to write somethng here<span class="readmore">
+   <a href="train.html">Read more..</a></span></p>
+   </article>
+
+   <article class="holder_news">
+   <h4>Hiring</h4>
+   <p>need to write somethng 
+   <span class="readmore"><a href="hiring.html">Read more..</a></span></p>
+   </article>
+
+   <article class="holder_news">
+   <h4>Virtual Employee</h4>
+  <p>
+			Hire a Full time Virtual Employee in any profession from India for only $1095-$2995/month 
+	e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CICS, Storage), DBAs (DB2, IMS, Adabas, Oracle, SQL Server), Schedulers, Operators, Software Developers, Accountants, Engineers, Lawyers, Web & Graphic Designers, Data Entry Executives, Transcriptionists, Internet Marketers, Content Writers, Finance Experts etc.
+   <span class="readmore"><a href="virtualEmp.html">Read more..</a></span></p>
+   </article>
+   </aside>
+
+
+   </div>
+   </div>
+   <footer>
+   <div class="container">  
+   <div id="FooterTwo"> © Talent Man Power </div>
+   </div>
+   </footer>
+   </body>
 </html>

@@ -121,6 +121,11 @@ a.button
 	height:100%;
 }
 
+#veGetStartedOverlay
+{
+		display:none;
+}
+
 .red
 {
 	color:#f00;

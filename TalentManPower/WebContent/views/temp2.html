@@ -6,11 +6,13 @@
    <link rel="icon" href="images/favicon.gif" type="image/x-icon"/>
    <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/> 
    <link rel="stylesheet" type="text/css" href="../style/temp.css"/>
+   <link rel="stylesheet" type="text/css" href="../style/virtual.css"/>
    <script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
    <script type="text/javascript" src="../scripts/ve.js"></script>
+   <script type="text/javascript" src="../scripts/loginInfo.js"></script>
    </head>
    <body>
-   	<div id="veGetStartedOverlay">
+   	<div id="veGetStartedOverlay" class="none">
 		<div id ="veFormContainer">
 			<h1 id ="veGetStartedFormTitle"> Get Started </h1>
 			<img id="veGetStartedFormCrossButton" src="../images/crossButton.jpg"><br>
@@ -185,7 +187,27 @@
    <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>    
    <nav2>
    <ul>
-   <li><a href="#" class="currrent">Login</a></li>
+   <li id="login"><a href="#" class="currrent">Login</a>
+   		<div id="loginBox">
+			<form method="post" id ="loginForm">
+						<input type="hidden" name ="action" value="loginUser"></input>
+						<table>
+							<tr>
+							
+								<td>User Name:</td>
+								<td><input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input></td>
+							</tr>
+							<tr>
+								<td>Password:</td>
+								<td><input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input></td>
+							</tr>
+						</table>
+					</form>
+					<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+							<div id ="userLoginButton" class="button">Login</div>
+				</div>
+						
+   </li>
 	<li><a href="#">Sign Up</a></li>
    </ul>
    </nav2>
@@ -251,7 +273,7 @@
 e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CICS, Storage), DBAs (DB2, IMS, Adabas, Oracle, SQL Server), Schedulers, Operators, Software Developers, Accountants, Engineers, Lawyers, Web & Graphic Designers, Data Entry Executives, Transcriptionists, Internet Marketers, Content Writers, Finance Experts etc.
 			</p>
 		</div>
-		<div id="howDoWorkContent">
+		<div id="howDoWorkContent" class="none">
 			<h3>HOW DOES VIRTUAL EMPLOYEE WORK</h3><br>
 			<ul>
 				<li> Virtual Employee works directly for you just like a locally hired employee.</li>
@@ -262,7 +284,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li> A Virtual Employee is not a freelancer, however simply a remote employee, dedicated, supervised & professional.</li>
 			</ul>
 		</div>
-		<div id="workRemotelyContent"> 
+		<div id="workRemotelyContent" class="none"> 
 			<h3>WORKING REMOTELY!</h3><br>
 			<ul>
 				<li>Your VE is equipped with the latest computer hardware.</li>
@@ -271,7 +293,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>We are present 24*7 should you require any real-time assistance</li>
 			</ul>
 		</div>
-		<div id="officeInIndiaContent"> 
+		<div id="officeInIndiaContent" class="none"> 
 			<h3>WE ARE A REMOTE EXTENSION OF YOUR LOCAL OFFICE</h3><br>
 			<ul>
 				<li>Think of your office as opening your very offshore office in India</li>
@@ -281,7 +303,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>That's not all we take care of all the non-work related issues and office logistics on your behalf.</li>
 			</ul>
 		</div>
-		<div id="dataSecurityContent">
+		<div id="dataSecurityContent" class="none">
 			<h3>RESPONSIBLE DATA SECURITY</h3><br>
 			<ul>
 				<li>Employee can work real-time on your computer.</li>
@@ -291,7 +313,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>Websites and personal email accounts can be blocked.</li>
 			</ul>
 		</div>
-		<div id="facilityContent"> 
+		<div id="facilityContent" class="none"> 
 			<h3>FACILITIES WE OFFER</h3><br>
 			<ul>
 				<li>Office located in the heart of National Capital Region of India.</li>
@@ -300,7 +322,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 				<li>State-of-the art office facility, high quality infrastructure and spacious work stations.</li>
 			</ul>
 		</div>
-		<div id="advantagesContent"> 
+		<div id="advantagesContent" class="none"> 
 			<h3>VIRTUAL EMPLOYEE ADVANTAGE</h3><br>
 			<ul>
 				<li>Set up your own office in India at zero cost.</li>
@@ -311,7 +333,7 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 			</ul>
 		
 		</div>
-		<div id="getStartedContent"> 
+		<div id="getStartedContent" class="none"> 
 			<h3>GET STARTED!</h3><br>
 			<ul>
 				<li>Easy to start, just fill up our form.</li>
@@ -323,7 +345,6 @@ e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CIC
 			</ul>
 		</div>
 		<br><br>
-		<div id ="veLearnMoreButton" class="buttonStyle"> <a href="#" class="button">Learn More </a></div><br><br><br>
 		<div id ="veGetStartedButton" class="buttonStyle"> <a href="#" class="button">Get Started </a></div><br>	
 	   </section>
 	   

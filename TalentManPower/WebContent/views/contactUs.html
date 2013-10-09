@@ -14,7 +14,27 @@
    <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>    
    <nav2>
    <ul>
-   <li><a href="#" class="currrent">Login</a></li>
+   <li id ="login"><a href="#" class="currrent">Login</a>
+   <div id="loginBox">
+			<form method="post" id ="loginForm">
+						<input type="hidden" name ="action" value="loginUser"></input>
+						<table>
+							<tr>
+							
+								<td>User Name:</td>
+								<td><input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input></td>
+							</tr>
+							<tr>
+								<td>Password:</td>
+								<td><input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input></td>
+							</tr>
+						</table>
+					</form>
+					<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+							<div id ="userLoginButton" class="button">Login</div>
+				</div>
+   
+   </li>t
 	<li><a href="#">Sign Up</a></li>
    </ul>
    </nav2>
