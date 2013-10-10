@@ -491,8 +491,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				request.getRequestDispatcher("views/signUp/contactDetails.jsp").forward(request,contactResponse);
 				msg=String.format(contactResponse.getOutput());
 				System.out.println(msg);
-				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
-			
+				try{
+					Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+					}
+				catch(Exception e){
+							System.out.println("mail exceotion");
+				};		
 				request.setAttribute("authResponse", authResponse);
 				returnPath="/views/authenticationResponse.jsp";
 				rd = request.getRequestDispatcher(returnPath);
