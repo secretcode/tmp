@@ -316,7 +316,7 @@ function initiateEmpSignUpBox() {
 	
 	$('#signUpEmployee').click(function(){
 		$('#content').hide();
-		console.log("inside click of emp sign up");
+		alert("inside click of emp sign up");
 		$('#employeeSignUpOverlay').height($(document).height());
 		$('#employeeSignUpOverlay').show();
 	});
