@@ -3,7 +3,6 @@ package com.tmp.gateway;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.Servlet;
@@ -491,12 +490,8 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				request.getRequestDispatcher("views/signUp/contactDetails.jsp").forward(request,contactResponse);
 				msg=String.format(contactResponse.getOutput());
 				System.out.println(msg);
-				try{
-					Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
-					}
-				catch(Exception e){
-							System.out.println("mail exceotion");
-				};		
+				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			
 				request.setAttribute("authResponse", authResponse);
 				returnPath="/views/authenticationResponse.jsp";
 				rd = request.getRequestDispatcher(returnPath);

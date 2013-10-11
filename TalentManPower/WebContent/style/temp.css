@@ -374,9 +374,17 @@ nav2{
 }
 
 nav ul li ul {
-	display:none;
+	position:absolute;
+	left:-999px;
+	z-index:3;
+	background:black;
+	width:25%;
 }
 
+nav ul li:hover ul
+{
+	left:auto;
+}
 
 nav ul li{
 	float: left;
@@ -708,52 +716,3 @@ nav ul li div.current{
 	margin: 20px;
 	display: none;
 }
-
-/*******SignUp********/
-#signUpBox
-{
-
-	background-color: #F5F5F5;
-	border: 10px solid;
-	border-color: #3B3F41;
-	cursor: auto;
-	border-radius: 15px;
-	left: auto;
-	display:none;
-	position:absolute;
-	z-index:3;
-	top: auto;
-	WIDTH: 75%;
-	color:#000;
-	font-size:15px;
-}
-
-#signUp:hover #signUpBox
-{
-	display:block;
-}
-
-#signUpEmployee
-{
-	margin-right:5%;
-	float: right;
-	cursor: pointer;
-}
-
-#signUpCompany
-{
-	margin-right:5%;
-	float: right;
-	cursor: pointer;
-}
-
-#loginErrorMessage
-{
-	float: left;
-	font-size: 15px;
-	margin: 20px;
-	display: none;
-}
-
-
-

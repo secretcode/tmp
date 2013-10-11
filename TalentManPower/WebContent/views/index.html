@@ -1,15 +1,20 @@
-   <head>
-   <meta charset="UTF-8">
-   <title>TALENT MAN POWER</title>
-   	<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
-   <script type="text/javascript" src="../scripts/index.js"></script>
-  
-   <link rel="icon" href="../images/favicon.gif" type="image/x-icon"/>
-   <link rel="shortcut icon" href="../images/favicon.gif" type="image/x-icon"/> 
-   <link rel="stylesheet" type="text/css" href="../style/temp.css"/>
-   </head>
-   <body>
-   <div id="companySignUpOverlay" class="overlayPage">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<script type="text/javascript" src="../scripts/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="../scripts/webwidget_vertical_menu.js"></script>
+		<script type="text/javascript" src="../scripts/index.js"></script>
+			<script type="text/javascript" src="../scripts/temp.js"></script>
+			<script type="text/javascript" src="../scripts/loginInfo.js"></script>
+			
+		<link href="../style/webwidget_vertical_menu.css" rel="stylesheet" type="text/css">
+		<link href="../style/index.css" rel="stylesheet" type="text/css">
+			<link href="../style/horizontalMenu.css" rel="stylesheet" type="text/css">
+		
+	</head>
+	<body>
+	<div id="companySignUpOverlay" class="overlayPage">
 		<div id ="companySignUpFormDiv" class="overlayFormDiv">
 			<h1 id ="companySignUpFormTitle" class="overLayFormTitle"> Company Sign Up </h1>
 			<img id="companySignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
@@ -381,128 +386,166 @@
 				<div id="employeeSignUpSubmitButton"> <a href="#" class="overLayFormSubmitButton">Submit</a></div>			
 			</div>
 		</div>
-   
-   <div id="container">
-   <header>
-   <a href="../views/index.html" ><img id="logo" src="images/logo.PNG" /></a>    
-   <nav2>
-   <ul>
-   <li id ="login"><a href="#" class="currrent">Login</a>
-   <div id="loginBox">
-			<form method="post" id ="loginForm">
+	
+	<div id="base" >
+	
+	
+	
+	<div id="nav">
+		<ul>
+			<li> <a href="../main.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="#">Virtual Employee</a>
+						<ul>
+							<li><a href="#">How Does it work</a></li>
+							<li><a href="#">Working remotely</a></li>
+							<li><a href="#">Your office in India</a></li>
+							<li><a href="#">Data Security</a></li>
+							<li><a href="#">VE Facilities</a></li>
+							<li><a href="#">VE Advantages</a></li>
+							<li><a href="#">Get Started</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+		<div id="loggedInBox" >
+			<div id="UserInformation" class="UserInformation"  ></div>
+			<div id="logOut"> Logout </div>
+		</div>
+		
+		<div id ="loginSignUpBox" style="float:right;color:#fff" >
+			<div id="login"> Login
+				<div id="loginBox">
+					<form method="post" id ="loginForm">
 						<input type="hidden" name ="action" value="loginUser"></input>
-						<table>
-							<tr>
-							
-								<td>User Name:</td>
-								<td><input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input></td>
-							</tr>
-							<tr>
-								<td>Password:</td>
-								<td><input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input></td>
-							</tr>
-						</table>
+						User Name:
+						<input id="loginUserName" class="loginInput" name="Username" placeholder="User Name"></input>
+						Password:
+						<input id="loginUserPassword" class="loginInput"type="password" name="password" placeholder="****"></input>
+						<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+						<div id ="userLoginButton" class="buttonStyle">Login</div>
 					</form>
-					<div id ="loginErrorMessage"class="red">password or username is not correct</div>
-							<div id ="userLoginButton" class="button">Login</div>
+					
+					<div id="loginFailureMessage" style="display:none;">Invalid Username or password</div>
+				</div>				
+			</div>
+			<div id ="signUp"> Signup
+				<div id="signUpBox">
+					<div id="signUpEmployee" class="buttonStyle" >Employee</div> 
+					<div id="signUpCompany" class="buttonStyle" >Company</div>  
 				</div>
-   
-   </li>
-	<li id="signUp"><a href="#" class="currrent">SignUp</a>
-	<div id="signUpBox">
-		<div id="signUpEmployee" class="button" >Employee</div> 
-		<div id="signUpCompany" class="button" >Company</div>  
+			</div>
+		</div>
+	</div>	
+	
+	<div id="title">
+	<img id="logoImg" src="../images/logo.PNG" class="stretch" />
+	 <div id="contactDetails" class="contactDetails">
+	
+					Contact Details :<br>
+					Mahfooz Alam<br>
+					Ph No. :9958234567<br>
+					Email:abc@gmail.com
 	</div>
-	</li>
-   </ul>
-   </nav2>
+	
+		<div id="MainTitle">
+			Talent Manpower <br>
+		Training and Recruitment
+		</div>
+		
+	</div>
+	
+      <img id="frontImage" src="../images/download.PNG" class="stretch" />
+	
+	<table border="1">
+	<tr>
+		<td><div id ="sideMenu">
+		<div id="webwidget_vertical_menu" class="webwidget_vertical_menu">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a>
+				<ul>
+					<li><a href="train.html">Training</a></li>
+					<li><a href="hiring.html">Hiring</a></li>
+					<li><a href="virtualEmp.html">Virtual Employee</a></li>
+				</ul>
+			</li>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+	</div>	
+    <div style="clear: both"></div>
+</div></td>
+<td><div id ="content">
+<br>
+Talent Man Power:  A global leader in providing Training & Manpower services.
+<br><br>
+We deliver our commitments!
+<br><br>
+<p>
+We provides Skilled Manpower to various industries, Recruitments, HRM Solutions, Virtual Employee, Industry oriented Training programmes on a range of Technical, Non-technical, soft skills, Mainframe, Information Technology (IT) and many more topics for Engineers, Managers, Supervisors, Operators and Technicians engaged in Operations, Maintenance and various types of Engineering activities.
+</p>
 
-   <nav>
-   <ul>
-   <li><a href="index.html" class="current">Home</a></li>
-   <li><a href="aboutUs.html">About us</a></li>
-   <li><a href="services.html">Services</a>
-	<ul>
-		<li><a href="train.html">Training</a></li>
-		<li><a href="hiring.html">Hiring</a></li>
-		<li><a href="virtualEmp.html">Virtual Employee</a>
+<p>
+TALENT MANPOWER established by a group of highly qualified & experienced professional (MBA, Engineers, International Trade & Marketing Specialists having worked with reputed companies in India at the levels of Chief Executive & President), who are competent to give you result oriented services. 
+</p>
+<p>
+In the context of globalization, restructuring and other changes, the human resources of an organization is its most critical asset in determining its sustainability and competitiveness. By offering integrated consulting, training and intervention services, our strategy ensures greater cohesion and fit within management practices and organizational objectives, leading to a greater overall performance. In fact, our dynamic team facilitates the synergy between the employees, their representatives, the managers and the senior executives to meet their organizational challenges. 
+</p>
+
+
+
+
+
+</div>
+</td>
+</tr>
+</table>
+<hr>
+<div id ="footer">
+yaha par bhi kuch dal deta hoon
+<div id="footernavigation">
+bhai kaha jaoge:-<br>
+<ul>
+			<li><a href="index">Home</a></li>
+			<li><a href="aboutUs.html">About</a></li>
+			<li><a href="services.html">Services</a></li>
 			<ul>
-				<li><a href="#">How Does it work</a></li>
-				<li><a href="#">Working remotely</a></li>
-				<li><a href="#">Your office in India</a></li>
-				<li><a href="#">Data Security</a></li>
-				<li><a href="#">VE Facilities</a></li>
-				<li><a href="#">VE Advantages</a></li>
-				<li><a href="#">Get Started</a></li>
+				<li><a href="train.html">Training</a></li>
+				<li><a href="hiring.html">Hiring</a></li>
+				<li><a href="virtualEmp.html">Virtual Employee</a></li>
 			</ul>
-		</li>			
-	</ul>
-   </li>
-   <li><a href="contactUs.html">Contact</a></li>
-   </ul>
-   </nav>
-   </header>
-   <div id="intro">
-   <img id="frontImage" src="../images/download.PNG"  />
-   </div>
-   <div class="holder_content">
-   <section class="group1">
-   <h3>Introduction</h3>
-   <br>
-	Talent Man Power:  A global leader in providing Training & Manpower services.
-	<br><br>
-	We deliver our commitments!
-	<br><br>
-	<p>
-	We provides Skilled Manpower to various industries, Recruitments, HRM Solutions, Virtual Employee, Industry oriented Training programmes on a range of Technical, Non-technical, soft skills, Mainframe, Information Technology (IT) and many more topics for Engineers, Managers, Supervisors, Operators and Technicians engaged in Operations, Maintenance and various types of Engineering activities.
-	</p>
+			<li><a href="contactUs.html">Contact Us</a></li>
+		</ul>
+</div>
+</div>
 
-	<p>
-	TALENT MANPOWER established by a group of highly qualified & experienced professional (MBA, Engineers, International Trade & Marketing Specialists having worked with reputed companies in India at the levels of Chief Executive & President), who are competent to give you result oriented services. 
-	</p>
-	<p>
-	In the context of globalization, restructuring and other changes, the human resources of an organization is its most critical asset in determining its sustainability and competitiveness. By offering integrated consulting, training and intervention services, our strategy ensures greater cohesion and fit within management practices and organizational objectives, leading to a greater overall performance. In fact, our dynamic team facilitates the synergy between the employees, their representatives, the managers and the senior executives to meet their organizational challenges. 
-	</p>
-   </section>
-   <aside class="group2">
-   <h3>Services</h3>
+</div>
+	
+<script language="javascript" type="text/javascript">
+     $(function() {
+         $("#webwidget_vertical_menu").webwidget_vertical_menu({
+             menu_width: '200',
+             menu_height: '30',
+             menu_margin: '3',
+             menu_text_size: '15',
+             menu_text_color: '#CCC',
+             menu_background_color: '#666',
+             menu_border_size: '2',
+             menu_border_color: '#000',
+             menu_border_style: 'solid',
+             menu_background_hover_color: '#999',
+             directory: 'images'
+         });
+     });
+ </script>
+</body>
 
-   <article class="holder_news">
-   <h4>Training</h4>
-   <p>need to write somethng here<span class="readmore">
-   <a href="train.html">Read more..</a></span></p>
-   </article>
-
-   <article class="holder_news">
-   <h4>Hiring</h4>
-   <p>need to write somethng 
-   <span class="readmore"><a href="hiring.html">Read more..</a></span></p>
-   </article>
-
-   <article class="holder_news">
-   <h4>Virtual Employee</h4>
-  <p>
-			Hire a Full time Virtual Employee in any profession from India for only $1095-$2995/month 
-	e.g. Project Managers, Mainframe System Programmers (z/OS, DB2, IMS, Adabas, CICS, Storage), DBAs (DB2, IMS, Adabas, Oracle, SQL Server), Schedulers, Operators, Software Developers, Accountants, Engineers, Lawyers, Web & Graphic Designers, Data Entry Executives, Transcriptionists, Internet Marketers, Content Writers, Finance Experts etc.
-   <span class="readmore"><a href="virtualEmp.html">Read more..</a></span></p>
-   </article>
-   </aside>
-
-   <section class="group3">
-   <h3>About us</h3>
-   <a class="photo_hover2" href="aboutUs.html"><img src="../images/aboutus.jpg" width="200" height="97" alt="picture1"/></a>
-
-	At TALENT MANPOWER, we are known for the high level services we can deliver and for our ability to customize these services into excellent organizational practices that meet your needs and resources. 
-	</p><p>
-	Our Vision: For our National as well as International clients requirements of Human Resource, we strive to provide best Indian talent and equip them with the knowledge in the best HR practices through Compensation Surveys, Training and Development and HR Consulting, so that they can significantly contribute to the clients organization’s growth. 
-	</p>
-   </section>
-   </div>
-   </div>
-   <footer>
-   <div class="container">  
-   <div id="FooterTwo"> © Talent Man Power </div>
-   </div>
-   </footer>
-   </body>
 </html>

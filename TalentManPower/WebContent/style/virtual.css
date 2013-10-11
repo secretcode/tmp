@@ -1,0 +1,110 @@
+#veGetStartedButton
+{
+	float:right;
+}
+
+.none
+{
+	display:none;
+}
+
+
+#veGetStartedOverlay
+{
+	display:none;
+	z-index:5;
+	background-color: rgba(0, 0, 0, 0.59);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+
+#veFormContainer {
+	background-color: #E0E6D7;
+	width: 700px;
+	height: 665px;
+	margin: auto;
+	margin-top: 75px;
+	border: 30px solid;
+	border-radius: 50px;
+	font-size: 15px;
+	line-height:150%;
+}
+
+#veGetStartedForm
+{
+	padding: 10px 20px 20px 20px;
+}
+
+
+
+#veGetStartedFormTitle
+{
+	text-align:center;
+	color:#678;
+	width:80%;
+	float:left;
+}
+
+#veGetStartedFormButton
+{
+	float:right;
+}
+
+#veContactUsFormButton
+{
+	float:right;
+	color:#fff;
+}
+
+#veContactUsForm
+{
+	padding-left:20px;
+}
+
+#veGetStartedFormCrossButton
+{
+	cursor:pointer;
+	float:right;
+}
+
+#veGetStartedFormContainer
+{
+	float:left;
+}
+
+#veLoadingImage
+{
+	position:absolute;
+	z-index:10;
+	top:0px;
+	left:0px;
+	background:url("/tmp/images/load.gif") no-repeat center;
+	background-color:rgba(0,0,0,0.7);
+	width:100%;
+	height:100%;
+}
+
+.red
+{
+	color:#f00;
+	font-size:10px;
+}
+
+.columtext
+{
+	float:left;
+	width:350px;
+}
+
+.columtext_last
+{
+	float:right;
+	width:300px;
+}
+
+.small
+{
+	font-size:12px;
+}
