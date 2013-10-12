@@ -327,6 +327,7 @@ a.button
 .overLayFormCrossButton
 {
 	cursor:pointer;
+	float:right;
 }
 
 .red

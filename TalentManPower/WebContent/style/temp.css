@@ -656,6 +656,7 @@ nav ul li div.current{
 .overLayFormCrossButton
 {
 	cursor:pointer;
+	float:right;
 }
 
 .red
@@ -715,4 +716,41 @@ nav ul li div.current{
 	font-size: 15px;
 	margin: 20px;
 	display: none;
+}
+/*******SignUp********/
+#signUpBox
+{
+
+	background-color: #F5F5F5;
+	border: 10px solid;
+	border-color: #3B3F41;
+	cursor: auto;
+	border-radius: 15px;
+	left: auto;
+	display:none;
+	position:absolute;
+	z-index:3;
+	top: auto;
+	WIDTH: 75%;
+	color:#000;
+	font-size:15px;
+}
+
+#signUp:hover #signUpBox
+{
+	display:block;
+}
+
+#signUpEmployee
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
+}
+
+#signUpCompany
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
 }
