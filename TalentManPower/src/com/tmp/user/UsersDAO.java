@@ -10,7 +10,7 @@ public class UsersDAO {
 
 public static Users authenticateUser(String loginName,String password,Connection con) throws Exception{
 		
-		PreparedStatement ps=con.prepareStatement("SELECT id, email, password,roleId FROM users_login_info where login_Name='"+loginName+"' and password='"+password+"'");
+		PreparedStatement ps=con.prepareStatement("SELECT id, login_name, password,roleId,email FROM users_login_info where login_Name='"+loginName+"' and password='"+password+"'");
 		ResultSet rs=ps.executeQuery();
 		Users dto=new Users();
 		while(rs.next()) {
@@ -18,7 +18,7 @@ public static Users authenticateUser(String loginName,String password,Connection
 			dto.setLoginName( rs.getString( 2 ) );
 			dto.setPassword( rs.getString( 3 ) );
 			dto.setRoleId(rs.getInt(4));
-			dto.setEmail(rs.getString("email"));
+			dto.setEmail(rs.getString(5));
 		}		
 		if(dto.getId()==0){
 			System.out.println("Authentication failed");

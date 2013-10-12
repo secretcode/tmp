@@ -4,6 +4,8 @@ var APP_PATH = "/tmp/";
 
 $(document).ready(function() {
 	initiateLoginBox();
+	$("#UserInformation").hide();
+	$("#logOut").hide();
 	$.ajax({
 		type:"POST",
 		url: APP_PATH + "/views/buttonCheck.jsp",
@@ -13,6 +15,7 @@ $(document).ready(function() {
 			alert(responseMessage);
 			if(responseMessage==1 || responseMessage==2) {
 				console.log("resp2");
+				$("nav2").hide();
 				initiateUserInfoBox();
 			}
 		}
@@ -82,6 +85,10 @@ function initiateLoginBox() {
 					$("#loginFailureMessage").show();
 				} else {
 			//	alert("After Submit");
+					$("#loginUserName").html("");
+					$("#loginUserPassword").html("");
+					$("nav2").hide();
+					
 				initiateUserInfoBox();
 				}											
 			}
@@ -98,8 +105,9 @@ function initiateUserInfoBox() {
 	console.log("in user info box");
 	$("#UserInformation").load(APP_PATH+"/views/dashBoard.jsp", function(response,status,xhr){console.log("information extracted");});
 	console.log($("#UserInformation").text());
-	$("#loggedInBox").show();
-	$("#loginSignUpBox").hide();
+	$("#UserInformation").show();
+	
+	
 	console.log("info retrieved");
 	
 	$("#logOut").click(function() {
@@ -108,8 +116,9 @@ function initiateUserInfoBox() {
 			url: APP_PATH + "/views/sessionInvalidate.jsp",
 			success: function(response){
 				console.log("session invalidated");
-				$("#loginSignUpBox").show();
-				$("#loggedInBox").hide();
+				$("nav2").show();
+				$("#logOut").hide();
+				$("#UserInformation").hide();
 			}
 		});
 	});

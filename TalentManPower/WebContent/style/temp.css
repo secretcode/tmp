@@ -412,6 +412,21 @@ nav ul li a{
 	margin-right:6px;
     text-decoration:none;
 }
+temp111{
+	font-size: 18px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color: white;
+	text-transform:capitalize;
+	font-weight:normal;
+	display:block;	/* IE6, IE7 line height fix */
+	padding-bottom:8px;
+	padding-top:15px;
+	background-color:transparent;
+	margin-top:0px;
+	margin-right:6px;
+    text-decoration:none;
+}
+
 nav ul li div{
 	font-size: 18px;
 	font-family:Georgia, "Times New Roman", Times, serif;
@@ -754,3 +769,46 @@ nav ul li div.current{
 	float: right;
 	cursor: pointer;
 }
+
+
+
+#logOut
+{
+
+	background-color: #F5F5F5;
+	border: 5px solid;
+	border-color: #3B3F41;
+	cursor: auto;
+	border-radius: 7px;
+	left: auto;
+	position:absolute;
+	z-index:0;
+	top: auto;
+	WIDTH: 20%;
+	color:#000;
+	font-size:10px;
+}
+
+#logOutBtn
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
+}
+
+
+#UserInformation
+{
+	margin-top:0;
+	float: right;
+	width: 150px;
+	color: black;
+	font-size:20px;
+	cursor:pointer;
+}
+
+#UserInformation:hover #logOut
+{
+	display:block;
+}
+

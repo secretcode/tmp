@@ -151,20 +151,6 @@
 	width: 60px;
 }
 
-#UserInformation
-{
-	float: left;
-	width: 150px;
-	color: red;
-}
-
-#logOut
-{
-	float: right;
-	width: 60px;
-	cursor: pointer;
-}
-
 
 
 #login:hover
