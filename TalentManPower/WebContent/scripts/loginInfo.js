@@ -5,7 +5,9 @@ var APP_PATH = "/tmp/";
 $(document).ready(function() {
 	initiateLoginBox();
 	$("#UserInformation").hide();
-	$("#logOut").hide();
+	$("nav3").hide();
+	initiateForgotPwd();
+	$("#forgotPwdDetails").hide();
 	$.ajax({
 		type:"POST",
 		url: APP_PATH + "/views/buttonCheck.jsp",
@@ -16,12 +18,52 @@ $(document).ready(function() {
 			if(responseMessage==1 || responseMessage==2) {
 				console.log("resp2");
 				$("nav2").hide();
+				$("nav3").show();
 				initiateUserInfoBox();
 			}
 		}
 	});
 			
 });
+
+
+function initiateForgotPwd() {
+	$("#forgotPwd").click(function() {
+		$("#forgotPwdDetails").show();
+		$("#forgotPwdBtn").click(function(){
+			var ema=$("#PwdemailId").val();
+			alert(ema);
+			if(ema=="" || ema==$("#forgotPwdBtn").attr('placeholder')){
+				$("#loginErrorMessage").html("Enter EmailId correctly");
+				$("#loginErrorMessage").show();
+			}
+			
+			var forgotPwd=$("#forgotPwdForm");
+			$.ajax({
+				type:"POST",
+				url: APP_PATH+'bridge',
+				data: forgotPwd.serialize(),
+				success: function(response){
+					//alert("Response is: "+response);
+					var responseMessage = $.trim(response);
+					//alert("msg received is ::  "+responseMessage);
+					
+					if(responseMessage != "1" ) {
+						alert("Inside if");
+						$("#loginErrorMessage").html("Email id not valid.");
+						$("#loginErrorMessage").show();
+					} else {
+				//	alert("After Submit");
+						$("#PwdemailId").html("");
+						$("#forgotPwdDetails").hide();
+					}											
+				}
+			  });
+			
+
+		});
+	});
+}
 
 function initiateLoginBox() {
 	
@@ -34,6 +76,7 @@ function initiateLoginBox() {
 	$("#loginUserName").keypress(function(e) {
 		if(e.keyCode == 13 || e.which == 13) {
 			$("#userLoginButton").click();
+			
 	}
 	});
 	
@@ -81,14 +124,14 @@ function initiateLoginBox() {
 				//alert("msg received is ::  "+responseMessage);
 				
 				if(responseMessage != "1" ) {
-			//		alert("Inside if");
-					$("#loginFailureMessage").show();
+					alert("Inside if");
+					$("#loginErrorMessage").html("Invalid UserName and password");
+					$("#loginErrorMessage").show();
 				} else {
-			//	alert("After Submit");
+				alert("After Submit");
+					$("nav2").hide();
 					$("#loginUserName").html("");
 					$("#loginUserPassword").html("");
-					$("nav2").hide();
-					
 				initiateUserInfoBox();
 				}											
 			}
@@ -106,7 +149,7 @@ function initiateUserInfoBox() {
 	$("#UserInformation").load(APP_PATH+"/views/dashBoard.jsp", function(response,status,xhr){console.log("information extracted");});
 	console.log($("#UserInformation").text());
 	$("#UserInformation").show();
-	
+	$("nav3").show();
 	
 	console.log("info retrieved");
 	
@@ -117,10 +160,52 @@ function initiateUserInfoBox() {
 			success: function(response){
 				console.log("session invalidated");
 				$("nav2").show();
-				$("#logOut").hide();
+				$("nav3").hide();
 				$("#UserInformation").hide();
 			}
 		});
 	});
 	
+	$("#changePwdBtn").click(function(){
+		
+		var password=$("#newPwd").val();  
+		if(password=="" || password==$("#newPwd").attr('placeholder')){
+		//  $("#email_error_AF").html("This field is required");
+		 $("#changePwdFailureDiv").html("enter password correctly");
+		 $("#changePwdFailureDiv").focus();
+		}
+		else if(password.length<6){
+			//  $("#email_error_AF").html("This field is required");
+			$("#changePwdFailureDiv").html("password must be of length more than 6 letters");
+			 $("#newPwd").focus();
+			 $("#changePwdFailureDiv").show();
+		}
+		else{
+		
+		var changePwdForm=$("#changePwdFrm");
+		$.ajax({
+			type:"POST",
+			url: APP_PATH+'bridge',
+			data: changePwdForm.serialize(),
+			success: function(response){
+				//alert("Response is: "+response);
+				var responseMessage = $.trim(response);
+				
+				
+				if(responseMessage != "1" ) {
+					alert("Inside if");
+					$("#changePwdFailureDiv").html("error in changing Password");
+					$("#changePwdFailureDiv").show();
+				} else {
+				alert("After Submit");
+					$("#newPwd").html("");
+				}											
+			}
+		  });
+		
+		}
+	});
+		
+		
+
 }

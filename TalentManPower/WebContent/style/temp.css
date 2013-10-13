@@ -1,4 +1,4 @@
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li, form, label, legend, caption, aside, details, figcaption, figure, footer,header, hgroup, menu, nav,nav2, section, summary {
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, ol, ul, li, form, label, legend, caption, aside, details, figcaption, figure, footer,header, hgroup, menu, nav,nav2,nav3, section, summary {
     margin: 0;
 	padding: 0;
 	border: 0;
@@ -359,7 +359,7 @@ nav{
 
 nav2{
 	position:absolute;
-	width:200px;
+	width:20%;
 	top:2px;
 	height:30%;
 	right:22%;
@@ -372,6 +372,25 @@ nav2{
 	box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	background:black;
 }
+
+
+nav3{
+	position:absolute;
+	width:30%;
+	top:2px;
+	height:30%;
+	right:13%;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	background:black;
+}
+
+
 
 nav ul li ul {
 	position:absolute;
@@ -397,6 +416,13 @@ nav2 ul li{
 	margin-left:16px;
 	line-height:normal;
 }
+
+nav3 ul li{
+	float: left;
+	margin-left:16px;
+	line-height:normal;
+}
+
 
 nav ul li a{
 	font-size: 18px;
@@ -456,6 +482,23 @@ nav2 ul li a{
 	margin-right:6px;
     text-decoration:none;
 }
+
+
+nav3 ul li a{
+	font-size: 18px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color: white;
+	text-transform:capitalize;
+	font-weight:normal;
+	display:block;	/* IE6, IE7 line height fix */
+	
+	padding-top:1px;
+	background-color:transparent;
+	margin-top:0px;
+	margin-right:6px;
+    text-decoration:none;
+}
+
 
 
 nav ul li a:hover{
@@ -713,12 +756,44 @@ nav ul li div.current{
 	font-size:15px;
 }
 
+#changePwdBox
+{
+
+	background-color: #F5F5F5;
+	border: 10px solid;
+	border-color: #3B3F41;
+	cursor: auto;
+	border-radius: 15px;
+	left: auto;
+	display:none;
+	position:absolute;
+	z-index:3;
+	top: auto;
+	WIDTH: 100%;
+	color:#000;
+	font-size:15px;
+}
+
+
 #login:hover #loginBox
 {
 	display:block;
 }
 
+#changePwd:hover #changePwdBox
+{
+	display:block;
+}
+
 #userLoginButton
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
+}
+
+
+#changePwdBtn
 {
 	margin-right:5%;
 	float: right;
@@ -732,6 +807,16 @@ nav ul li div.current{
 	margin: 20px;
 	display: none;
 }
+
+#changePwdFailureDiv
+{
+	float: left;
+	font-size: 15px;
+	margin: 20px;
+	display: none;
+}
+
+
 /*******SignUp********/
 #signUpBox
 {
@@ -772,43 +857,20 @@ nav ul li div.current{
 
 
 
-#logOut
-{
-
-	background-color: #F5F5F5;
-	border: 5px solid;
-	border-color: #3B3F41;
-	cursor: auto;
-	border-radius: 7px;
-	left: auto;
-	position:absolute;
-	z-index:0;
-	top: auto;
-	WIDTH: 20%;
-	color:#000;
-	font-size:10px;
-}
-
-#logOutBtn
-{
-	margin-right:5%;
-	float: right;
-	cursor: pointer;
-}
-
 
 #UserInformation
 {
-	margin-top:0;
 	float: right;
-	width: 150px;
+	width: 15%;
 	color: black;
-	font-size:20px;
+	font-size:130%;
 	cursor:pointer;
 }
 
-#UserInformation:hover #logOut
+#forgotPwd
 {
-	display:block;
+	font-size:90%;
+	color:blue;
 }
+
 

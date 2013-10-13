@@ -8,6 +8,8 @@
    <link rel="shortcut icon" href="images/favicon.gif" type="image/x-icon"/> 
    <link rel="stylesheet" type="text/css" href="../style/temp.css"/>
    <script type="text/javascript" src="../scripts/contactUs.js"></script>
+     <script type="text/javascript" src="../scripts/loginInfo.js"></script>
+       <script type="text/javascript" src="../scripts/index.js"></script>
    </head>
    <body>
       <div id="companySignUpOverlay" class="overlayPage">
@@ -385,12 +387,12 @@
    
    <div id="container">
    <header>
-   <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>    
+   <a href="index.html" ><img id="logo" src="../images/logo.PNG" /></a>  	  
    <nav2>
    <ul>
-   <li id ="login"><a href="#" class="currrent">Login</a>
+   <li id ="login" ><a href="#" class="currrent">Login</a>
    <div id="loginBox">
-			<form method="post" id ="loginForm">
+			<form method="post" id ="loginForm" action="" name="loginForm">
 						<input type="hidden" name ="action" value="loginUser"></input>
 						<table>
 							<tr>
@@ -404,12 +406,19 @@
 							</tr>
 						</table>
 					</form>
-					<div id ="loginErrorMessage"class="red">password or username is not correct</div>
+				<a href="#" id="forgotPwd" >Forgot Password</a>
+				<div id="forgotPwdDetails">
+					<form method="post" id="forgotPwdForm" action="" name="forgotPwdForm">
+						<input type="hidden" name="action" value="forgotPwd"/>
+							Email Id:<input type="text" placeholder="Enter your Email Id" name="PwdemailId" id="PwdemailId" class="loginInput"/>
+					</form>
+					<div id="forgotPwdBtn" class="button">Email new password</div>
+				</div>
+					<div id ="loginErrorMessage"class="red">Invalid UserName or password</div>
 							<div id ="userLoginButton" class="button">Login</div>
 				</div>
    
    </li>
-	
 	<li id="signUp"><a href="#" class="currrent">SignUp</a>
 	<div id="signUpBox">
 		<div id="signUpEmployee" class="button" >Employee</div> 
@@ -418,21 +427,49 @@
 	</li>
    </ul>
    </nav2>
-
+   
+   
+  <nav3>
+   <ul>
+   <li id="changePwd"><a href="#" class="currrent">Change Password</a>
+   	
+   	<div id="changePwdBox">
+			<form method="post" id ="changePwdFrm" action="" name="changePwdFrm">
+						<input type="hidden" name ="action" value="changePwd"></input>
+						<table>
+							<tr>
+							
+								<td>New Password:</td>
+								<td><input id="newPwd" class="loginInput" name="newPwd" placeholder="New Password"></input></td>
+							</tr>
+						</table>
+					</form>
+					<div id ="changePwdFailureDiv"class="red"></div>
+							<div id ="changePwdBtn" class="button">Change</div>
+				</div>	
+   	</li>
+   <li id ="logOut" ><a href="#" class="currrent">Log Out</a></li>
+   </ul>
+   </nav3>
+   
+   
+   
+   
    <nav>
    <ul>
-   <li><a href="index.html">Home</a></li>
+   <li><a href="index.html" class="current">Home</a></li>
    <li><a href="aboutUs.html">About us</a></li>
    <li><a href="services.html">Services</a>
 	<ul>
 		<li><a href="train.html">Training</a></li>
 		<li><a href="hiring.html">Hiring</a></li>
-		<li><a href="virtualEmp.html">Virtual Employee</a></li>
-	</ul>		
-	</li>
-   <li><a href="contactUs.html" class="current">Contact</a></li>
+		<li><a href="virtualEmp.html">Virtual Employee</a></li>			
+	</ul>
+  </li>
+   <li><a href="contactUs.html">Contact</a></li>
    </ul>
    </nav>
+   <div id="UserInformation"> </div>
    </header>
    <div id="intro">
    <img id="frontImage" src="../images/download.PNG"  />

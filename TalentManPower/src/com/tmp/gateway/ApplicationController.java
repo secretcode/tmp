@@ -38,6 +38,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		Users usr=null;
 		RequestDispatcher rd = null;
 		Connection con = null;
+		String to;
 		String returnPath=null;
 		String authResponse = "-1";
 		HttpSession session=null;
@@ -154,7 +155,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			else
 			{
 				request.setAttribute("message","");
-		    	String to=request.getParameter("EmpEmail");
+				to=request.getParameter("EmpEmail");
 		    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
 		    	Employee emp=new Employee();
 				emp.setName(request.getParameter("EmpName"));
@@ -265,7 +266,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 						DBConnection.freeResources(con);
 					}catch(Exception e) {};
 				}
-				String to=com.getComEmail();
+				to=com.getComEmail();
 				String subject="Company Signup Confirmation Message";
 				request.getRequestDispatcher("views/signUp/comSignUp.jsp").forward(request,customResponse);
 				String msg=String.format(customResponse.getOutput());
@@ -295,7 +296,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		    }
 		    else {
 	    	request.setAttribute("message","");
-	    	String to=request.getParameter("email");
+	    	to=request.getParameter("email");
 	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
 	    	VeEmployee veEmployee=new VeEmployee();
 			veEmployee.setSkillset(request.getParameter("skillsets"));
@@ -356,7 +357,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		case "veContactUsForm":
 			System.out.println("virtual employee  contact us ka form mil gaya");
 			session = request.getSession();
-			String to=request.getParameter("email");
+			to=request.getParameter("email");
 	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
 	    	VeContact veContact=new VeContact();
 			veContact.setRoles(request.getParameter("roles_responsibilities"));
@@ -502,8 +503,85 @@ public class ApplicationController extends HttpServlet implements Servlet {
 
 				break;
 
+			case "forgotPwd" :
+				System.out.println("in 4got pwd case");
+				String em=request.getParameter("PwdemailId");
+				System.out.println("email is is :"+ em);
+				Users u=null;
+				CharArrayWriterResponse forgotPwdResponse  = new CharArrayWriterResponse(response);
+				try{
+					con=DBConnection.getConnection();
+					u= UsersDAO.getforgotPwdDetails(em,con);
+				}catch(Exception r){}
+				finally{
+					try{
+						DBConnection.freeResources(con);
+					}
+					catch(Exception t){}
+				}
+				if(u==null){
+					authResponse="-1";
+					returnPath="/views/authenticationResponse.jsp";
+				}
+				else
+				{
+					session=request.getSession();
+					System.out.println("session b4");
+					session.setAttribute("forgotPwdUser", u);
+					System.out.println("session aftr");
+					to=u.getEmail();
+					subject="Request for new Password";
+					System.out.println("b4 forward");
+					request.getRequestDispatcher("views/signUp/forgotPwd.jsp").forward(request,forgotPwdResponse);
+					System.out.println("aftr forward");
+					msg=String.format(forgotPwdResponse.getOutput());
+					System.out.println(msg);
+					System.out.println("b4 sendn mail");
+					Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+					System.out.println("aftr sendn mail");
+					authResponse="1";
+					
+				}
 				
 				
+				request.setAttribute("authResponse", authResponse);
+				returnPath="/views/authenticationResponse.jsp";
+				rd = request.getRequestDispatcher(returnPath);
+				
+				System.out.println("rd " + rd);
+
+				rd.forward(request, response);
+
+				break;
+				
+				
+				
+			case "changePwd" :
+				System.out.println("in change pwd div");
+				authResponse="-1";
+				String newpwd=request.getParameter("newPwd");
+				session=request.getSession();
+				Users us=(Users)session.getAttribute("userInfo");
+				try {
+					con=DBConnection.getConnection();
+					UsersDAO.changePassword(newpwd,us.getId(),con);
+					authResponse="1";
+				}catch(Exception e){}
+				finally{
+					try{
+						DBConnection.freeResources(con);
+					}catch(Exception uo){}
+				}
+				request.setAttribute("authResponse", authResponse);
+				returnPath="/views/authenticationResponse.jsp";
+				rd = request.getRequestDispatcher(returnPath);
+				
+				System.out.println("rd " + rd);
+
+				rd.forward(request, response);
+
+				break;
+
 				
 		default:
 				System.out.println("this is default case msg in application controller");

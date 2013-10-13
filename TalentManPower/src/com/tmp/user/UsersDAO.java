@@ -125,4 +125,34 @@ public static Users authenticateUser(String loginName,String password,Connection
 	
 	}
 	
+	
+	public static Users getforgotPwdDetails(String emailId, Connection con) throws Exception{
+		PreparedStatement ps=con.prepareStatement("Select * from users_login_info where email='"+emailId+"'");
+		ResultSet rs=ps.executeQuery();
+		Users dto=new Users();
+		while(rs.next()){
+			dto.setId( rs.getInt(1) );
+			dto.setLoginName( rs.getString( 2 ) );
+			dto.setPassword( rs.getString( 3 ) );
+			dto.setRoleId(rs.getInt(4));
+			dto.setEmail(rs.getString(5));
+	
+		}
+		System.out.println(dto);
+		return dto;
+		
+	}	
+	
+	public static void changePassword(String pwd, int id, Connection con) throws Exception {
+		String newpwd=UserManager.encryptPasswordMDF(pwd);
+		System.out.println("pwd is "+pwd+"       "+newpwd);
+		PreparedStatement ps=con.prepareStatement("update users_login_info set password='"+newpwd+"' where id='"+id+"';");
+		int r=ps.executeUpdate();
+		ps=con.prepareStatement("update users_info set Password='"+newpwd+"' where id='"+id+"';");
+		r=ps.executeUpdate();
+		ps=con.prepareStatement("update user_company set Password='"+newpwd+"' where id='"+id+"';");
+		r=ps.executeUpdate();
+		System.out.println("passwdrd changed");
+	
+	}
 }
