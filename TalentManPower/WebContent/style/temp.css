@@ -833,12 +833,13 @@ nav ul li div.current{
 
 /*******SignUp********/
 #employeeSignUpFormDiv{
-	height:486px;
+	height:510px;
 	width:575px;
 }
 #companySignUpFormDiv{
 	width:607px;
-	height:987px;
+	height:1050px;
+	margin-top:0%
 }
 #signUpBox
 {
