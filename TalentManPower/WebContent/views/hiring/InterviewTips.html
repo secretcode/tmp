@@ -10,8 +10,8 @@
    <link rel="stylesheet" type="text/css" href="../../style/temp.css"/>
    </head>
    <body>
-      <div id="companySignUpOverlay" class="overlayPage">
-		<div id ="companySignUpFormDiv" class="overlayFormDiv">
+  <div id="companySignUpOverlay" class="overlayPage">
+		<div id ="companySignUpFormDiv" class="overlayFormDiv" style="height: 94%;margin-top: 0%;width: 41%;">
 			<h1 id ="companySignUpFormTitle" class="overLayFormTitle"> Company Sign Up </h1>
 			<img id="companySignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
 			<form method=POST action="" name="companySignUpForm" id="companySignUpForm" class="overLayForm">
@@ -23,7 +23,7 @@
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>User Name:</label><br>
-								<input type="text" class="textbox" name="ComUserName" id="CompanyUserName" placeholder="abc kumar">
+								<input type="text" class="textbox" name="ComUserName" id="CompanyUserName" placeholder="Name">
 							</div>
 							<div class="clear"></div>
 						</td>
@@ -46,7 +46,7 @@
 						<td>
 							<div class="columtext_last">
 								<label><span class="red">* </span>Primary Email:</label><br>
-								<input type="text" class="textbox" name="ComEmail" id="CompanyEmail" placeholder="xyz@abc.com">
+								<input type="text" class="textbox" name="ComEmail" id="CompanyEmail" placeholder="Email Id">
 							</div>
 							<div class="clear"></div>
 						</td>
@@ -55,26 +55,28 @@
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>Secondary Email (Optional):</label><br>
-								<input type="text" class="textbox" name="SecondaryComEmail" id="SecondaryCompanyEmail" placeholder="xyz@abc.com">
+								<input type="text" class="textbox" name="SecondaryComEmail" id="SecondaryCompanyEmail" placeholder="Email Id">
 							</div>
 							<div class="clear"></div>
 						</td>
 					</tr>
 				</table>
+				<br>
 				<h2 id="companyInfo" class="" >Company Information</h2>
+				<br>
 				<table id ="companyInformation">
 					<tr>
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>Company Name:</label><br>
-								<input type="text" class="textbox" name="ComName" id="CompanyName" placeholder="abc pvt ltd">
+								<input type="text" class="textbox" name="ComName" id="CompanyName" placeholder="Company Name">
 							</div>
 							<div class="clear"></div>
 						</td>
 						<td>
 							<div class="columtext_last">
 								<label><span class="red">* </span>Contact Person:</label><br>
-								<input type="text" class="textbox" name="ContactPerson" id="CompanyContactPerson" placeholder="xyz chugh">
+								<input type="text" class="textbox" name="ContactPerson" id="CompanyContactPerson" placeholder="Contact Person Name">
 							</div>
 							<div class="clear"></div>
 						</td>
@@ -185,7 +187,9 @@
 						
 					</tr>
 				</table>
+				<br>
 				<h2 id="companyAccountInfo" class="" >Account Information</h2>
+				<br>
 				<table id ="companyAccountInformation">
 					<tr>
 						<td>
@@ -271,7 +275,7 @@
 					</tr>
 				</table>				
 				</form>
-				<br><br>
+				<br>
 				<div id="companySignUpSubmitButton"> <a href="#" class="overLayFormSubmitButton">Submit</a></div>			
 			
 		</div>
@@ -279,19 +283,18 @@
 	
 	
 	<div id="employeeSignUpOverlay" class="overlayPage">
-		<div id ="employeeSignUpFormDiv" class="overlayFormDiv">
+		<div id ="employeeSignUpFormDiv" class="overlayFormDiv" style="height: 53%;width: 37%;">
 			<h1 id ="employeeSignUpFormTitle" class="overLayFormTitle"> employee Sign Up </h1>
-			<img id="employeeSignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
+			<img id="employeeSignUpFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg" style="float: right;">
 			<form method=POST action="" name="employeeSignUpForm" id="employeeSignUpForm" class="overLayForm">
 			<input type=hidden name=action value="employeeSignUpJobForm">
 				<span id ="errorMessage" class ="red"> </span>
-				<h2 id="employeePersonalDetails" class="" >Personal Details</h2>
 				<table id ="employeePersonalDetails">
 					<tr>
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>User Name:</label><br>
-								<input type="text" class="textbox" name="EmpName" id="EmpName" placeholder="full name">
+								<input type="text" class="textbox" name="EmpName" id="EmpName" placeholder="Full Name">
 							</div>
 							<div class="clear"></div>
 						</td>
@@ -314,7 +317,7 @@
 						<td>
 							<div class="columtext_last">
 								<label><span class="red">* </span>UserName(email id)</label><br>
-								<input type="text" class="textbox" name="EmpEmail" id="EmpEmail" placeholder="xyz@abc.com">
+								<input type="text" class="textbox" name="EmpEmail" id="EmpEmail" placeholder="Email Id">
 							</div>
 							<div class="clear"></div>
 						</td>
@@ -328,7 +331,7 @@
 							<div class="clear"></div>
 						</td>
 						<td>
-							<div class="columtext">
+							<div class="columtext_last">
 								<label><span class="red">* </span>Address</label><br>
 								<input type="text" class="textbox" name="Empaddress" id="Empaddress" >
 							</div>
@@ -356,7 +359,7 @@
 						</td>
 
 					<td>
-							<div class="columtext">
+							<div class="columtext_last">
 								<label><span class="red">* </span>Work Experience</label><br>
 								<input type="text" class="textbox" name="EmpExperience" id="EmpExperience" >
 							</div>
@@ -367,7 +370,7 @@
 				</tr>
 				<tr>
 						<td>
-							<div class="columtext_last">
+							<div class="columtext">
 							  <label>Enter the code:<br></label>
 							  <img style="float:left;" alt="captcha image" src="http://localhost:8080/tmp/captcha" width="100" height="28">
 							  <input type="text"  style="width:60px;float:left; margin-left:10px;" size="6" class="input_text" name="captcha" id="captcha">
