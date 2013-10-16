@@ -507,6 +507,11 @@
 								<td>New Password:</td>
 								<td><input id="newPwd" class="loginInput" name="newPwd" placeholder="New Password"></input></td>
 							</tr>
+							<tr>
+							
+								<td>Confirm Password:</td>
+								<td><input id="confPwd" type="password" class="loginInput" name="confPwd" placeholder="Confirm Password"></input></td>
+							</tr>
 						</table>
 					</form>
 					<div id ="changePwdFailureDiv"class="red"></div>
@@ -544,7 +549,7 @@
    <nav style="width:40%;float:left;position:static">
    <ul> 
    <li>
-   		<div id="getEmployeeDetailsButton" class="current">Employee</div>
+   		<div id="getEmployeeDetailsButton" >Employee</div>
    </li>
    <li> 
    		<div id="getEmployerDetailsButton">Employer</div>
@@ -600,14 +605,14 @@
 	</div>
 	 
 	<div id="hringDataTable" class="columntext" > 	
-		<div id="allCompanyListContent" class="manageItemsContent" style="width:100%">			
+		<div id="allCompanyListContent" class="manageItemsContent" style="width:100%">	
+			<br><br>
+			<div id="allCompanyNameFilter" class="companyNameFilter" style="width:100%"></div>		
 			<br><br>
 			<div id="allCompanyDataTableChart" class="companyDataTableChart" style="width:100%"></div>
 			<br><br>
-			<div id="allCompanyNameFilter" class="companyNameFilter" style="width:100%"></div>
-			<br><br>
 			<div class="columtext_last">
-				<div class="Submit_Button" id ="backToHiringPageButtonForCompany">Back</div>
+				<div class="button" id ="backToHiringPageButtonForCompany">Back</div>
 			</div>
 		</div>
 		<div id="allEmployeeListContent" class="manageItemsContent" style="width:100%">

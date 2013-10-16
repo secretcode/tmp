@@ -16,6 +16,13 @@ a.button
 	width: 100%;
 }
 
+
+#backToHiringPageButtonForCompany
+{
+	margin-right:5%;
+	float: right;
+	cursor: pointer;
+}
 #AddJobForm
 {
 	padding: 10px 20px 20px 20px;

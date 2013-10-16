@@ -347,6 +347,7 @@ nav{
 	top:35px;
 	height:40%;
 	right:0;
+	cursor:pointer;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em; 
 	-moz-border-radius: .5em;
@@ -375,7 +376,8 @@ nav2{
 
 
 nav3{
-	position:absolute;
+	position:static;
+	float:right;
 	width:30%;
 	top:2px;
 	height:30%;
@@ -769,7 +771,7 @@ nav ul li div.current{
 	position:absolute;
 	z-index:3;
 	top: auto;
-	WIDTH: 100%;
+	WIDTH: 28%;
 	color:#000;
 	font-size:15px;
 }
@@ -861,7 +863,7 @@ nav ul li div.current{
 #UserInformation
 {
 	float: right;
-	width: 15%;
+	width: 12%;
 	color: black;
 	font-size:130%;
 	cursor:pointer;

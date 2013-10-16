@@ -168,6 +168,7 @@ function initiateUserInfoBox() {
 	$("#changePwdBtn").click(function(){
 		
 		var password=$("#newPwd").val();  
+		var confPass=$("#confPwd").val();
 		if(password=="" || password==$("#newPwd").attr('placeholder')){
 		//  $("#email_error_AF").html("This field is required");
 		 $("#changePwdFailureDiv").html("enter password correctly");
@@ -179,8 +180,12 @@ function initiateUserInfoBox() {
 			 $("#newPwd").focus();
 			 $("#changePwdFailureDiv").show();
 		}
-		else{
-		
+		else if(confPass!=password){
+			 $("#changePwdFailureDiv").html("Both Passwords doesn't match");
+			 $("#changePwdFailureDiv").show();
+		}
+		else {
+			 $("#changePwdFailureDiv").hide();
 		var changePwdForm=$("#changePwdFrm");
 		$.ajax({
 			type:"POST",
