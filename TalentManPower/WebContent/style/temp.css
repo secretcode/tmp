@@ -318,12 +318,23 @@ footer{
 }
 
 #FooterTwo{
-	position: absolute;
+	position: static;
+	float:left;
 	right: 225px;
 	top:26px;
 	color:white;
 }
-
+#FooterOne{
+	position: static;
+	float:right;
+	right: 225px;
+	top:26px;
+	color:white;
+}
+#contactno{
+	font-size: 170%;
+	color: rgb(137, 255, 127);
+}
 #FooterTree{
 	position: absolute;
 	left: 225px;
