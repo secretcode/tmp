@@ -95,7 +95,7 @@ public static Users authenticateUser(String loginName,String password,Connection
 			}
 		}
 		System.out.println(wherec);
-		PreparedStatement ps = con.prepareStatement("SELECT uid,Name,Email,Password,Mobile,Address,Course,Experience FROM users_info where Course in ("+wherec+");");
+		PreparedStatement ps = con.prepareStatement("SELECT id,Name,Email,Password,Mobile,Address,Course,Experience FROM users_info where Course in ("+wherec+");");
 		ResultSet rs=ps.executeQuery();
 		ArrayList<Employee> employees=new ArrayList<Employee>();
 		

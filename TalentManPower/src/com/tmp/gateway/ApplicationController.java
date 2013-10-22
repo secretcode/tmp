@@ -189,7 +189,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				request.getRequestDispatcher("views/signUp/empSignUp.jsp").forward(request,customResponse);
 				String msg=String.format(customResponse.getOutput());
 				System.out.println(msg);
-				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 
 			}
 			HttpSession session3 = request.getSession(true);
@@ -271,7 +271,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				request.getRequestDispatcher("views/signUp/comSignUp.jsp").forward(request,customResponse);
 				String msg=String.format(customResponse.getOutput());
 				System.out.println(msg);
-				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 			}
 			authResponse111 = "1";
 			returnPath="views/authenticationResponse.jsp";
@@ -338,7 +338,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			String msg=String.format(customResponse.getOutput());
 			System.out.println(msg);
 			try{
-			Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 			}catch(Exception e){
 					System.out.println("mail exceotion");
 			};
@@ -398,7 +398,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			String msg=String.format(customResponse.getOutput());
 			System.out.println(msg);
 			try{
-			Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+			Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 			}catch(Exception e){
 					System.out.println("mail exceotion");
 			};	
@@ -491,7 +491,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				request.getRequestDispatcher("views/signUp/contactDetails.jsp").forward(request,contactResponse);
 				msg=String.format(contactResponse.getOutput());
 				System.out.println(msg);
-				Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 			
 				request.setAttribute("authResponse", authResponse);
 				returnPath="/views/authenticationResponse.jsp";
@@ -537,7 +537,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 					msg=String.format(forgotPwdResponse.getOutput());
 					System.out.println(msg);
 					System.out.println("b4 sendn mail");
-					Mailer.send("vegetstarted@talentmanpower.com","vegetstarted@123",to, subject, msg);
+					Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 					System.out.println("aftr sendn mail");
 					authResponse="1";
 					
