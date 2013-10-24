@@ -146,5 +146,5 @@ function initiateSelection() {
 	var course=course1.replace(/\s+/g,"");
 	alert(course);
 	alert(field);
-	window.location.href="http://localhost:8080/tmp/views/training/"+field+"/"+course+".html";
+	window.location.href="http://talentmanpower.com/tmp/views/training/"+field+"/"+course+".html";
 }

@@ -29,7 +29,7 @@ for (;index<data.length;index+=diff)
 {
 	captcha+=data[index];
 }
-Connection con=DBConnection.getConnection();
+
 %>
 	Dear <%=usr.getLoginName()%>,
 	You requested for a new Password generation <br>
@@ -38,7 +38,7 @@ Connection con=DBConnection.getConnection();
 	<ul>
 		<li>UserName : <%=usr.getLoginName() %></li><br>
 		<li>Password : <%=captcha %></li><br>
-		<%UsersDAO.changePassword(captcha,usr.getId(),con); %>
+		<%UsersDAO.changePassword(captcha,usr.getId()); %>
 	</ul>
 	<br>
 	<br>

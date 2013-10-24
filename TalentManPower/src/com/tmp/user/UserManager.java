@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 
 import com.tmp.user.*;
+import com.tmp.utils.DBConnection;
 
 public class UserManager {
 
@@ -38,11 +39,13 @@ public class UserManager {
 
 	
 
-	public static void empSignUp(Employee emp,String password,Connection con) {
+	public static void empSignUp(Employee emp,String password) throws Exception{
+		Connection con=DBConnection.getConnection();
 		try {
 			System.out.println("in manager ");
 			UsersDAO.empSignUp(emp.getName(),emp.getEmail(),password,emp.getMobile(),emp.getAddress(),emp.getCourse(),emp.getExperience(),con);
 			System.out.println("back to manager");
+			DBConnection.freeResources(con);
 		}catch(Exception e) {}
 	}
 	
@@ -58,19 +61,19 @@ public class UserManager {
 	}
 
 	
-	public static Users authenticateUser(String loginName,String passwd,Connection con){
+	public static Users authenticateUser(String loginName,String passwd) throws Exception{
 		int roleId = -1;
 		Users usr = null;
-//		Connection con = null;
+		Connection con = null;
 		try{
-//			con = DBConnection.getConnection();	
+			con = DBConnection.getConnection();	
 			passwd = encryptPasswordMDF(passwd);
 			System.out.println("encrypted password is" + passwd);
 			usr = UsersDAO.authenticateUser(loginName,passwd,con);			
 		}catch(Exception exp){
 			System.out.println(" getRoleIdOfAuthenticatedUser exp " + exp);			
 		}finally{
-			//DBConnection.freeResources(con);
+			DBConnection.freeResources(con);
 		}
 		return usr;	
 	}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import com.tmp.company.Company;
+import com.tmp.utils.DBConnection;
 public class companyDAO {
 	protected static final Logger logger = Logger.getLogger( companyDAO.class );
 
@@ -40,8 +41,9 @@ public class companyDAO {
 	 * 
 	 * contact_no
 	 */
-	public static void insertCompanyList(String cname,String cemail,int contact,String[] courses,Connection con) throws Exception{
+	public static void insertCompanyList(String cname,String cemail,int contact,String[] courses) throws Exception{
 		PreparedStatement ps;
+		Connection con=DBConnection.getConnection();
 		int r;
 		try{
 			for(int i=0;i<courses.length;i++){
@@ -49,12 +51,14 @@ public class companyDAO {
 				r=ps.executeUpdate();
 				System.out.println("1 row added in company_list table"+i);
 			}
+			DBConnection.freeResources(con);
 		}catch(Exception e){
 				e.printStackTrace();
 		}
 	}
-	public static void insertCompany(Comp com,String comPassword,Connection con) throws Exception{
+	public static void insertCompany(Comp com,String comPassword) throws Exception{
 		PreparedStatement ps;
+		Connection con=DBConnection.getConnection();
 		try{
 			ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId) values('"+com.getComUserName()+"','"+comPassword+"',2)");
 			ps.executeUpdate();
@@ -65,15 +69,17 @@ public class companyDAO {
 				ps=con.prepareStatement("insert into user_company(id,Name,Password,Email,secondaryEmail,compName,contactPerson,contactPersonDesignation,Strength,Type,Profile,Address,City,State,Country,Zip,Phone,Mobile,Fax,URL) values("+id+",'"+com.getComUserName()+"','"+comPassword+"','"+com.getComEmail()+"','"+com.getSecondaryComEmail()+"','"+com.getComName()+"','"+com.getContactPerson()+"','"+com.getContactPersonDesignation()+"','"+com.getComStrength()+"','"+com.getComType()+"','"+com.getComProfile()+"','"+com.getComAddress()+"','"+com.getComCity()+"','"+com.getComState()+"','"+com.getComCountry()+"',"+com.getComZip()+","+com.getComPhone()+","+com.getComMobile()+",'"+com.getComFax()+"','"+com.getComURL()+"')");
 				ps.executeUpdate();
 			}
-			System.out.println("1 row added in User_company");	
+			System.out.println("1 row added in User_company");
+			DBConnection.freeResources(con);
 		}catch(Exception e){
 				e.printStackTrace();
 		}
 	}
 
 
-	public static void insertJob(int id,String category,String stream,String post,String workEx,String desc,String place,int salary,int noOfEmp,Connection con) throws Exception{
+	public static void insertJob(int id,String category,String stream,String post,String workEx,String desc,String place,int salary,int noOfEmp) throws Exception{
 		try{
+			Connection con=DBConnection.getConnection();
 			String tableName[]=new String[4];
 			tableName[0]=new String("account");
 			tableName[1]=new String("engg");
@@ -89,7 +95,7 @@ public class companyDAO {
 			PreparedStatement ps=con.prepareStatement("insert into "+table+"_job(compId,stream,post,workExp,description,place,salary,no_of_emps) values('"+id+"', '"+stream+"','"+post+"','"+workEx+"','"+desc+"','"+place+"',"+salary+","+noOfEmp+")");
 			ps.executeUpdate();
 			System.out.println("1 row added in "+table+"_job table");
-	
+			DBConnection.freeResources(con);
 		}catch(Exception e){
 				e.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import com.tmp.company.Company;
+import com.tmp.utils.DBConnection;
 
 public class UsersDAO {
 
@@ -118,15 +119,18 @@ public static Users authenticateUser(String loginName,String password,Connection
 		}
 	
 	
-	public static void contactForm(ContactFrm ct,Connection con) throws Exception{
+	public static void contactForm(ContactFrm ct) throws Exception{
+		Connection con=DBConnection.getConnection();
 		PreparedStatement ps=con.prepareStatement("insert into contactDetails(Name,EmailId,Phone,Subject,Comment) values('"+ct.getName()+"','"+ct.getEmailId()+"','"+ct.getPhone()+"','"+ct.getSubject()+"','"+ct.getComment()+"')");
 		int r=ps.executeUpdate();
+		DBConnection.freeResources(con);
 
 	
 	}
 	
 	
-	public static Users getforgotPwdDetails(String emailId, Connection con) throws Exception{
+	public static Users getforgotPwdDetails(String emailId) throws Exception{
+		Connection con=DBConnection.getConnection();
 		PreparedStatement ps=con.prepareStatement("Select * from users_login_info where email='"+emailId+"'");
 		ResultSet rs=ps.executeQuery();
 		Users dto=new Users();
@@ -139,11 +143,14 @@ public static Users authenticateUser(String loginName,String password,Connection
 	
 		}
 		System.out.println(dto);
+		DBConnection.freeResources(con);
 		return dto;
+		
 		
 	}	
 	
-	public static void changePassword(String pwd, int id, Connection con) throws Exception {
+	public static void changePassword(String pwd, int id) throws Exception {
+		Connection con=DBConnection.getConnection();
 		String newpwd=UserManager.encryptPasswordMDF(pwd);
 		System.out.println("pwd is "+pwd+"       "+newpwd);
 		PreparedStatement ps=con.prepareStatement("update users_login_info set password='"+newpwd+"' where id='"+id+"';");
@@ -153,6 +160,7 @@ public static Users authenticateUser(String loginName,String password,Connection
 		ps=con.prepareStatement("update user_company set Password='"+newpwd+"' where id='"+id+"';");
 		r=ps.executeUpdate();
 		System.out.println("passwdrd changed");
+		DBConnection.freeResources(con);
 	
 	}
 }

@@ -37,7 +37,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		System.out.println(" in the service method .......action  " + userAction);
 		Users usr=null;
 		RequestDispatcher rd = null;
-		Connection con = null;
 		String to;
 		String returnPath=null;
 		String authResponse = "-1";
@@ -61,13 +60,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			}
 			try{
 				try{	
-					try{
-						con = DBConnection.getConnection();
-					}catch(Exception exp){
-						System.out.println("Exception occured in loginuser action od application controller"+exp);
-						exp.printStackTrace();
-					}
-					usr  = UserManager.authenticateUser(loginName, passwd,con);
+					usr  = UserManager.authenticateUser(loginName, passwd);
 					if(usr!=null) {
 						int uid=usr.getId();
 						System.out.println("uid of the user is::"+uid);
@@ -82,12 +75,9 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				System.out.println("b4 creating session");
 				session = request.getSession(true);
 				session.setAttribute("userInfo",usr);
-			}			
-			finally{
-				try{
-					DBConnection.freeResources(con);
-				}catch(Exception e) {};
-			}
+			}		
+			finally {}
+			
 			System.out.println(" value of returnpath is "+ returnPath);
 			System.out.println("authresponse ::"+ authResponse);
 			request.setAttribute("authResponse", authResponse);
@@ -115,12 +105,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			System.out.println("cname"+cname+" company email id"+cemail+" company contact no"+contact);
 			String authResponse1 = "-1";
 			try{
-				try{
-					con = DBConnection.getConnection();
-				}catch(Exception exp){
-					exp.printStackTrace();
-				}
-				companyDAO.insertCompanyList(cname, cemail, contact, courses_names, con);
+				companyDAO.insertCompanyList(cname, cemail, contact, courses_names);
 
 				HttpSession session1 = request.getSession(true);
 				authResponse1 = "1";
@@ -129,10 +114,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				e.printStackTrace();
 			}
 			finally{
-				try {
-				DBConnection.freeResources(con);
-				}catch(Exception e) {};
-			}
+							}
 			
 			request.setAttribute("authResponse", authResponse1);
 			rd = request.getRequestDispatcher(returnPath);
@@ -169,22 +151,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				session.setAttribute("employeeSignUp",emp);
 				try {
 					try{
-						try{
-							con = DBConnection.getConnection();
-						}
-						catch(Exception xp){
-							xp.printStackTrace();
-						}
-						UserManager.empSignUp(emp,password,con);
+						UserManager.empSignUp(emp,password);
 					}catch(Exception p){
 						p.printStackTrace();
 					}
 				}
 				finally{
-					try {
-						DBConnection.freeResources(con);
-					}catch(Exception e) {};
-				}
+						}
 				String subject="Employee Signup Confirmation Message";
 				request.getRequestDispatcher("views/signUp/empSignUp.jsp").forward(request,customResponse);
 				String msg=String.format(customResponse.getOutput());
@@ -250,21 +223,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				com.setComURL(request.getParameter("ComURL"));			
 				session.setAttribute("companySignUp",com);
 				try{
-					try{
-						con = DBConnection.getConnection();
-					}catch(Exception t){
-						t.printStackTrace();
-					}
-					companyDAO.insertCompany(com,comPassword,con);
+					companyDAO.insertCompany(com,comPassword);
 					HttpSession session1 = request.getSession(true);
 					
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 				finally{
-					try {
-						DBConnection.freeResources(con);
-					}catch(Exception e) {};
 				}
 				to=com.getComEmail();
 				String subject="Company Signup Confirmation Message";
@@ -316,21 +281,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			veEmployee.setSkypeId(request.getParameter("skypeid"));
 			session.setAttribute("employee",veEmployee);
 			try{	
-				try{
-					con = DBConnection.getConnection();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				VeEmployeeDao.addEnquiry(veEmployee,con);
+				VeEmployeeDao.addEnquiry(veEmployee);
 				authResponse = "1";
 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 			finally{
-				try {
-				DBConnection.freeResources(con);
-				}catch(Exception e) {};
 			}  
 			
 			String subject="Confirmation Message";
@@ -376,22 +333,15 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			veContact.setAnnualTurnover(request.getParameter("company_annual_turnover"));
 			session.setAttribute("veContact",veContact);
 			try{	
-				try{
-					con = DBConnection.getConnection();
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-				VeContactDao.insertDetails(veContact,con);
+				
+				VeContactDao.insertDetails(veContact);
 				authResponse = "1";
 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 			finally{
-				try {
-				DBConnection.freeResources(con);
-				}catch(Exception e) {};
-			}  
+					}  
 			
 			String subject="Confirmation Message";
 			request.getRequestDispatcher("views/ve/contactUsEmail.jsp").forward(request,customResponse);
@@ -435,22 +385,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				String authResponse11 = "-1";
 				Connection con11 = null;
 				try{
-					try{
-						con11 = DBConnection.getConnection();
-					}catch(Exception exp1){
-						exp1.printStackTrace();
-					}
-					companyDAO.insertJob(uid,a1,a2,a3,a4,a5,a6,a7,a8,con11);
-
-					
+					companyDAO.insertJob(uid,a1,a2,a3,a4,a5,a6,a7,a8);
 					authResponse11 = "1";
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 				finally{
-					try {
-					DBConnection.freeResources(con11);
-					}catch(Exception e) {};
+					
 				}
 				
 				request.setAttribute("authResponse", authResponse11);
@@ -473,16 +414,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				ct.setComment(request.getParameter("contactDescription"));
 				CharArrayWriterResponse contactResponse  = new CharArrayWriterResponse(response);
 				try {
-					con=DBConnection.getConnection();
-					UsersDAO.contactForm(ct,con);
+					UsersDAO.contactForm(ct);
 				}catch(Exception er) {
 					er.printStackTrace();
 				}
 				finally{
-					try {
-					DBConnection.freeResources(con);
-					}catch(Exception r) {}
-				}
+						}
 				authResponse="1";
 				session=request.getSession();
 				session.setAttribute("contactDetails", ct);
@@ -510,15 +447,11 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				Users u=null;
 				CharArrayWriterResponse forgotPwdResponse  = new CharArrayWriterResponse(response);
 				try{
-					con=DBConnection.getConnection();
-					u= UsersDAO.getforgotPwdDetails(em,con);
+					
+					u= UsersDAO.getforgotPwdDetails(em);
 				}catch(Exception r){}
 				finally{
-					try{
-						DBConnection.freeResources(con);
-					}
-					catch(Exception t){}
-				}
+						}
 				if(u==null){
 					authResponse="-1";
 					returnPath="/views/authenticationResponse.jsp";
@@ -563,15 +496,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				session=request.getSession();
 				Users us=(Users)session.getAttribute("userInfo");
 				try {
-					con=DBConnection.getConnection();
-					UsersDAO.changePassword(newpwd,us.getId(),con);
+					
+					UsersDAO.changePassword(newpwd,us.getId());
 					authResponse="1";
 				}catch(Exception e){}
 				finally{
-					try{
-						DBConnection.freeResources(con);
-					}catch(Exception uo){}
-				}
+						}
 				request.setAttribute("authResponse", authResponse);
 				returnPath="/views/authenticationResponse.jsp";
 				rd = request.getRequestDispatcher(returnPath);

@@ -59,7 +59,7 @@ $(document).ready(function() {
 						alert("Inside else");
 						alert("data entered uccessfully");
 						alert("erty");
-						window.location.href="http://localhost:8080/tmp/views/contactUs.html";
+						window.location.href="http://talentmanpower.com/tmp/views/contactUs.html";
 						
 					}											
 				}
