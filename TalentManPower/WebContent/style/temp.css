@@ -895,5 +895,14 @@ nav ul li div.current{
 	font-size:90%;
 	color:blue;
 }
-
-
+#LoadingImage
+{
+	position:absolute;
+	z-index:10;
+	top:0px;
+	left:0px;
+	background:url("/tmp/images/load.gif") no-repeat center;
+	background-color:rgba(0,0,0,0.7);
+	width:100%;
+	height:100%;
+}

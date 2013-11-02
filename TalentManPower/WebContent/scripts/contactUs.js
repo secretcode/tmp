@@ -1,38 +1,38 @@
 var APP_PATH = "/tmp/";
 var isError=0;
 $(document).ready(function() {
-	alert("in contactus.js");
+	console.log("in contactus.js");
 	$("#contactSubmitBtn").click(function() {
 		console.log("in submit btn");
 		var name=$("#contactName").val();
-		alert(name);
+		console.log(name);
 		if(name=="" || name==$("#contactName").attr('placeholder')){
-			alert("enter valid Name");
+			console.log("enter valid Name");
 			$('#errorMessage').html('Enter Valid UserName');
 			$('#errorMessage').show();
 			isError = 1;	
 		}
 		
 		var email=$("#contactEmail").val();
-		alert(email);
+		console.log(email);
 		if(email=="" || email==$("#contactEmail").attr('placeholder')){
-			alert("enter valid email id");
+			console.log("enter valid email id");
 			$('#errorMessage').html('Enter Valid email id');
 			$('#errorMessage').show();
 			isError = 1;	
 		}
 		var phone=$("#contactPhone").val();
-		alert(phone);
+		console.log(phone);
 		if(phone=="" || phone==$("#contactPhone").attr('placeholder')){
-			alert("enter valid contact phone no.");
+			console.log("enter valid contact phone no.");
 			$('#errorMessage').html('Enter Valid phone no.');
 			$('#errorMessage').show();
 			isError = 1;	
 		}
 		var subject=$("#contactSubject").val();
-		alert(subject);
+		console.log(subject);
 		if(subject=="" || subject==$("#contactSubject").attr('placeholder')){
-			alert("enter valid csubject.");
+			console.log("enter valid csubject.");
 			$('#errorMessage').html('Enter subject.');
 			$('#errorMessage').show();
 			isError = 1;	
@@ -40,28 +40,30 @@ $(document).ready(function() {
 		
 		
 		if(isError==0) {
-			alert("no error found");
+			console.log("no error found");
+			$('#LoadingImage').show();	
 			
 			var contactForm = $("#contactForm");
-			alert("form "+ contactForm);
+			console.log("form "+ contactForm);
 			$.ajax({
 				type:"POST",
 				url: APP_PATH+'bridge',//loginForm.attr('action'),
 				data: contactForm.serialize(),
 				success: function(response){
-					alert("Response is: "+response);
+					console.log("Response is: "+response);
 					var responseMessage = $.trim(response);
-					alert(responseMessage);
+					console.log(responseMessage);
 					
 					if(responseMessage != "1") {
-						alert("Information is not entered correctly..!! have a look at it again:)");
+						console.log("Information is not entered correctly..!! have a look at it again:)");
 					} else {
-						alert("Inside else");
-						alert("data entered uccessfully");
-						alert("erty");
+						console.log("Inside else");
+						console.log("data entered uccessfully");
 						window.location.href="http://talentmanpower.com/tmp/views/contactUs.html";
 						
-					}											
+					}	
+					$('#LoadingImage').hide();	
+					
 				}
 			  });
 		}

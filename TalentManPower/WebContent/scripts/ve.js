@@ -3,7 +3,6 @@ $( document ).ajaxError(function() {
 });
 $(function(){
 	var APP_PATH = "/tmp/";
-	$('#loadingImage').hide();
 	
 	$('#howDoWorkLink').click(function(){
 		document.getElementById('howDoWorkLink').className = 'current';
@@ -166,7 +165,7 @@ $(function(){
 			{
 				$('#captcha').attr('src',APP_PATH+'captcha');
 			}
-		$("#veLoadingImage").hide();
+		$("#LoadingImage").hide();
 	};
 	
 	$("#veGetStartedFormButton").click(function() {
@@ -215,7 +214,7 @@ $(function(){
 		}
 		else
 			{
-				$('#veLoadingImage').show();
+				$('#LoadingImage').show();
 				$("#errorMessage").load(APP_PATH+"bridge?"+$('#veGetStartedForm').serialize(), initiateAttachDocuments);
 			}
 	});
