@@ -21,6 +21,7 @@ $(document).ready(function() {
 				initiateUserInfoBox();
 			}
 		}
+		
 	});
 			
 });
@@ -55,11 +56,10 @@ function initiateForgotPwd() {
 				//	alert("After Submit");
 						$("#PwdemailId").html("");
 						$("#forgotPwdDetails").hide();
-					}											
+					}										
+					document.getElementById("forgotPwdForm").reset();
 				}
-			  });
-			
-
+			});
 		});
 	});
 }
@@ -82,17 +82,14 @@ function initiateLoginBox() {
 	$(".error").hide();
 	
 	$("#userLoginButton").click(function() {
-		//alert("Inside click");
 		var password=$("#loginUserPassword").val();  
 		if(password=="" || password==$("#loginUserPassword").attr('placeholder')){
-		//  $("#email_error_AF").html("This field is required");
 		 $("#loginErrorMessage").html("enter password correctly");
 		 $("#loginUserPassword").focus();
 		 $("#loginErrorMessage").html("enter password correctly");
 		 $("#loginErrorMessage").show();
 		}
 		else if(password.length<6){
-			//  $("#email_error_AF").html("This field is required");
 			$("#loginErrorMessage").html("password must be of length more than 6 letters");
 			 $("#loginUserPassword").focus();
 			 $("#loginErrorMessage").show();
@@ -126,13 +123,15 @@ function initiateLoginBox() {
 					alert("Inside if");
 					$("#loginErrorMessage").html("Invalid UserName and password");
 					$("#loginErrorMessage").show();
-				} else {
-				alert("After Submit");
+				} 
+				else{
+					alert("After Submit");
 					$("nav2").hide();
 					$("#loginUserName").html("");
 					$("#loginUserPassword").html("");
-				initiateUserInfoBox();
-				}											
+					initiateUserInfoBox();
+				}				
+				document.getElementById("loginForm").reset();
 			}
 		  });
 			}
@@ -193,9 +192,7 @@ function initiateUserInfoBox() {
 			data: changePwdForm.serialize(),
 			success: function(response){
 				//alert("Response is: "+response);
-				var responseMessage = $.trim(response);
-				
-				
+				var responseMessage = $.trim(response);	
 				if(responseMessage != "1" ) {
 					alert("Inside if");
 					$("#changePwdFailureDiv").html("error in changing Password");
@@ -204,12 +201,9 @@ function initiateUserInfoBox() {
 				alert("After Submit");
 					$("#newPwd").html("");
 				}											
+				document.getElementById("changePwdFrm").reset();
 			}
 		  });
-		
 		}
 	});
-		
-		
-
 }

@@ -1,5 +1,16 @@
 var APP_PATH = "/tmp/";
 var isError=0;
+var checkPhone=function(phone)
+{
+	var pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;  
+	return !pattern.test(phone);
+};  
+var checkEmail=function(emailAddress)
+{
+	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+	return !pattern.test(emailAddress);
+};
+
 $(document).ready(function() {
 	console.log("in contactus.js");
 	$("#contactSubmitBtn").click(function() {
@@ -15,7 +26,7 @@ $(document).ready(function() {
 		
 		var email=$("#contactEmail").val();
 		console.log(email);
-		if(email=="" || email==$("#contactEmail").attr('placeholder')){
+		if(checkEmail($('#contactEmail').val())){
 			console.log("enter valid email id");
 			$('#errorMessage').html('Enter Valid email id');
 			$('#errorMessage').show();
@@ -23,7 +34,7 @@ $(document).ready(function() {
 		}
 		var phone=$("#contactPhone").val();
 		console.log(phone);
-		if(phone=="" || phone==$("#contactPhone").attr('placeholder')){
+		if(checkPhone($('#contactPhone').val())){	
 			console.log("enter valid contact phone no.");
 			$('#errorMessage').html('Enter Valid phone no.');
 			$('#errorMessage').show();
@@ -59,8 +70,7 @@ $(document).ready(function() {
 					} else {
 						console.log("Inside else");
 						console.log("data entered uccessfully");
-						window.location.href="http://talentmanpower.com/tmp/views/contactUs.html";
-						
+						document.getElementById("contactForm").reset();	
 					}	
 					$('#LoadingImage').hide();	
 					

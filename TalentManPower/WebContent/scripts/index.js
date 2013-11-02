@@ -311,7 +311,7 @@ function initiateCompanySignUp() {
 						$('#companySignUpOverlay').hide();						
 					}										
 					$('#LoadingImage').hide();	
-					
+					document.getElementById("companySignUpForm").reset();
 				}
 			  });
 				
@@ -414,7 +414,7 @@ function initiateEmpSignUpBox() {
 						$('#employeeSignUpOverlay').hide();
 					}	
 					$('#LoadingImage').hide();
-					
+					document.getElementById("employeeSignUpForm").reset();
 				}
 			});
 		}
