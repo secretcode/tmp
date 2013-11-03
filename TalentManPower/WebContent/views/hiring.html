@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE h	tml PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
    <head>
    	<meta charset="UTF-8">
    	<title>TALENT MAN POWER</title>
@@ -25,15 +25,16 @@
    <body>
    	<div id="addJobOverlay">
 		<div id ="addJobFormDiv">
-			<h1 id ="addJobFormTitle"> Add Job </h1>
-			<img id="addJobFormCrossButton" src="../images/crossButton.jpg">
+			<h1 id ="addJobFormTitle"> Add Job 
+				<img id="addJobFormCrossButton" src="../images/crossButton.jpg" style="float: right;">
+			</h1>
 			<form method=POST action="" name="AddJobForm" id="AddJobForm">
 			<input type=hidden name=action value="AddCompanyJobForm">
 				<table id ="addJobFormInput">
 					<tr>
 						<td>
 							<div class="columtext">
-								<label><span class="red">* </span>Category:</label>
+								<label><span class="red">* </span>Category:</label><br>
 								<select name="addJobCategoryValue" id="addJobCategoryListValue" class="textbox">
 									<option value="">--Select Category--</option>
 									<option value="account">Accounts</option>
@@ -46,7 +47,7 @@
 						</td>
 						<td>
 							<div class="columtext_last">
-								<label><span class="red">* </span>Stream:</label>
+								<label><span class="red">* </span>Stream:</label><br>
 								<select name="addJobStreamValue" id="addJobStreamListValue" class="textbox">
 									<option value="">--Select Stream--</option>
 									<option value="CSE">CSE</option>
@@ -62,7 +63,7 @@
 					<tr>
 						<td>
 							<div class="columtext">
-								<label><span class="red">* </span>Required designation   </label>
+								<label><span class="red">* </span>Required designation   </label><br>
 								<select name="Post" id="JobDesignation" class="textbox" value="">
 									<option value="">Please Select</option>
 									<option value="Chief Executive Officer">Chief Executive Officer</option>
@@ -76,7 +77,7 @@
 						</td>
 						<td>
 							<div class="columtext_last">
-								<label>Minimun Work Experience Required:</label>
+								<label>Minimun Work Experience Required:</label><br>
 								<select name="WorkExperienceRequired" id="Work_Experience" class="textbox" value="">
 									<option value="">Please Select</option>
 									<option value="0">freshers</option>
@@ -92,7 +93,7 @@
 					<tr>
 						<td>
 							<div class="columtext">
-								<label>Place:</label>
+								<label>Place:</label><br>
 								<select name="WorkPlace" id="Work_Place" class="textbox" value="">
 									<option value="">Please Select</option>
 									<option value="Banglore">Banglore</option>
@@ -135,7 +136,7 @@
 				</div>
 				</form>
 				<br><br>
-				<div id="addJobSubmitButton"> <a href="#" class="addJobFormButton1">ADD JOB</a></div>			
+				<div id="addJobSubmitButton"> <a href="#" class="overLayFormSubmitButton ">ADD JOB</a></div>			
 			
 		</div>
 	</div>
