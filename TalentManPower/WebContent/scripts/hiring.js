@@ -15,7 +15,6 @@ $(document).ready(function() {
 	$("#mainEmployeeHiringBox").hide();
 	initiateAllCategoryCompanyDT();
 	initiateAllCategoryEmployeeDT();
-	addJobButtonClick();
 	uploadResumeClick();
 	addEmployeeEmployerClick();
 	console.log("in function");
@@ -82,26 +81,10 @@ function addEmployeeEmployerClick(){
 	});
 	
 }
-function addJobButtonClick(){
-	console.log("inside abc function");	
-	$('#addJobButton').click(function(){
-		initiateAddJob();
-		
-		$('#content').hide();
-		console.log("inside click of add job");
-		$('#addJobOverlay').height($(document).height());
-		$('#addJobOverlay').show();
-	});
-	$('#addJobFormCrossButton').click(function(){
-		$('#content').show();
-		$('#addJobOverlay').hide();
-	});
-}
-
 
 
 function initiateAllCategoryCompanyDT() {
-	console.log("in function12345678");
+	console.log("inside initiateAllCategoryCompanyDT function in hiring.js");
 
 	queryAllCompanyData();
 	$("#getAccountCompanyListButton").click(function() {
@@ -141,6 +124,20 @@ function initiateAllCategoryCompanyDT() {
 		
 		$('#mainCompanyHiringBox').show();
 		
+	});
+	
+	$('#addJobButton').click(function(){
+		alert("inside add job click button");
+		initiateAddJob();
+		
+		$('#content').hide();
+		console.log("inside click of add job");
+		$('#addJobOverlay').height($(document).height());
+		$('#addJobOverlay').show();
+	});
+	$('#addJobFormCrossButton').click(function(){
+		$('#content').show();
+		$('#addJobOverlay').hide();
 	});
 	
 }

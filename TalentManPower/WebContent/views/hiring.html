@@ -15,7 +15,7 @@
 		    
  	 <script type="text/javascript" src="../scripts/index.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/hiring.css"/>
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
     	google.load('visualization', '1', {
   		  'packages': ['corechart', 'controls']
@@ -23,7 +23,123 @@
 	</script>
    </head>
    <body>
-   <div id ="LoadingImage" style ="display:none;"></div>
+   	<div id="addJobOverlay">
+		<div id ="addJobFormDiv">
+			<h1 id ="addJobFormTitle"> Add Job </h1>
+			<img id="addJobFormCrossButton" src="../images/crossButton.jpg">
+			<form method=POST action="" name="AddJobForm" id="AddJobForm">
+			<input type=hidden name=action value="AddCompanyJobForm">
+				<table id ="addJobFormInput">
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Category:</label>
+								<select name="addJobCategoryValue" id="addJobCategoryListValue" class="textbox">
+									<option value="">--Select Category--</option>
+									<option value="account">Accounts</option>
+									<option value="engg">Engg</option>
+									<option value="management">Management</option>
+									<option value="sales">Sales</option>
+								</select>
+							</div>
+							<div class="clear"></div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label><span class="red">* </span>Stream:</label>
+								<select name="addJobStreamValue" id="addJobStreamListValue" class="textbox">
+									<option value="">--Select Stream--</option>
+									<option value="CSE">CSE</option>
+									<option value="IT">IT</option>
+									<option value="MECH">MECH</option>
+									<option value="CIVIL">CIVIL</option>
+								</select>
+							</div>
+							<div class="clear"></div>
+						</td>
+						
+					</tr>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>Required designation   </label>
+								<select name="Post" id="JobDesignation" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="Chief Executive Officer">Chief Executive Officer</option>
+									<option value="Chief Operations Officer">Chief Operations Officer</option>
+									<option value="Chief Financial Officer">Chief Financial Officer</option>
+									<option value="Managing Director">Managing Director</option>
+									<option value="HR Manager">HR Manager</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label>Minimun Work Experience Required:</label>
+								<select name="WorkExperienceRequired" id="Work_Experience" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="0">freshers</option>
+									<option value="1">0-2 Years</option>
+									<option value="2">2-4 Years</option>
+									<option value="3">4-6 Years</option>
+									<option value="4">6-8 Years</option>
+									<option value="5">8-10 Years</option>
+									<option value="6">above 10 years</option>
+								</select>
+							</div>
+						</td>
+					<tr>
+						<td>
+							<div class="columtext">
+								<label>Place:</label>
+								<select name="WorkPlace" id="Work_Place" class="textbox" value="">
+									<option value="">Please Select</option>
+									<option value="Banglore">Banglore</option>
+									<option value="Delhi">Delhi</option>
+									<option value="Mumbai">Mumbai</option>
+									<option value="Chenai">Chenai</option>
+									<option value="Kolkata">Kolkata</option>
+									<option value="manglore">manglore</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
+						</td>
+						<td>
+							<div class="columtext_last">
+								<label><span class="red">* </span>Salary:</label><br>
+								<input type="text" class="textbox" name="Salary" id="JobSalary" onfocus="if (this.value == 'Salary') this.value = '';" onblur="if (this.value == '') this.value = 'Salary';" value="Salary">
+							</div>
+							<div class="clear"></div>
+						</td>
+							
+					</tr>
+					<tr>
+						
+						<td>
+							<div class="columtext">
+								<label><span class="red">* </span>No of vacancies:</label><br>
+								<input type="text" class="textbox" name="EMP_Required" id="EMP_Required" onfocus="if (this.value == 'EMP_Required') this.value = '';" onblur="if (this.value == '') this.value = 'EMP_Required';" value="EMP_Required">
+							</div>
+							<div class="clear"></div>
+						</td>
+							
+					</tr>
+					
+					
+				</table>
+				<br><br>
+				<div>
+					<span class="red">* </span> Describe Your Hiring Requirement<br>
+					<textarea name="JobDescription" id="Job_Description" cols="35" rows="7" placeholder="the person should be good in communicating with others,sholud be flexible with working tymings and shoulb be good in c/c++"></textarea>
+				</div>
+				</form>
+				<br><br>
+				<div id="addJobSubmitButton"> <a href="#" class="addJobFormButton1">ADD JOB</a></div>			
+			
+		</div>
+	</div>
+   
    <div id ="LoadingImage" style ="display:none;"></div>
   <div id="companySignUpOverlay" class="overlayPage">
 		<div id ="companySignUpFormDiv" class="overlayFormDiv">
