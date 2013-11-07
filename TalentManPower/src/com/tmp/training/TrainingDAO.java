@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import java.sql.PreparedStatement;
 
+import com.tmp.utils.DBConnection;
+
 public class TrainingDAO {
 	public static ArrayList<TrainingCourses> getTrainingList(Connection con) throws Exception{
 		PreparedStatement ps=con.prepareStatement("select * from training_info;");
@@ -23,7 +25,8 @@ public class TrainingDAO {
 			
 		}
 	
-	public static ArrayList<TrainingCourses> getCoursesList(Connection con) throws Exception {
+	public static ArrayList<TrainingCourses> getCoursesList() throws Exception {
+		Connection con=DBConnection.getConnection();
 		PreparedStatement ps=con.prepareStatement("select * from training_info");
 		ResultSet rs=ps.executeQuery();
 		ArrayList<TrainingCourses> result=new ArrayList<TrainingCourses>();
@@ -34,7 +37,7 @@ public class TrainingDAO {
 			dto.setCourseName(rs.getString(3));
 			result.add(dto);
 		}
-		
+		DBConnection.freeResources(con);
 		return result;
 		
 	}

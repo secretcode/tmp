@@ -15,9 +15,12 @@ import javax.servlet.http.HttpSession;
 
 import com.tmp.company.Comp;
 import com.tmp.company.companyDAO;
+import com.tmp.training.TrainingCourses;
+import com.tmp.training.TrainingDAO;
 import com.tmp.user.*;
 import com.tmp.utils.DBConnection;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.tmp.ve.*;
 import com.tmp.email.*;
@@ -33,12 +36,13 @@ public class ApplicationController extends HttpServlet implements Servlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userAction = "";
+		int retPath=0;
 		userAction = request.getParameter("action");
 		System.out.println(" in the service method .......action  " + userAction);
 		Users usr=null;
 		RequestDispatcher rd = null;
 		String to;
-		String returnPath=null;
+		String returnPath="/views/authenticationResponse.jsp";
 		String authResponse = "-1";
 		HttpSession session=null;
 		String captcha,code;
@@ -52,12 +56,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			String action = request.getParameter("action");
 			System.out.println(loginName);
 			System.out.println(passwd);
-			authResponse = "-1";
-			returnPath="/views/authenticationResponse.jsp";
-			if(loginName == null || passwd == null) {
-				action = "";
-				returnPath = "/";
-			}
 			try{
 				try{	
 					usr  = UserManager.authenticateUser(loginName, passwd);
@@ -77,14 +75,24 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				session.setAttribute("userInfo",usr);
 			}		
 			finally {}
+			break;
 			
-			System.out.println(" value of returnpath is "+ returnPath);
-			System.out.println("authresponse ::"+ authResponse);
-			request.setAttribute("authResponse", authResponse);
+			
+		case "loadCourses" :
+			System.out.println("loading courses..");
+			ArrayList<TrainingCourses> courses=new ArrayList<TrainingCourses>();
+			try {
+				
+				courses=TrainingDAO.getCoursesList();
+			}catch(Exception h) {}
+			retPath=1;
+			returnPath="views/loadCourses.jsp";
+			request.setAttribute("coursesArray", courses);
 			rd = request.getRequestDispatcher(returnPath);
 			System.out.println("rd " + rd);
 			rd.forward(request, response);
-			break;
+
+			break;	
 			
 		case "trainCompanyForm":
 			System.out.println("insidaa application controller");
@@ -93,8 +101,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			String cemail = request.getParameter("CompanyEmail");
 			System.out.println("set email");
 			String[] courses_names=request.getParameterValues("loadCourses");
-			//System.out.println("emp course ::"+str.length + "  "+ str[0]+"  "+str[1]+"  "+str[2]);
-			returnPath="/";
 			int contact=0;
 			try{
 				contact= Integer.parseInt(request.getParameter("CompanyContactNo"));
@@ -103,39 +109,31 @@ public class ApplicationController extends HttpServlet implements Servlet {
 					System.out.println("invaaild contect no");
 			}
 			System.out.println("cname"+cname+" company email id"+cemail+" company contact no"+contact);
-			String authResponse1 = "-1";
 			try{
-				companyDAO.insertCompanyList(cname, cemail, contact, courses_names);
-
-				HttpSession session1 = request.getSession(true);
-				authResponse1 = "1";
-				returnPath="views/authenticationResponse.jsp";
+				companyDAO.insertCompanyCoursesList(cname, cemail, contact, courses_names);
+				authResponse = "1";
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			finally{
-							}
-			
-			request.setAttribute("authResponse", authResponse1);
-			rd = request.getRequestDispatcher(returnPath);
-			System.out.println("rd " + rd);
-
-			rd.forward(request, response);
+			finally{}
 			break;
 			
 		case "employeeSignUpJobForm" :
-			System.out.println("inside emp sign up");		        
-			session = request.getSession();
-			String captcha3 = (String) session.getAttribute("captcha");
-			String code3 = (String) request.getParameter("captcha");
-			System.out.println("captcha code is "+captcha3);
-			System.out.println("captcha Entered by the user is "+code3);
-			if (!captcha3.equals(code3)) {
+			System.out.println("inside emp sign up");	
+			session=request.getSession();
+			captcha = (String) session.getAttribute("captcha");
+			System.out.println("session got" + captcha);
+			code = (String) request.getParameter("captcha");
+			System.out.println("captcha code is "+captcha);
+			System.out.println("captcha Entered by the user is "+code);
+			if (!captcha.equals(code)) {
+				  authResponse="-1";
 				  request.setAttribute("message","Please enter the correct captcha code");
 				  System.out.println("enter the correct captcha");
 			} 
 			else
 			{
+				authResponse = "1";
 				request.setAttribute("message","");
 				to=request.getParameter("EmpEmail");
 		    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
@@ -163,24 +161,16 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				String msg=String.format(customResponse.getOutput());
 				System.out.println(msg);
 				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
-
 			}
-			HttpSession session3 = request.getSession(true);
-			authResponse = "1";
-			returnPath="views/authenticationResponse.jsp";		
-			request.setAttribute("authResponse", authResponse);
-			rd = request.getRequestDispatcher(returnPath);
-			System.out.println("rd " + rd);
-			rd.forward(request, response);
 			break;
+			
 		case "companySignUpJobForm":
-			session = request.getSession();
-			String captcha2 = (String) session.getAttribute("captcha");
-			String code2 = (String) request.getParameter("captcha");
-			System.out.println("captcha code is "+captcha2);
-			System.out.println("captcha Entered by the user is "+code2);
-			String authResponse111 = "-1";
-			if (!captcha2.equals(code2)) {
+			session=request.getSession();
+			captcha = (String) session.getAttribute("captcha");
+			code = (String) request.getParameter("captcha");
+			System.out.println("captcha code is "+captcha);
+			System.out.println("captcha Entered by the user is "+code);
+			if (!captcha.equals(code)) {
 				  request.setAttribute("message","Please enter the correct captcha code");
 				  System.out.println("enter the correct captcha");
 			} 
@@ -223,9 +213,8 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				com.setComURL(request.getParameter("ComURL"));			
 				session.setAttribute("companySignUp",com);
 				try{
+					authResponse="1";
 					companyDAO.insertCompany(com,comPassword);
-					HttpSession session1 = request.getSession(true);
-					
 				}catch(Exception e){
 					e.printStackTrace();
 				}
@@ -238,15 +227,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				System.out.println(msg);
 				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 			}
-			authResponse111 = "1";
-			returnPath="views/authenticationResponse.jsp";
-			request.setAttribute("authResponse", authResponse111);
-			rd = request.getRequestDispatcher(returnPath);
-		
-			System.out.println("rd " + rd);
-
-			rd.forward(request, response);
-
 			break;
 
 			
@@ -260,6 +240,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			  request.setAttribute("message","Please enter the correct captcha code");
 		    }
 		    else {
+		    	authResponse="1";
 	    	request.setAttribute("message","");
 	    	to=request.getParameter("email");
 	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
@@ -282,7 +263,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			session.setAttribute("employee",veEmployee);
 			try{	
 				VeEmployeeDao.addEnquiry(veEmployee);
-				authResponse = "1";
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -301,19 +281,10 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			};
 		}	
 			  System.out.println(request.getAttribute("message"));
-			returnPath="views/confirmation.jsp";
-			request.setAttribute("authResponse", authResponse);
-			rd = request.getRequestDispatcher(returnPath);
-		
-			System.out.println("rd " + rd+"request is "+request+"  response is "+response);
-
-			rd.forward(request, response);
-
-			break;
+			  break;
 			
 		case "veContactUsForm":
 			System.out.println("virtual employee  contact us ka form mil gaya");
-			session = request.getSession();
 			to=request.getParameter("email");
 	    	CharArrayWriterResponse customResponse  = new CharArrayWriterResponse(response);
 	    	VeContact veContact=new VeContact();
@@ -352,11 +323,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			}catch(Exception e){
 					System.out.println("mail exceotion");
 			};	
-			request.setAttribute("authResponse", authResponse);
-			rd = request.getRequestDispatcher(returnPath);
 		
-			System.out.println("rd " + rd+"request is "+request+"  response is "+response);
-
 			break;
 		
 			
@@ -370,7 +337,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				String a6 = request.getParameter("WorkPlace");
 				System.out.println("dfghhdsjk");
 				int a7=0,a8=0;
-				returnPath="/views/authenticationResponse.jsp";
 				try{
 					a7= Integer.parseInt(request.getParameter("Salary"));
 					a8= Integer.parseInt(request.getParameter("EMP_Required"));
@@ -382,25 +348,15 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				int uid=ur.getId();
 				System.out.println(a1+" "+a2+" "+a3+" "+a4+" "+a5+" "+a6+" "+a7+" "+a8+ " "+uid);
 				
-				String authResponse11 = "-1";
-				Connection con11 = null;
 				try{
 					companyDAO.insertJob(uid,a1,a2,a3,a4,a5,a6,a7,a8);
-					authResponse11 = "1";
+					authResponse = "1";
 				}catch(Exception e){
 					e.printStackTrace();
 				}
 				finally{
 					
 				}
-				
-				request.setAttribute("authResponse", authResponse11);
-				rd = request.getRequestDispatcher(returnPath);
-			
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-
 				break;
 				
 				
@@ -429,15 +385,6 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				msg=String.format(contactResponse.getOutput());
 				System.out.println(msg);
 				Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
-			
-				request.setAttribute("authResponse", authResponse);
-				returnPath="/views/authenticationResponse.jsp";
-				rd = request.getRequestDispatcher(returnPath);
-				
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-
 				break;
 
 			case "forgotPwd" :
@@ -447,16 +394,10 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				Users u=null;
 				CharArrayWriterResponse forgotPwdResponse  = new CharArrayWriterResponse(response);
 				try{
-					
 					u= UsersDAO.getforgotPwdDetails(em);
 				}catch(Exception r){}
-				finally{
-						}
-				if(u==null){
-					authResponse="-1";
-					returnPath="/views/authenticationResponse.jsp";
-				}
-				else
+				finally{	}
+				if(u!=null)
 				{
 					session=request.getSession();
 					System.out.println("session b4");
@@ -472,26 +413,12 @@ public class ApplicationController extends HttpServlet implements Servlet {
 					System.out.println("b4 sendn mail");
 					Mailer.send("no_reply@talentmanpower.com","T@lentMP#123",to, subject, msg);
 					System.out.println("aftr sendn mail");
-					authResponse="1";
-					
+					authResponse="1";	
 				}
-				
-				
-				request.setAttribute("authResponse", authResponse);
-				returnPath="/views/authenticationResponse.jsp";
-				rd = request.getRequestDispatcher(returnPath);
-				
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-
 				break;
-				
-				
 				
 			case "changePwd" :
 				System.out.println("in change pwd div");
-				authResponse="-1";
 				String newpwd=request.getParameter("newPwd");
 				session=request.getSession();
 				Users us=(Users)session.getAttribute("userInfo");
@@ -500,24 +427,18 @@ public class ApplicationController extends HttpServlet implements Servlet {
 					UsersDAO.changePassword(newpwd,us.getId());
 					authResponse="1";
 				}catch(Exception e){}
-				finally{
-						}
-				request.setAttribute("authResponse", authResponse);
-				returnPath="/views/authenticationResponse.jsp";
-				rd = request.getRequestDispatcher(returnPath);
-				
-				System.out.println("rd " + rd);
-
-				rd.forward(request, response);
-
-				break;
-
-				
+				finally{}
+				break;		
 		default:
 				System.out.println("this is default case msg in application controller");
 			
 		}
-		
+		if(retPath==0) {
+		request.setAttribute("authResponse", authResponse);
+		rd = request.getRequestDispatcher(returnPath);
+		System.out.println("rd " + rd);
+		rd.forward(request, response);
+		}
 	}
 
 

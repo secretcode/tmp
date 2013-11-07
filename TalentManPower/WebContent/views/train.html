@@ -402,8 +402,10 @@
    
    	<div id="registerBtnOverlay" class="overlayPage">
 		<div id ="registerBtnFormDiv" class="overlayFormDiv">
-			<h1 id ="registerBtnFormTitle" class="overLayFormTitle" > Register Now </h1>
+			<h1 id ="registerBtnFormTitle" class="overLayFormTitle" > Register Now 
 			<img id="registerBtnFormCrossButton" class="overLayFormCrossButton" src="../images/crossButton.jpg">
+			</h1>
+			
 			<form method=POST action="" name="registerBtnForm" id="registerBtnForm" class="overLayForm">
 			<input type=hidden name=action value="trainCompanyForm">
 				<table id ="CompanyDetails">
@@ -411,12 +413,9 @@
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>Comapny Name:</label><br>
-								<input type="text" class="textbox" name="CompanyName" id="CompanyName" placeholder="full name">
+								<input type="text" class="textbox" name="CompanyName" id="RegCompanyName" placeholder="full name">
 							</div>
 							<div class="clear"></div>
-						</td>
-					</tr>
-					<tr>
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>Contact Number:</label><br>
@@ -424,12 +423,14 @@
 							</div>
 							<div class="clear"></div>
 						</td>
+					
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<div class="columtext">
 								<label><span class="red">* </span>EmailId</label><br>
-								<input type="text" class="textbox" name="CompanyEmail" id="CompanyEmail" placeholder="xyz@abc.com">
+								<input type="text" class="textbox" name="CompanyEmail" id="RegCompanyEmail" placeholder="xyz@abc.com">
 							</div>
 							<div class="clear"></div>
 						</td>

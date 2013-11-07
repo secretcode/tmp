@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class CaptchaController extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
@@ -31,14 +32,7 @@ public class CaptchaController extends HttpServlet implements Servlet {
 
     int width = 150;
     int height = 50;
-    char data[]={'z','e', 't', 'c', 'o', 'd', 'e','l', 'i', 'n', 'u', 'x','f', 'r', 'e', 'e', 'b', 's', 'd','u', 'b', 'u', 'n', 't', 'u','j', 'e', 'e','a','0','2','3','4','5','w'};
-    /*char data[][] = {
-        { 'z', 'e', 't', 'c', 'o', 'd', 'e' },
-        { 'l', 'i', 'n', 'u', 'x' },
-        { 'f', 'r', 'e', 'e', 'b', 's', 'd' },
-        { 'u', 'b', 'u', 'n', 't', 'u' },
-        { 'j', 'e', 'e' }
-    };*/
+    char data[]={'z','e', 't', 'o','i','t','f','b','s','f','y','p','i','x','q','v','b','m','b','x','z','w','q','p','d','f','g','k','h','r','c','x','c', 'o', 'd', 'e','l', 'i', 'n', 'u', 'x','f', 'r', 'e', 'e', 'b', 's', 'd','u', 'b', 'u', 'n', 't', 'u','j', 'e', 'e','a','0','2','3','4','5','w'};
 
 
     BufferedImage bufferedImage = new BufferedImage(width, height, 
@@ -76,8 +70,17 @@ public class CaptchaController extends HttpServlet implements Servlet {
     {
     	captcha+=data[index];
     }
+    if(captcha.length()>6) {
+    	captcha=captcha.substring(0,5);
+    }
+
     //String captcha = String.copyValueOf(data[index]);
-    request.getSession().setAttribute("captcha", captcha );
+    System.out.println("setting set attribute captcha "+ captcha);
+    HttpSession session=request.getSession();
+    String temp=(String)session.getAttribute("captcha");
+    if(temp!=null) 
+    	session.removeAttribute("captcha");
+    session.setAttribute("captcha", captcha );
 
     int x = 0; 
     int y = 0;

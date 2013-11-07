@@ -13,23 +13,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 <% 
 System.out.println("in jsppp");
 Users usr=(Users)session.getAttribute("forgotPwdUser");
-Random r = new Random();
-char data[]={'z','e', 't', 'c', 'o', 'd', 'e','l', 'i', 'n', 'u', 'x','f', 'r', 'e', 'e', 'b', 's', 'd','u', 'b', 'u', 'n', 't', 'u','j', 'e', 'e','a','0','2','3','4','5','w'};
-int index = Math.abs(r.nextInt()) % 5;
-int diff= Math.abs(r.nextInt()) % 10;
-if (diff<5)
-	diff+=5;
 String captcha="";
-for (;index<data.length;index+=diff)
-{
-	captcha+=data[index];
+while(captcha.length()<6) {
+	Random r = new Random();
+	char data[]={'z','e', 't', 'c', 'o', 'd', 'e','l',  'o','i','t','f','b','s','f','y','p','i','x','q','v','b','m','b','x','z','w','q','p','d','f','g','k','h','r','c','x','c', 'o', 'd', 'e','l', 'i', 'n', 'u', 'x','f', 'r', 'e', 'e', 'b', 's', 'd','u', 'b', 'u',  'i', 'n', 'u', 'x','f', 'r', 'e', 'e', 'b', 's', 'd','u', 'b', 'u', 'n', 't', 'u','j', 'e', 'e','a','0','2','3','4','5','w'};
+	int index = Math.abs(r.nextInt()) % 5;
+	int diff= Math.abs(r.nextInt()) % 10;
+	if (diff<5)
+		diff+=5;
+	for (;index<data.length;index+=diff)
+	{
+		captcha+=data[index];
+	}
 }
-
+if(captcha.length()>7) {
+	captcha=captcha.substring(0,7);
+}
 %>
 	Dear <%=usr.getLoginName()%>,
 	You requested for a new Password generation <br>

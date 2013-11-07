@@ -41,13 +41,13 @@ public class companyDAO {
 	 * 
 	 * contact_no
 	 */
-	public static void insertCompanyList(String cname,String cemail,int contact,String[] courses) throws Exception{
+	public static void insertCompanyCoursesList(String cname,String cemail,int contact,String[] courses) throws Exception{
 		PreparedStatement ps;
 		Connection con=DBConnection.getConnection();
 		int r;
 		try{
 			for(int i=0;i<courses.length;i++){
-				ps=con.prepareStatement("insert into company_list(company_name,company_email,company_contact_no,course_name) values('"+cname+"','"+cemail+"',"+contact+" ,'"+courses[i]+"')");
+				ps=con.prepareStatement("insert into company_courses_list(company_name,company_email,company_contact_no,course_name) values('"+cname+"','"+cemail+"',"+contact+" ,'"+courses[i]+"')");
 				r=ps.executeUpdate();
 				System.out.println("1 row added in company_list table"+i);
 			}
@@ -60,7 +60,7 @@ public class companyDAO {
 		PreparedStatement ps;
 		Connection con=DBConnection.getConnection();
 		try{
-			ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId) values('"+com.getComUserName()+"','"+comPassword+"',2)");
+			ps=con.prepareStatement("insert into users_login_info(login_name,email,password,roleId) values('"+com.getComUserName()+"','"+com.getComEmail()+"','"+comPassword+"',2)");
 			ps.executeUpdate();
 			ps=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+com.getComUserName()+"' and password='"+comPassword+"'");
 			ResultSet rs=ps.executeQuery();

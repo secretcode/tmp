@@ -19,8 +19,8 @@ $(document).ready(function() {
 		console.log(name);
 		if(name=="" || name==$("#contactName").attr('placeholder')){
 			console.log("enter valid Name");
-			$('#errorMessage').html('Enter Valid UserName');
-			$('#errorMessage').show();
+			$('#contactErrorMsg').html('Enter Valid UserName');
+			$('#contactErrorMsg').show();
 			isError = 1;	
 		}
 		
@@ -28,24 +28,24 @@ $(document).ready(function() {
 		console.log(email);
 		if(checkEmail($('#contactEmail').val())){
 			console.log("enter valid email id");
-			$('#errorMessage').html('Enter Valid email id');
-			$('#errorMessage').show();
+			$('#contactErrorMsg').html('Enter Valid email id');
+			$('#contactErrorMsg').show();
 			isError = 1;	
 		}
 		var phone=$("#contactPhone").val();
 		console.log(phone);
 		if(checkPhone($('#contactPhone').val())){	
 			console.log("enter valid contact phone no.");
-			$('#errorMessage').html('Enter Valid phone no.');
-			$('#errorMessage').show();
+			$('#contactErrorMsg').html('Enter Valid phone no.');
+			$('#contactErrorMsg').show();
 			isError = 1;	
 		}
 		var subject=$("#contactSubject").val();
 		console.log(subject);
 		if(subject=="" || subject==$("#contactSubject").attr('placeholder')){
 			console.log("enter valid csubject.");
-			$('#errorMessage').html('Enter subject.');
-			$('#errorMessage').show();
+			$('#contactErrorMsg').html('Enter subject.');
+			$('#contactErrorMsg').show();
 			isError = 1;	
 		}
 		

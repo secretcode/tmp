@@ -25,19 +25,19 @@ function initiateRegisterButton() {
 	
 	$("#registerSubmitButton").click(function() {
 		var isError=0;
-		var CompEmail=$("#CompanyEmail").val();  
-		if(CompEmail=="" || CompEmail==$("#CompanyEmail").attr('placeholder')||(CompEmail.search("@")==-1)||(CompEmail.search(".com")==-1)){
+		var CompEmail=$("#RegCompanyEmail").val();  
+		if(CompEmail=="" || CompEmail==$("#RegCompanyEmail").attr('placeholder')||(CompEmail.search("@")==-1)||(CompEmail.search(".com")==-1)){
 			alert("enter valid CompanyEmail");
 			isError = 1;	
 		}
-		var ComName=$("#CompanyName").val();  
-		if(ComName=="" || ComName==$("#JobSalary").attr('placeholder')){
+		var ComName=$("#RegCompanyName").val();  
+		if(ComName=="" || ComName==$("#RegCompanyName").attr('placeholder')){
 			alert("enter valid Company Name");
 			isError = 1;	
 		}
 	
-		var ComName=$("#CompanyContactNo").val();  
-		if(ComName=="" || ComName==$("#CompanyContactNo").attr('placeholder')){
+		var ComContct=$("#CompanyContactNo").val();  
+		if(ComContct=="" || ComContct==$("#CompanyContactNo").attr('placeholder')){
 			alert("enter valid Contct no.");
 			isError = 1;	
 		}

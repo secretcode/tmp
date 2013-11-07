@@ -491,6 +491,7 @@
    <section class="group1">
 	<h3>Contact Us:  </h3>
   	Please fill the form below :
+  	<div id="contactErrorMsg" style="display:none; color:red;"></div>
 	<form action="" method="post" name="contactForm" id="contactForm">
 	<input type=hidden name=action value="contactUsForm">
 	Name :<input type="text" name="contactName" id="contactName" placeholder="Name"/><br>
@@ -499,7 +500,7 @@
 	Subject:  <input type="text" name="contactSubject" id="contactSubject" placeholder="Subject"/><br>
 	Comment (Optional) :<textarea name="contactDescription" rows="8" id="contactDescription"  cols="300" placeholder="..." style="width: 100%;"></textarea>
 	</form>
-	<div id="errorMessage" style="display:none;"></div>
+	
 	<input id="contactSubmitBtn" type="submit" value="Submit"/> 
   
    </section>
