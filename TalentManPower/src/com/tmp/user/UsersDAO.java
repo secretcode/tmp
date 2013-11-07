@@ -9,9 +9,9 @@ import com.tmp.utils.DBConnection;
 
 public class UsersDAO {
 
-public static Users authenticateUser(String loginName,String password,Connection con) throws Exception{
+public static Users authenticateUser(String email,String password,Connection con) throws Exception{
 		
-		PreparedStatement ps=con.prepareStatement("SELECT id, login_name, password,roleId,email FROM users_login_info where login_Name='"+loginName+"' and password='"+password+"'");
+		PreparedStatement ps=con.prepareStatement("SELECT id, login_name, password,roleId,email FROM users_login_info where email='"+email+"' and password='"+password+"'");
 		ResultSet rs=ps.executeQuery();
 		Users dto=new Users();
 		while(rs.next()) {
@@ -33,7 +33,6 @@ public static Users authenticateUser(String loginName,String password,Connection
 	}
 	
 	public static void empSignUp(String name,String email,String password,String mobile,String address,String course,String exp,Connection con) throws Exception{
-		try{
 			PreparedStatement ps=con.prepareStatement("insert into users_login_info(login_name,password,roleId,email) values('"+name+"','"+password+"',1,'"+email+"')");
 			ps.executeUpdate();
 			PreparedStatement ps1=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+name+"' and password='"+password+"'");
@@ -45,11 +44,7 @@ public static Users authenticateUser(String loginName,String password,Connection
 			System.out.println("id is "+uid);
 			PreparedStatement ps2=con.prepareStatement("insert into users_info(id,Name,Email,Password,Mobile,Address,Course,Experience) values("+uid+",'"+name+"','"+email+"','"+password+"','"+mobile+"','"+address+"','"+course+"','"+exp+"')");
 			ps2.executeUpdate();
-		}catch(Exception e){
-			System.out.println("Exception in emp sign up "+e);
-			e.printStackTrace();
-			
-		}
+		
 	}
 
 

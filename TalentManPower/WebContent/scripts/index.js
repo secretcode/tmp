@@ -302,10 +302,17 @@ function initiateCompanySignUp() {
 					console.log("Response is: "+response);
 					var responseMessage = $.trim(response);
 					console.log(responseMessage);
-					
-					if(responseMessage != "1") {
-						console.log("Information is not entered correctly..!! have a look at it again:)");
-					} else {
+					if(responseMessage == "-2") {
+						$('#errorMessage').hide();
+						$('#errorMessage').html('email id already registered..!!');
+						$('#errorMessage').show();
+						console.log("data is not enetered correctly!!");
+					}else if(responseMessage == "-1") {
+						$('#errorMessage').hide();
+						$('#errorMessage').html('Enter captcha code correctly..!!');
+						$('#errorMessage').show();
+						console.log("data is not enetered correctly!!");	
+					}else {
 						console.log("Inside else");
 						console.log("data entered uccessfully");
 						$('#companySignUpOverlay').hide();						
@@ -407,14 +414,25 @@ function initiateEmpSignUpBox() {
 					var responseMessage = $.trim(response);
 					console.log(responseMessage);
 					
-					if(responseMessage != "1") {
-						console.log("data is nt enetered correctly!!");
+					if(responseMessage == "-2") {
+						$('#errorMessage').hide();
+						$('#errorMessage').html('email id already registered..!!');
+						$('#errorMessage').show();
+						console.log("data is not enetered correctly!!");
+					}else if(responseMessage == "-1") {
+						$('#errorMessage').hide();
+						$('#errorMessage').html('Enter captcha code correctly..!!');
+						$('#errorMessage').show();
+						console.log("data is not enetered correctly!!");	
 					} else {
+						$('#errorMessage').hide();
 						console.log("data entered uccessfully");
 						$('#employeeSignUpOverlay').hide();
+						document.getElementById("employeeSignUpForm").reset();
+						
 					}	
 					$('#LoadingImage').hide();
-					document.getElementById("employeeSignUpForm").reset();
+					
 				}
 			});
 		}

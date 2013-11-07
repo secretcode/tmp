@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import com.tmp.company.Company;
 import com.tmp.utils.DBConnection;
 public class companyDAO {
@@ -59,7 +60,7 @@ public class companyDAO {
 	public static void insertCompany(Comp com,String comPassword) throws Exception{
 		PreparedStatement ps;
 		Connection con=DBConnection.getConnection();
-		try{
+		
 			ps=con.prepareStatement("insert into users_login_info(login_name,email,password,roleId) values('"+com.getComUserName()+"','"+com.getComEmail()+"','"+comPassword+"',2)");
 			ps.executeUpdate();
 			ps=con.prepareStatement("SELECT id FROM users_login_info where login_name='"+com.getComUserName()+"' and password='"+comPassword+"'");
@@ -71,9 +72,7 @@ public class companyDAO {
 			}
 			System.out.println("1 row added in User_company");
 			DBConnection.freeResources(con);
-		}catch(Exception e){
-				e.printStackTrace();
-		}
+		
 	}
 
 
@@ -96,7 +95,10 @@ public class companyDAO {
 			ps.executeUpdate();
 			System.out.println("1 row added in "+table+"_job table");
 			DBConnection.freeResources(con);
-		}catch(Exception e){
+		}catch(MySQLIntegrityConstraintViolationException e){
+			System.out.println("login name already existssss...!!\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\try with new login_name");
+		}
+		catch(Exception e){
 				e.printStackTrace();
 		}
 	}

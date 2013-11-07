@@ -51,14 +51,14 @@ public class ApplicationController extends HttpServlet implements Servlet {
 		case  "loginUser" :
 		    System.out.println("inside login");
 	        
-			String loginName = request.getParameter("Username");
+			String email = request.getParameter("loginEmailId");
 			String passwd = request.getParameter("password");
 			String action = request.getParameter("action");
-			System.out.println(loginName);
+			System.out.println(email);
 			System.out.println(passwd);
 			try{
 				try{	
-					usr  = UserManager.authenticateUser(loginName, passwd);
+					usr  = UserManager.authenticateUser(email, passwd);
 					if(usr!=null) {
 						int uid=usr.getId();
 						System.out.println("uid of the user is::"+uid);
@@ -119,6 +119,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			break;
 			
 		case "employeeSignUpJobForm" :
+			
 			System.out.println("inside emp sign up");	
 			session=request.getSession();
 			captcha = (String) session.getAttribute("captcha");
@@ -150,7 +151,15 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				try {
 					try{
 						UserManager.empSignUp(emp,password);
-					}catch(Exception p){
+					}
+					catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+						System.out.println("login name already existssss...!!\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\try with new login_name");
+						authResponse="-2";
+						request.setAttribute("message","Login name already exits..!!");
+						System.out.println("enter another username");
+						break;
+					}
+					catch(Exception p){
 						p.printStackTrace();
 					}
 				}
@@ -171,6 +180,7 @@ public class ApplicationController extends HttpServlet implements Servlet {
 			System.out.println("captcha code is "+captcha);
 			System.out.println("captcha Entered by the user is "+code);
 			if (!captcha.equals(code)) {
+				  authResponse="-1";
 				  request.setAttribute("message","Please enter the correct captcha code");
 				  System.out.println("enter the correct captcha");
 			} 
@@ -215,7 +225,14 @@ public class ApplicationController extends HttpServlet implements Servlet {
 				try{
 					authResponse="1";
 					companyDAO.insertCompany(com,comPassword);
-				}catch(Exception e){
+				}catch(com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e){
+					System.out.println("login name already existssss...!!\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\try with new login_name");
+					authResponse="-2";
+					request.setAttribute("message","Login name already exits..!!");
+					System.out.println("enter another username");
+					break;
+				}
+				catch(Exception e){
 					e.printStackTrace();
 				}
 				finally{

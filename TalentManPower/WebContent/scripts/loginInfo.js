@@ -1,5 +1,11 @@
 
 var APP_PATH = "/tmp/";
+var checkEmail=function(emailAddress)
+{
+	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+	return !pattern.test(emailAddress);
+};
+
 
 $(document).ready(function() {
 	initiateLoginBox();
@@ -72,7 +78,7 @@ function initiateLoginBox() {
 	}		
 	});
 	
-	$("#loginUserName").keypress(function(e) {
+	$("#loginEmail").keypress(function(e) {
 		if(e.keyCode == 13 || e.which == 13) {
 			$("#userLoginButton").click();
 			
@@ -95,11 +101,10 @@ function initiateLoginBox() {
 			 $("#loginErrorMessage").show();
 		}
 		else{
-			var name=$("#loginUserName").val();  
-			if(name=="" || name==$("#loginUserName").attr('placeholder')){
-				$("#loginErrorMessage").html("enter username correctly");	
-				$('#errorMessage').html('Enter Valid UserName');
-				 $("#loginUserName").focus();
+			if(checkEmail($('#loginEmail').val())){
+				$("#loginErrorMessage").html("enter Email Id correctly");	
+				$('#errorMessage').html('Enter Valid Email Id');
+				 $("#loginEmail").focus();
 				 $("#loginErrorMessage").show();
 			}
 			else{
@@ -121,13 +126,13 @@ function initiateLoginBox() {
 				
 				if(responseMessage != "1" ) {
 					
-					$("#loginErrorMessage").html("Invalid UserName and password");
+					$("#loginErrorMessage").html("Invalid loginEmailId and password");
 					$("#loginErrorMessage").show();
 				} 
 				else{
 					
 					$("nav2").hide();
-					$("#loginUserName").html("");
+					$("#loginEmail").html("");
 					$("#loginUserPassword").html("");
 					initiateUserInfoBox();
 				}				
