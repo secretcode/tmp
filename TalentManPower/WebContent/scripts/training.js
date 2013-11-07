@@ -13,11 +13,13 @@ $(document).ready(function() {
 
 function initiateRegisterButton() {
 	$("#registerNow").click( function() {
-		alert("button clikd");
+		
 		$('#registerBtnOverlay').height($(document).height());
 		$("#registerBtnOverlay").show();
 		console.log("b4 function loading course");
+		$('#LoadingImage').show();
 		$("#LoadCourses").load(APP_PATH+"bridge?action=loadCourses", function(response,status,xhr){console.log("courses load");});
+		$('#LoadingImage').hide();
 		
 		
 	});
@@ -27,18 +29,23 @@ function initiateRegisterButton() {
 		var isError=0;
 		var CompEmail=$("#RegCompanyEmail").val();  
 		if(CompEmail=="" || CompEmail==$("#RegCompanyEmail").attr('placeholder')||(CompEmail.search("@")==-1)||(CompEmail.search(".com")==-1)){
-			alert("enter valid CompanyEmail");
+			$("#registerBtnErrors").html("Enter valid Company EmailId");
+			$("#registerBtnErrors").show();
 			isError = 1;	
 		}
 		var ComName=$("#RegCompanyName").val();  
 		if(ComName=="" || ComName==$("#RegCompanyName").attr('placeholder')){
-			alert("enter valid Company Name");
+			$("#registerBtnErrors").html("Enter valid Company Name");
+			$("#registerBtnErrors").show();
+			
 			isError = 1;	
 		}
 	
 		var ComContct=$("#CompanyContactNo").val();  
 		if(ComContct=="" || ComContct==$("#CompanyContactNo").attr('placeholder')){
-			alert("enter valid Contct no.");
+			$("#registerBtnErrors").html("Enter valid Company Contact No.");
+			$("#registerBtnErrors").show();
+			
 			isError = 1;	
 		}
 	
@@ -47,27 +54,28 @@ function initiateRegisterButton() {
 			
 			var registerBtnForm = $("#registerBtnForm");
 			
-			alert("Apply Form var: "+ registerBtnForm);
 			
+			$('#LoadingImage').show();
 			$.ajax({
 				type:"POST",
 				url: APP_PATH+'bridge',
 				data: registerBtnForm.serialize(),
 				success: function(response){
-					alert("Response is: "+response);
+					$('#LoadingImage').hide();
 					var responseMessage = $.trim(response);
-					alert(responseMessage);
+				
 					
 					if(responseMessage != "1") {
-						alert("Information is not entered correctly..!! have a look at it again:)");
+						$("#registerBtnErrors").html("Error in submitting forms ");
 					} else {
-						alert("Inside else");
-						alert("data entered uccessfully");
+						document.getElementById("registerBtnForm").reset();
 						$('#registerBtnOverlay').hide();
-						alert("erty");
 						
-					}											
+						
+					}	
+					
 				}
+			
 			  });
 			
 		}

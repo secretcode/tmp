@@ -64,7 +64,7 @@
     <welcome-file>main.html</welcome-file>
   </welcome-file-list>
   
-  <!--  <resource-ref>
+  <!--   <resource-ref>
       <description>Connection Pool</description>
       <res-ref-name>jdbc/tmp</res-ref-name>
       <res-type>javax.sql.Datasource</res-type>

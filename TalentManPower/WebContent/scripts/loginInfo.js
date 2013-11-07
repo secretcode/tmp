@@ -11,9 +11,9 @@ $(document).ready(function() {
 		type:"POST",
 		url: APP_PATH + "/views/buttonCheck.jsp",
 		success: function(response){
-			alert("Response is: "+response);
+			
 			var responseMessage = $.trim(response);
-			alert(responseMessage);
+			//alert(responseMessage);
 			if(responseMessage==1 || responseMessage==2) {
 				console.log("resp2");
 				$("nav2").hide();
@@ -32,7 +32,7 @@ function initiateForgotPwd() {
 		$("#forgotPwdDetails").show();
 		$("#forgotPwdBtn").click(function(){
 			var ema=$("#PwdemailId").val();
-			alert(ema);
+			//alert(ema);
 			if(ema=="" || ema==$("#forgotPwdBtn").attr('placeholder')){
 				$("#loginErrorMessage").html("Enter EmailId correctly");
 				$("#loginErrorMessage").show();
@@ -49,7 +49,7 @@ function initiateForgotPwd() {
 					//alert("msg received is ::  "+responseMessage);
 					
 					if(responseMessage != "1" ) {
-						alert("Inside if");
+					//	alert("Inside if");
 						$("#loginErrorMessage").html("Email id not valid.");
 						$("#loginErrorMessage").show();
 					} else {
@@ -120,12 +120,12 @@ function initiateLoginBox() {
 				//alert("msg received is ::  "+responseMessage);
 				
 				if(responseMessage != "1" ) {
-					alert("Inside if");
+					
 					$("#loginErrorMessage").html("Invalid UserName and password");
 					$("#loginErrorMessage").show();
 				} 
 				else{
-					alert("After Submit");
+					
 					$("nav2").hide();
 					$("#loginUserName").html("");
 					$("#loginUserPassword").html("");
@@ -191,14 +191,14 @@ function initiateUserInfoBox() {
 			url: APP_PATH+'bridge',
 			data: changePwdForm.serialize(),
 			success: function(response){
-				//alert("Response is: "+response);
+			
 				var responseMessage = $.trim(response);	
 				if(responseMessage != "1" ) {
-					alert("Inside if");
+				
 					$("#changePwdFailureDiv").html("error in changing Password");
 					$("#changePwdFailureDiv").show();
 				} else {
-				alert("After Submit");
+			
 					$("#newPwd").html("");
 				}											
 				document.getElementById("changePwdFrm").reset();
