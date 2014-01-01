@@ -2,9 +2,6 @@ package com.tmp.user;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-
-import com.tmp.company.Company;
 import com.tmp.utils.DBConnection;
 
 public class UsersDAO {
@@ -107,17 +104,15 @@ public static Users authenticateUser(String email,String password,Connection con
 			employees.add( emp );
 		}
 		System.out.println(" arraylist size is " +employees.size());
-		
 		return employees;
-	
-	
-		}
+	}
 	
 	
 	public static void contactForm(ContactFrm ct) throws Exception{
 		Connection con=DBConnection.getConnection();
 		PreparedStatement ps=con.prepareStatement("insert into contactDetails(Name,EmailId,Phone,Subject,Comment) values('"+ct.getName()+"','"+ct.getEmailId()+"','"+ct.getPhone()+"','"+ct.getSubject()+"','"+ct.getComment()+"')");
 		int r=ps.executeUpdate();
+		System.out.println("no of row inserted is"+r);
 		DBConnection.freeResources(con);
 
 	
@@ -155,6 +150,7 @@ public static Users authenticateUser(String email,String password,Connection con
 		ps=con.prepareStatement("update user_company set Password='"+newpwd+"' where id='"+id+"';");
 		r=ps.executeUpdate();
 		System.out.println("passwdrd changed");
+		System.out.println("no of rows effected is"+r);
 		DBConnection.freeResources(con);
 	
 	}

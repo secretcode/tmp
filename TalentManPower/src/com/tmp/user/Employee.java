@@ -3,6 +3,10 @@ package com.tmp.user;
 import java.io.Serializable;
 
 public class Employee  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int Id=0;
 	protected String Name=null;
 	protected String Email=null;

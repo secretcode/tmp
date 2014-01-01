@@ -50,7 +50,8 @@ public class companyDAO {
 			for(int i=0;i<courses.length;i++){
 				ps=con.prepareStatement("insert into company_courses_list(company_name,company_email,company_contact_no,course_name) values('"+cname+"','"+cemail+"',"+contact+" ,'"+courses[i]+"')");
 				r=ps.executeUpdate();
-				System.out.println("1 row added in company_list table"+i);
+				System.out.println("no of rows added is"+r);
+				System.out.println("row added in company_list table"+i);
 			}
 			DBConnection.freeResources(con);
 		}catch(Exception e){
@@ -124,7 +125,7 @@ public class companyDAO {
 	}
 	public static ArrayList<Company> getComapnyName(int flag,Connection con) throws Exception {
 		System.out.println("in company DAO");
-		PreparedStatement ps,ps1,ps2,ps3,ps4;
+		PreparedStatement ps,ps1,ps2,ps3;
 		ResultSet rs=null,rs1=null,rs2=null,rs3=null;
 		ArrayList<Company> conceptInfo=new ArrayList<Company>();
 		if(flag==0) {

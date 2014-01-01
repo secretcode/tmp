@@ -3,6 +3,10 @@ package com.tmp.company;
 import java.io.Serializable;
 
 public class JobList  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int id;
 	protected String Stream=null;
 	protected String Post=null;

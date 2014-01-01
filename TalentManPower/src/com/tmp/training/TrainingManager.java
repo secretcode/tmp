@@ -3,9 +3,6 @@ package com.tmp.training;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.tmp.company.Company;
-import com.tmp.company.companyDAO;
 import com.tmp.utils.DBConnection;
 
 public class TrainingManager {

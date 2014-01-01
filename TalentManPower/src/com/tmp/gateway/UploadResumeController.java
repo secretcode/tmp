@@ -1,23 +1,16 @@
 package com.tmp.gateway;
 
 import java.io.File;
-import java.io.PrintWriter;
-
 import com.tmp.utils.DBConnection;
 import java.sql.PreparedStatement;
-
 import java.sql.Connection;
-
 import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -38,8 +31,6 @@ public class UploadResumeController extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
 		boolean isMultipartContent = ServletFileUpload.isMultipartContent(request);
 		if (!isMultipartContent) {
 			System.out.println("file is not uploading");
@@ -50,8 +41,8 @@ public class UploadResumeController extends HttpServlet {
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		try {
-			List<FileItem> fields = upload.parseRequest(request);
-		
+			@SuppressWarnings("unchecked")
+			List<FileItem> fields = upload.parseRequest(request);	
 			Iterator<FileItem> it = fields.iterator();
 			if (!it.hasNext()) {
 		

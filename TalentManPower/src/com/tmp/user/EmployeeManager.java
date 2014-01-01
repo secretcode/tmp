@@ -1,10 +1,7 @@
 package com.tmp.user;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.tmp.user.Employee;
 import com.tmp.user.UsersDAO;
 import com.tmp.utils.DBConnection;

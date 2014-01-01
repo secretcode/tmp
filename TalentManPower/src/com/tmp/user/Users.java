@@ -1,10 +1,13 @@
 package com.tmp.user;
 
-
 import java.io.Serializable;
-import java.util.*;
 
 public class Users implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected int id;
 	
 	protected String loginName;

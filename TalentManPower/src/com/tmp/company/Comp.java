@@ -3,6 +3,10 @@ package com.tmp.company;
 import java.io.Serializable;
 
 public class Comp  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String comUserName=null;
 	protected String comName=null;
 	protected String comEmail=null;

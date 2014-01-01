@@ -1,6 +1,5 @@
 package com.tmp.gateway;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import com.tmp.DTGenerators.*;
 import com.tmp.utils.TMPLogger;
 import com.google.visualization.datasource.DataSourceServlet;
@@ -20,9 +19,7 @@ public class WidgetController extends DataSourceServlet {
     public DataTable generateDataTable(Query query, HttpServletRequest request) throws DataSourceException {
     	String dataType = request.getParameter(DATA_TYPE);
     	System.out.println(dataType);
-        HttpSession session = request.getSession(false);
-    	
-    	DataTable dataTable = new DataTable();
+        DataTable dataTable = new DataTable();
     	    	
     	System.out.println(" ************ IN THE GENERATE DATA TABLE METHOD dataType ********* " + dataType);
     	System.out.println("before logger");

@@ -2,10 +2,7 @@ package com.tmp.company;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.tmp.company.Company;
 import com.tmp.company.companyDAO;
 import com.tmp.utils.DBConnection;
